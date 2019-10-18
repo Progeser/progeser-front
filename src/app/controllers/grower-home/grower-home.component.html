@@ -1,0 +1,47 @@
+<mat-tab-group class="mat-elevation-z3">
+  <mat-tab>
+    <ng-template mat-tab-label i18n="@@myRequests">
+      Mes demandes
+    </ng-template>
+
+    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span matBadge="4" matBadgeOverlap="false" matBadgeColor="warn"
+            i18n="@@waitingRequests">Demandes en attente</span>
+    </ng-template>
+
+    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span matBadge="1" matBadgeOverlap="false" matBadgeColor="warn"
+            i18n="@@requestsOfCanceling">Demandes d'annulation</span>
+    </ng-template>
+
+    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <ng-container i18n="@@canceledRequests">
+        Demandes annulées
+      </ng-container>
+    </ng-template>
+
+    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <ng-container i18n="@allRequests">
+        Toutes les demandes
+      </ng-container>
+    </ng-template>
+
+    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+  </mat-tab>
+</mat-tab-group>

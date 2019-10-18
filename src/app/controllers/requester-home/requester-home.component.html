@@ -1,0 +1,23 @@
+<nav class="actions-button">
+  <button mat-raised-button color="primary" i18n="@@newRequest">
+    Nouvelle demande
+  </button>
+</nav>
+
+<mat-tab-group class="mat-elevation-z3">
+  <mat-tab>
+    <ng-template mat-tab-label i18n="@@myRequests">
+      Mes demandes
+    </ng-template>
+
+    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label i18n="@@myCanceledRequests">
+        Mes demandes annulées
+    </ng-template>
+
+    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+  </mat-tab>
+</mat-tab-group>

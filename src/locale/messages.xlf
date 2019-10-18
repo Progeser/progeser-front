@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="myRequests" datatype="html">
+        <source>
+      Mes demandes
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/controllers/grower-home/grower-home.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/controllers/requester-home/requester-home.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="waitingRequests" datatype="html">
+        <source>Demandes en attente</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/controllers/grower-home/grower-home.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="requestsOfCanceling" datatype="html">
+        <source>Demandes d&apos;annulation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/controllers/grower-home/grower-home.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="canceledRequests" datatype="html">
+        <source>
+        Demandes annulées
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/controllers/grower-home/grower-home.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5a5f23c783e848e358baebf37ce3979ec0b4ad36" datatype="html">
+        <source>
+        Toutes les demandes
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/controllers/grower-home/grower-home.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">@allRequests</note>
+      </trans-unit>
+      <trans-unit id="newRequest" datatype="html">
+        <source>
+    Nouvelle demande
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/controllers/requester-home/requester-home.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="myCanceledRequests" datatype="html">
+        <source>
+        Mes demandes annulées
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/controllers/requester-home/requester-home.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="plant" datatype="html">
+        <source>Plante</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/requests-list/requests-list.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dueDate" datatype="html">
+        <source>Date d&apos;échéance</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/requests-list/requests-list.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="name" datatype="html">
+        <source>Nom</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/requests-list/requests-list.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="status" datatype="html">
+        <source>Statut</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/requests-list/requests-list.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="creationDate" datatype="html">
+        <source>Date de création</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/requests-list/requests-list.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="actions" datatype="html">
+        <source>Actions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/requests-list/requests-list.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/requests-list/requests-list.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="acceptTheRequest" datatype="html">
+        <source>Accepter la demande</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/requests-list/requests-list.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rejectTheRequest" datatype="html">
+        <source>Refuser la demande</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/requests-list/requests-list.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modifyTheRequest" datatype="html">
+        <source>Modifier la demande</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/requests-list/requests-list.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="deleteTheRequest" datatype="html">
+        <source>Supprimer la demande</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/requests-list/requests-list.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

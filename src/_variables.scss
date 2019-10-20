@@ -1,3 +1,78 @@
+$primaryColor: #cddc39;
+$primaryColorLight: #ffff6e;
+$primaryColorDark: #99aa00;
+$secondaryColor: #2e7d32;
+$secondaryColorLight: #60ad5e;
+$secondaryColorDark: #005005;
+
 $black: #535353;
-$green: #50E763; // old one: #AFD275
-$whiteBackground: #FAFAFA;
+$white: #fafafa;
+$grey: #eeeeee;
+
+$primaryColorPalette: (
+  50 : #eff6e8,
+  100 : #d8e8c6,
+  200 : #bed9a1,
+  300 : #a3ca7b,
+  400 : #90be5e,
+  500 : #7cb342,
+  600 : #74ac3c,
+  700 : #69a333,
+  800 : #5f9a2b,
+  900 : #4c8b1d,
+  A100 : #dcffc5,
+  A200 : #bdff92,
+  A400 : #9fff5f,
+  A700 : #8fff46,
+  contrast: (
+    50 : $black,
+    100 : $black,
+    200 : $black,
+    300 : $black,
+    400 : $black,
+    500 : $black,
+    600 : $black,
+    700 : $black,
+    800 : $white,
+    900 : $white,
+    A100 : $black,
+    A200 : $black,
+    A400 : $black,
+    A700 : $black,
+  )
+);
+
+$secondaryColorPalette: (
+  50 : #f3f3e5,
+  100 : #e2e2bd,
+  200 : #cfce92,
+  300 : #bbba66,
+  400 : #adac45,
+  500 : #9e9d24,
+  600 : #969520,
+  700 : #8c8b1b,
+  800 : #828116,
+  900 : #706f0d,
+  A100 : #fffea3,
+  A200 : #9ac864,
+  A400 : #a3dc48,
+  A700 : #9bd134,
+  contrast: (
+    50 : $black,
+    100 : $black,
+    200 : $black,
+    300 : $black,
+    400 : $black,
+    500 : $black,
+    600 : $black,
+    700 : $white,
+    800 : $white,
+    900 : $white,
+    A100 : $black,
+    A200 : $black,
+    A400 : $black,
+    A700 : $black,
+  )
+);
+
+$toolbarSize: 64px;

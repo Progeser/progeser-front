@@ -1,20 +1,19 @@
 @import '../_variables.scss';
 
 .l-wrapper {
-  $height: calc(100% - 64px); // 64px is the height of the toolbar
+  $height: calc(100% - #{$toolbarSize});
 
   display: flex;
   height: $height;
-  background-color: $whiteBackground;
 
   > .l-main-content-container {
     $padding: 10px;
-    $height: calc(100% - $padding);
+    $height: 100%;
 
-    padding: $padding;
-    width: 100%;
     height: $height;
-    max-height: $height;
+    padding: $padding;
+    flex-grow: 1;
     overflow-y: auto;
+    background-color: $grey;
   }
 }

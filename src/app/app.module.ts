@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -7,10 +7,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {registerLocaleData} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import {
+  MAT_DATE_LOCALE,
   MatBadgeModule,
-  MatButtonModule,
-  MatIconModule, MatPaginatorIntl,
-  MatPaginatorModule,
+  MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule,
+  MatIconModule, MatInputModule, MatNativeDateModule, MatPaginatorIntl,
+  MatPaginatorModule, MatSelectModule,
   MatTableModule,
   MatTabsModule,
   MatToolbarModule, MatTooltipModule
@@ -24,8 +25,10 @@ import {
 import {
   GrowerHomeComponent,
   RequesterHomeComponent,
+  RequesterManageRequestComponent
 } from './controllers';
 import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-paginator-intl';
+import {ReactiveFormsModule} from '@angular/forms';
 
 registerLocaleData(localeFr);
 
@@ -37,7 +40,8 @@ registerLocaleData(localeFr);
     LoggedUserComponent,
     GrowerHomeComponent,
     RequesterHomeComponent,
-    RequestsListComponent
+    RequestsListComponent,
+    RequesterManageRequestComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +55,18 @@ registerLocaleData(localeFr);
     MatTableModule,
     MatPaginatorModule,
     MatTooltipModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
   ],
   providers: [
-    {provide: MatPaginatorIntl, useValue: getFrenchPaginatorIntl()}
+    {provide: MatPaginatorIntl, useValue: getFrenchPaginatorIntl()},
+    {provide: MAT_DATE_LOCALE, useValue: LOCALE_ID},
+    MatDatepickerModule,
   ],
   bootstrap: [AppComponent]
 })

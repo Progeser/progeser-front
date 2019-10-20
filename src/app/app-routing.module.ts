@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {
   GrowerHomeComponent,
   RequesterHomeComponent,
+  RequesterManageRequestComponent,
 } from './controllers';
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/requester-home',
     pathMatch: 'full'
+  },
+  {
+    path: 'requester/manage-request',
+    component: RequesterManageRequestComponent
   },
   {
     path: '**',

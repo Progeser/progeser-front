@@ -1,12 +1,12 @@
 <table mat-table [dataSource]="getLimitedRequests()">
   <ng-container matColumnDef="plant">
     <th mat-header-cell *matHeaderCellDef i18n="@@plant">Plante</th>
-    <td mat-cell *matCellDef="let request">{{ request.plant }}</td>
+    <td mat-cell *matCellDef="let request">{{ request.plant ? request.plant.name : request.plantName }}</td>
   </ng-container>
 
   <ng-container matColumnDef="dueDate">
     <th mat-header-cell *matHeaderCellDef i18n="@@dueDate">Date d'échéance</th>
-    <td mat-cell *matCellDef="let request">{{ request.dueDate }}</td>
+    <td mat-cell *matCellDef="let request">{{ request.dueDate.toLocaleDateString('fr-FR') }}</td>
   </ng-container>
 
   <ng-container matColumnDef="name">
@@ -16,12 +16,12 @@
 
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef i18n="@@status">Statut</th>
-    <td mat-cell *matCellDef="let request">{{ request.status }}</td>
+    <td mat-cell *matCellDef="let request">{{ requestStatusLabels[request.status] }}</td>
   </ng-container>
 
   <ng-container matColumnDef="creationDate">
     <th mat-header-cell *matHeaderCellDef i18n="@@creationDate">Date de création</th>
-    <td mat-cell *matCellDef="let request">{{ request.creationDate }}</td>
+    <td mat-cell *matCellDef="let request">{{ request.creationDate.toLocaleDateString('fr-FR') }}</td>
   </ng-container>
 
   <ng-container matColumnDef="growerActions">

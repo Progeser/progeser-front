@@ -1,19 +1,19 @@
 import {Component, OnInit} from '@angular/core';
-import {Request} from '../../models';
+import {Request} from '../../../models';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './grower-home.component.html',
-  styleUrls: ['./grower-home.component.scss']
+  templateUrl: './requester-home.component.html',
+  styleUrls: ['./requester-home.component.scss']
 })
-export class GrowerHomeComponent implements OnInit {
+export class RequesterHomeComponent implements OnInit {
   tableColumns = [
     'plant',
     'dueDate',
     'name',
     'status',
     'creationDate',
-    'growerActions'
+    'requesterActions'
   ];
 
   requests = Request.exampleData;

@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/progeser-app-theme.scss",
               "src/styles.scss"
             ],
             "scripts": []

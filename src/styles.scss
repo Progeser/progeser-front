@@ -1,6 +1,12 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '_variables.scss';
+@import '_mixins.scss';
+
+/* Base styles */
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
 
 html, body {
   height: 100%;
@@ -10,4 +16,35 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   color: $black;
+}
+
+/* Layout */
+
+.l-title-block, .l-content-block {
+  background-color: #fff;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styles */
+
+mat-form-field {
+  display: block;
+  margin: 10px 5px;
+  max-width: 400px;
+  flex-grow: 1;
+}
+
+.double-size-form-field {
+  width: 805px;
+  max-width: 100%;
+  margin: 10px 0;
+}
+
+.inline-form-fields {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-wrap: wrap;
 }

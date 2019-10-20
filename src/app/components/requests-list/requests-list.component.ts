@@ -8,6 +8,8 @@ import {Request} from '../../models';
   styleUrls: ['./requests-list.component.scss']
 })
 export class RequestsListComponent implements OnInit {
+  requestStatusLabels: string[] = Request.statusLabels;
+
   @Input()
   columns: string[];
 
@@ -26,7 +28,7 @@ export class RequestsListComponent implements OnInit {
   ngOnInit() {
   }
 
-  getLimitedRequests() {
+  getLimitedRequests(): Request[] {
     const startIndex = this.paginator ? this.paginator.pageIndex * this.numberItemsPerPage : 0;
 
     return this.requests.slice(startIndex, startIndex + this.numberItemsPerPage);

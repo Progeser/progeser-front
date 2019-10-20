@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+@import 'variables';
+@include mat-core();
+
+$progeser-app-primary: mat-palette($primaryColorPalette);
+$progeser-app-accent:  mat-palette($secondaryColorPalette, A200, A100, A400);
+$progeser-app-warn:    mat-palette($mat-red);
+$progeser-app-theme: mat-light-theme($progeser-app-primary, $progeser-app-accent, $progeser-app-warn);
+
+@include angular-material-theme($progeser-app-theme);

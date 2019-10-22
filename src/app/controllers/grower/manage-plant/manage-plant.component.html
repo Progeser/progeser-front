@@ -1,0 +1,53 @@
+<form class="manage-plant l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
+  <mat-form-field>
+    <input matInput formControlName="name" placeholder="Nom de la plante" i18n-placeholder="@@plantName"/>
+    <mat-error *ngIf="form.get('name').invalid" i18n="@@pleaseNameThePlant">
+      Merci de donner un nom à la plante.
+    </mat-error>
+  </mat-form-field>
+
+  <div class="plant-states-container">
+    <mat-label i18n="@@plantStates">États de la plante</mat-label>
+
+    <ul formArrayName="states" cdkDropList class="plant-states-drop-zone" (cdkDropListDropped)="onStateMoved($event)">
+      <li *ngFor="let state of form.get('states').controls; let i = index" [formGroupName]="i" cdkDrag
+          class="inline-form-fields draggable">
+        <mat-icon class="draggable-icon-information">reorder</mat-icon>
+
+        <mat-form-field>
+          <input matInput formControlName="name" placeholder="Nom de l'état de la plante"
+                 i18n-placeholder="@@plantStateName"/>
+          <mat-error *ngIf="state.get('name').invalid" i18n="@@pleaseNameThePlantState">
+            Merci de donner un nom à l'état de la plante.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="number" formControlName="surfaceNeeded"
+                 placeholder="Surface nécessaire à la plante à cet état"
+                 i18n-placeholder="@@plantStateSurfaceNeeded"/>
+          <mat-error *ngIf="state.get('surfaceNeeded').invalid" i18n="@@pleaseGiveASurfaceToThePlantState">
+            Merci de renseigner la surface nécessaire à la plante.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="number" formControlName="duration"
+                 placeholder="Durée (en jours) de l'état"
+                 i18n-placeholder="@@plantStateDuration"/>
+          <mat-error *ngIf="state.get('duration').invalid" i18n="@@pleaseGiveADurationToThePlantState">
+            Merci de la durée de l'état de la plante.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-icon-button type="button" (click)="removeState(i)" *ngIf="form.get('states').value.length > 1">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </li>
+    </ul>
+
+    <button mat-stroked-button type="button" (click)="pushState()" i18n="@@addPlantState">Ajouter un état</button>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit" i18n="@@saveThePlant">Enregistrer la plante</button>
+</form>

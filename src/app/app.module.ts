@@ -14,7 +14,8 @@ import {
   MatPaginatorModule, MatSelectModule,
   MatTableModule,
   MatTabsModule,
-  MatToolbarModule, MatTooltipModule
+  MatToolbarModule,
+  MatTooltipModule,
 } from '@angular/material';
 import {
   HeaderComponent,
@@ -25,10 +26,12 @@ import {
 import {
   GrowerHomeComponent,
   RequesterHomeComponent,
-  RequesterManageRequestComponent
+  RequesterManageRequestComponent,
+  ManagePlantComponent
 } from './controllers';
 import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-paginator-intl';
 import {ReactiveFormsModule} from '@angular/forms';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 registerLocaleData(localeFr);
 
@@ -41,7 +44,8 @@ registerLocaleData(localeFr);
     GrowerHomeComponent,
     RequesterHomeComponent,
     RequestsListComponent,
-    RequesterManageRequestComponent
+    RequesterManageRequestComponent,
+    ManagePlantComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +66,7 @@ registerLocaleData(localeFr);
     MatNativeDateModule,
     MatCheckboxModule,
     ReactiveFormsModule,
+    DragDropModule,
   ],
   providers: [
     {provide: MatPaginatorIntl, useValue: getFrenchPaginatorIntl()},

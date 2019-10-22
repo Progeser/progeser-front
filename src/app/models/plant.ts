@@ -17,5 +17,5 @@ export class Plant {
   ];
 
   name: string;
-  states: PlantState[];
+  states: PlantState[] = [];
 }

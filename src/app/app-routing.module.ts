@@ -4,25 +4,33 @@ import {
   GrowerHomeComponent,
   RequesterHomeComponent,
   RequesterManageRequestComponent,
+  ManagePlantComponent,
 } from './controllers';
 
 const routes: Routes = [
+  /* Grower routes */
   {
     path: 'grower-home',
     component: GrowerHomeComponent
   },
   {
+    path: 'grower/manage-plant',
+    component: ManagePlantComponent
+  },
+  /* Requester routes */
+  {
     path: 'requester-home',
     component: RequesterHomeComponent
   },
   {
+    path: 'requester/manage-request',
+    component: RequesterManageRequestComponent
+  },
+  /* Redirects */
+  {
     path: '',
     redirectTo: '/requester-home',
     pathMatch: 'full'
-  },
-  {
-    path: 'requester/manage-request',
-    component: RequesterManageRequestComponent
   },
   {
     path: '**',

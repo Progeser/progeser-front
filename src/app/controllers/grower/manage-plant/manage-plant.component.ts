@@ -35,11 +35,7 @@ export class ManagePlantComponent implements OnInit {
     }
   }
 
-  createPlantStateFormGroup(state: PlantState = null) {
-    if (null === state) {
-      state = new PlantState();
-    }
-
+  createPlantStateFormGroup(state: PlantState = new PlantState()) {
     return this.formBuilder.group({
       name: this.formBuilder.control(state.name, [
         Validators.required

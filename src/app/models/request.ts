@@ -1,5 +1,6 @@
 import {Plant} from './plant';
 import {PlantState} from './plant-state';
+import {RequestDistribution} from './request-distribution';
 
 export class Request {
   static statusLabels = [
@@ -21,7 +22,8 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null
+      humidity: null,
+      distributions: [],
     },
     {
       name: 'Raisin pour le TP des M2',
@@ -35,7 +37,8 @@ export class Request {
       comment: 'Vous auriez du raisin dans vos serres ?',
       plantName: 'Raisin',
       temperature: null,
-      humidity: null
+      humidity: null,
+      distributions: [],
     },
     {
       name: 'Petunia pour le prochain gala',
@@ -49,7 +52,8 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null
+      humidity: null,
+      distributions: [],
     },
     {
       name: 'Roses pour le TP des M1',
@@ -63,7 +67,8 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null
+      humidity: null,
+      distributions: [],
     },
     {
       name: 'Raisin pour le TP des M2',
@@ -77,7 +82,8 @@ export class Request {
       comment: 'Vous auriez du raisin dans vos serres ?',
       plantName: 'Raisin',
       temperature: null,
-      humidity: null
+      humidity: null,
+      distributions: [],
     },
     {
       name: 'Petunia pour le prochain gala',
@@ -91,7 +97,8 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null
+      humidity: null,
+      distributions: [],
     },
     {
       name: 'Roses pour le TP des M1',
@@ -105,7 +112,8 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null
+      humidity: null,
+      distributions: [],
     },
     {
       name: 'Raisin pour le TP des M2',
@@ -119,7 +127,8 @@ export class Request {
       comment: 'Vous auriez du raisin dans vos serres ?',
       plantName: 'Raisin',
       temperature: null,
-      humidity: null
+      humidity: null,
+      distributions: [],
     },
     {
       name: 'Petunia pour le prochain gala',
@@ -133,7 +142,8 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null
+      humidity: null,
+      distributions: [],
     }
   ];
 
@@ -149,4 +159,5 @@ export class Request {
   plantState: PlantState | null;
   temperature: number | null;
   humidity: number | null;
+  distributions: RequestDistribution[] = [];
 }

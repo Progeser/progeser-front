@@ -2,6 +2,7 @@
 
 export * from './grower/grower-home/grower-home.component';
 export * from './grower/manage-plant/manage-plant.component';
+export * from './grower/manage-request-distribution/manage-request-distribution.component';
 
 /* Requester controllers */
 

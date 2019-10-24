@@ -27,12 +27,12 @@ import {
   GrowerHomeComponent,
   RequesterHomeComponent,
   RequesterManageRequestComponent,
-  ManagePlantComponent
+  ManagePlantComponent,
+  ManageRequestDistributionComponent,
 } from './controllers';
 import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-paginator-intl';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-
 registerLocaleData(localeFr);
 
 @NgModule({
@@ -45,7 +45,8 @@ registerLocaleData(localeFr);
     RequesterHomeComponent,
     RequestsListComponent,
     RequesterManageRequestComponent,
-    ManagePlantComponent
+    ManagePlantComponent,
+    ManageRequestDistributionComponent
   ],
   imports: [
     BrowserModule,

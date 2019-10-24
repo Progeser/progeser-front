@@ -1,19 +1,22 @@
-<form class="manage-request-distribution l-content-block" formArrayName="distributions" (ngSubmit)="submitForm()">
-  <div class="repartitions-container">
+<form class="manage-request-distribution l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="distributions-container" formArrayName="requestDistributions">
     <mat-label i18n="@@plantDistribution">Répartition des plantes entre les serres</mat-label>
 
-    <ul class="distributions-container">
-      <li *ngFor="let distribution of distributions.controls; let i = index" [formGroupName]="i" cdkDrag
+    <ul>
+      <li *ngFor="let distribution of form.get('requestDistributions').controls; let i = index" [formGroupName]="i"
+          cdkDrag
           class="inline-form-fields">
 
         <mat-form-field>
           <mat-label i18n="@@greenhouse">Serre</mat-label>
-          <mat-select formControlName="serre">
+          <mat-select formControlName="greenhouse">
             <mat-option *ngFor="let greenhouse of greenhouses" [value]="greenhouse">
               {{ greenhouse.name }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="distribution.get('greenhouse').invalid" i18n="@@pleaseChooseAGreenhouse">Merci de choisir une serre.</mat-error>
+          <mat-error *ngIf="distribution.get('greenhouse').invalid" i18n="@@pleaseChooseAGreenhouse">Merci de choisir
+            une serre.
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -25,17 +28,44 @@
               </mat-option>
             </ng-container>
           </mat-select>
-          <mat-error *ngIf="form.get('bench').invalid" i18n="@@pleaseChooseABench">Merci de choisir une tablette.</mat-error>
+          <mat-error *ngIf="distribution.get('bench').invalid" i18n="@@pleaseChooseABench">Merci de choisir une
+            tablette.
+          </mat-error>
         </mat-form-field>
 
-        <button mat-icon-button type="button" (click)="removeDistribution(i)" *ngIf="distributions.value.length > 1">
+        <mat-form-field>
+          <input matInput type="number" formControlName="plantQuantity"
+                 placeholder="Nombre de plantes"
+                 i18n-placeholder="@@plantQuantity"/>
+          <mat-error *ngIf="distribution.get('plantQuantity').invalid" i18n="@@pleaseGivePlantQuantity">
+            Merci de renseigner le nombre de plantes à disposer.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label i18n="@@plantsState">État des plantes</mat-label>
+          <mat-select formControlName="plantState">
+            <mat-option *ngFor="let state of request.plant.states" [value]="state">
+              {{ state.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="distribution.get('plantState').invalid" i18n="@@pleaseChooseAPlantState">Merci de choisir un
+            état.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-icon-button type="button" (click)="removeDistribution(i)"
+                *ngIf="form.get('requestDistributions').value.length > 1">
           <mat-icon>delete</mat-icon>
         </button>
       </li>
     </ul>
 
-    <button mat-stroked-button type="button" (click)="pushDistribution()" i18n="@@addDistribution">Ajouter une tablette à la répartition</button>
+    <button mat-stroked-button type="button" (click)="pushDistribution()" i18n="@@addDistribution">Ajouter une tablette
+      à la répartition
+    </button>
   </div>
 
-  <button mat-raised-button color="primary" type="submit" i18n="@@saveTheDistribution">Enregistrer la répartition</button>
+  <button mat-raised-button color="primary" type="submit" i18n="@@saveTheDistribution">Enregistrer la répartition
+  </button>
 </form>

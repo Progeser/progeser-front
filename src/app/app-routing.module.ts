@@ -5,6 +5,7 @@ import {
   RequesterHomeComponent,
   RequesterManageRequestComponent,
   ManagePlantComponent,
+  ManageRequestDistributionComponent,
 } from './controllers';
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'grower/manage-plant',
     component: ManagePlantComponent
+  },
+  {
+    path: 'grower/manage-request-distribution',
+    component: ManageRequestDistributionComponent,
   },
   /* Requester routes */
   {

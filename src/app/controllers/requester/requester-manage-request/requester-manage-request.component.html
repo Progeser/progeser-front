@@ -1,12 +1,12 @@
 <form class="request-form l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
   <div class="inline-form-fields">
     <mat-form-field>
-      <input matInput formControlName="name" placeholder="Nom de la demande" i18n-placeholder="@@requestName"/>
+      <input matInput formControlName="name" placeholder="Nom de la demande" required i18n-placeholder="@@requestName"/>
       <mat-error *ngIf="form.get('name').invalid" i18n="@@pleaseNameYourRequest">Merci de donner un nom à votre demande.</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="dueDate" [matDatepicker]="picker" placeholder="Date d'échéance souhaitée"
+      <input matInput formControlName="dueDate" [matDatepicker]="picker" required placeholder="Date d'échéance souhaitée"
              i18n-placeholder="@@desiredDueDate" [min]="minDueDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -16,14 +16,14 @@
 
   <div class="inline-form-fields">
     <mat-form-field>
-      <input type="number" matInput formControlName="quantity" placeholder="Quantité de plantes souhaitées"
+      <input type="number" matInput formControlName="quantity" required placeholder="Quantité de plantes souhaitées"
              i18n-placeholder="@@desiredPlantQuantity"/>
       <mat-error *ngIf="form.get('quantity').invalid" i18n="@@pleasePreciseDesiredPlantQuantity">Merci de préciser la quantité de plantes souhaitée.</mat-error>
     </mat-form-field>
 
     <mat-form-field *ngIf="!form.get('plantNotExists').value">
       <mat-label i18n="@@plant">Plante</mat-label>
-      <mat-select formControlName="plant">
+      <mat-select formControlName="plant" required>
         <mat-option *ngFor="let plant of plants" [value]="plant">
           {{ plant.name }}
         </mat-option>
@@ -32,7 +32,7 @@
     </mat-form-field>
 
     <mat-form-field *ngIf="form.get('plantNotExists').value">
-      <input matInput formControlName="plantName" placeholder="Nom de la plante souhaitée"
+      <input matInput formControlName="plantName" required placeholder="Nom de la plante souhaitée"
              i18n-placeholder="@@desiredPlantName"/>
       <mat-error *ngIf="form.get('plantName').invalid" i18n="@@pleaseNameYourPlant">Merci de préciser le nom de la plante souhaitée.</mat-error>
     </mat-form-field>

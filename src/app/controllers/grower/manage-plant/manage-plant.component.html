@@ -1,6 +1,6 @@
 <form class="manage-plant l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
   <mat-form-field>
-    <input matInput formControlName="name" placeholder="Nom de la plante" i18n-placeholder="@@plantName"/>
+    <input matInput formControlName="name" required placeholder="Nom de la plante" i18n-placeholder="@@plantName"/>
     <mat-error *ngIf="form.get('name').invalid" i18n="@@pleaseNameThePlant">
       Merci de donner un nom à la plante.
     </mat-error>
@@ -15,7 +15,7 @@
         <mat-icon class="draggable-icon-information">reorder</mat-icon>
 
         <mat-form-field>
-          <input matInput formControlName="name" placeholder="Nom du stade de la plante"
+          <input matInput formControlName="name" required placeholder="Nom du stade de la plante"
                  i18n-placeholder="@@plantStageName"/>
           <mat-error *ngIf="stage.get('name').invalid" i18n="@@pleaseNameThePlantStage">
             Merci de donner un nom au stade de la plante.

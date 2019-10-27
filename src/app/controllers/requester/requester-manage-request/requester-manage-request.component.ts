@@ -31,7 +31,9 @@ export class RequesterManageRequestComponent implements OnInit {
         Validators.required
       ]),
       plantNotExists: this.formBuilder.control(undefined === request.plantExists ? false : !request.plantExists),
-      quantity: this.formBuilder.control(request.quantity),
+      quantity: this.formBuilder.control(request.quantity, [
+        Validators.required
+      ]),
       plant: this.formBuilder.control(request.plant, [
         Validators.required
       ]),

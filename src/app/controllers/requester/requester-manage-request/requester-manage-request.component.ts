@@ -43,9 +43,9 @@ export class RequesterManageRequestComponent implements OnInit {
         Validators.required
       ]),
       temperature: this.formBuilder.control(request.temperature),
-      humidity: this.formBuilder.control(request.humidity, [
+      photoPeriod: this.formBuilder.control(request.photoPeriod, [
         Validators.min(0),
-        Validators.max(100)
+        Validators.max(24)
       ])
     });
 

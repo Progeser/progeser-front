@@ -22,7 +22,7 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null,
+      photoPeriod: null,
       distributions: [],
     },
     {
@@ -37,7 +37,7 @@ export class Request {
       comment: 'Vous auriez du raisin dans vos serres ?',
       plantName: 'Raisin',
       temperature: null,
-      humidity: null,
+      photoPeriod: null,
       distributions: [],
     },
     {
@@ -52,7 +52,7 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null,
+      photoPeriod: null,
       distributions: [],
     },
     {
@@ -67,7 +67,7 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null,
+      photoPeriod: null,
       distributions: [],
     },
     {
@@ -82,7 +82,7 @@ export class Request {
       comment: 'Vous auriez du raisin dans vos serres ?',
       plantName: 'Raisin',
       temperature: null,
-      humidity: null,
+      photoPeriod: null,
       distributions: [],
     },
     {
@@ -97,7 +97,7 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null,
+      photoPeriod: null,
       distributions: [],
     },
     {
@@ -112,7 +112,7 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null,
+      photoPeriod: null,
       distributions: [],
     },
     {
@@ -127,7 +127,7 @@ export class Request {
       comment: 'Vous auriez du raisin dans vos serres ?',
       plantName: 'Raisin',
       temperature: null,
-      humidity: null,
+      photoPeriod: null,
       distributions: [],
     },
     {
@@ -142,7 +142,7 @@ export class Request {
       comment: null,
       plantName: null,
       temperature: null,
-      humidity: null,
+      photoPeriod: null,
       distributions: [],
     }
   ];
@@ -158,6 +158,6 @@ export class Request {
   plantName: string | null;
   plantStage: PlantStage | null;
   temperature: number | null;
-  humidity: number | null;
+  photoPeriod: number | null;
   distributions: RequestDistribution[] = [];
 }

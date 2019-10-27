@@ -55,9 +55,9 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input type="number" matInput formControlName="humidity" placeholder="Humidité de culture"
-             i18n-placeholder="@@cultureHumidity"/>
-      <mat-error *ngIf="form.get('humidity').invalid" i18n="@@pleaseEnterAValidHumidityValue">Merci d'entrer une valeur d'humidité correcte (entre 0 et 100).</mat-error>
+      <input type="number" matInput formControlName="photoPeriod" placeholder="Photopériode de culture"
+             i18n-placeholder="@@culturePhotoPeriod"/>
+      <mat-error *ngIf="form.get('photoPeriod').invalid" i18n="@@pleaseEnterAValidHumidityValue">Merci d'entrer une valeur de photopériode correcte (entre 0 et 24).</mat-error>
     </mat-form-field>
 
     <mat-form-field *ngIf="!form.get('plantNotExists').value && form.get('plant').value != null">

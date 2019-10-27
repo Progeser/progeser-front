@@ -54,7 +54,7 @@ export class ManageRequestDistributionComponent implements OnInit {
       plantQuantity: this.formBuilder.control(requestDistribution.plantQuantity, [
         Validators.required
       ]),
-      plantState: this.formBuilder.control(requestDistribution.plantState, [
+      plantStage: this.formBuilder.control(requestDistribution.plantStage, [
         Validators.required
       ])
     });

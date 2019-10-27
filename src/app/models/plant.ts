@@ -1,21 +1,21 @@
-import {PlantState} from './plant-state';
+import {PlantStage} from './plant-stage';
 
 export class Plant {
   static exampleData: Plant[] = [
     {
       name: 'Rose',
-      states: PlantState.exampleData
+      stages: PlantStage.exampleData
     },
     {
       name: 'Petunia',
-      states: PlantState.exampleData
+      stages: PlantStage.exampleData
     },
     {
       name: 'Orchidée',
-      states: PlantState.exampleData
+      stages: PlantStage.exampleData
     }
   ];
 
   name: string;
-  states: PlantState[] = [];
+  stages: PlantStage[] = [];
 }

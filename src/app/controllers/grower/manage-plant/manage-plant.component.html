@@ -6,47 +6,47 @@
     </mat-error>
   </mat-form-field>
 
-  <div class="plant-states-container">
-    <mat-label i18n="@@plantStates">États de la plante</mat-label>
+  <div class="plant-stages-container">
+    <mat-label i18n="@@plantStage">Stades de la plante</mat-label>
 
-    <ul formArrayName="states" cdkDropList class="plant-states-drop-zone" (cdkDropListDropped)="onStateMoved($event)">
-      <li *ngFor="let state of form.get('states').controls; let i = index" [formGroupName]="i" cdkDrag
+    <ul formArrayName="stages" cdkDropList class="plant-stages-drop-zone" (cdkDropListDropped)="onStageMoved($event)">
+      <li *ngFor="let stage of form.get('stages').controls; let i = index" [formGroupName]="i" cdkDrag
           class="inline-form-fields draggable">
         <mat-icon class="draggable-icon-information">reorder</mat-icon>
 
         <mat-form-field>
-          <input matInput formControlName="name" placeholder="Nom de l'état de la plante"
-                 i18n-placeholder="@@plantStateName"/>
-          <mat-error *ngIf="state.get('name').invalid" i18n="@@pleaseNameThePlantState">
-            Merci de donner un nom à l'état de la plante.
+          <input matInput formControlName="name" placeholder="Nom du stade de la plante"
+                 i18n-placeholder="@@plantStageName"/>
+          <mat-error *ngIf="stage.get('name').invalid" i18n="@@pleaseNameThePlantStage">
+            Merci de donner un nom au stade de la plante.
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput type="number" formControlName="surfaceNeeded"
-                 placeholder="Surface nécessaire à la plante à cet état"
-                 i18n-placeholder="@@plantStateSurfaceNeeded"/>
-          <mat-error *ngIf="state.get('surfaceNeeded').invalid" i18n="@@pleaseGiveASurfaceToThePlantState">
+                 placeholder="Surface nécessaire à la plante à ce stade"
+                 i18n-placeholder="@@plantStageSurfaceNeeded"/>
+          <mat-error *ngIf="stage.get('surfaceNeeded').invalid" i18n="@@pleaseGiveASurfaceToThePlantStage">
             Merci de renseigner la surface nécessaire à la plante.
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput type="number" formControlName="duration"
-                 placeholder="Durée (en jours) de l'état"
-                 i18n-placeholder="@@plantStateDuration"/>
-          <mat-error *ngIf="state.get('duration').invalid" i18n="@@pleaseGiveADurationToThePlantState">
-            Merci de la durée de l'état de la plante.
+                 placeholder="Durée (en jours) du stade"
+                 i18n-placeholder="@@plantStageDuration"/>
+          <mat-error *ngIf="stage.get('duration').invalid" i18n="@@pleaseGiveADurationToThePlantStage">
+            Merci de renseigner la durée du stade de la plante.
           </mat-error>
         </mat-form-field>
 
-        <button mat-icon-button type="button" (click)="removeState(i)" *ngIf="form.get('states').value.length > 1">
+        <button mat-icon-button type="button" (click)="removeStage(i)" *ngIf="form.get('stages').value.length > 1">
           <mat-icon>delete</mat-icon>
         </button>
       </li>
     </ul>
 
-    <button mat-stroked-button type="button" (click)="pushState()" i18n="@@addPlantState">Ajouter un état</button>
+    <button mat-stroked-button type="button" (click)="pushStage()" i18n="@@addPlantStage">Ajouter un stade</button>
   </div>
 
   <button mat-raised-button color="primary" type="submit" i18n="@@saveThePlant">Enregistrer la plante</button>

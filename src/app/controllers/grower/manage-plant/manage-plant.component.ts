@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Plant, PlantState} from '../../../models';
+import {Plant, PlantStage} from '../../../models';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
 
 @Component({
@@ -24,40 +24,40 @@ export class ManagePlantComponent implements OnInit {
       name: this.formBuilder.control(plant.name, [
         Validators.required
       ]),
-      states: this.formBuilder.array(plant.states.map(state => this.createPlantStateFormGroup(state)), [
+      stages: this.formBuilder.array(plant.stages.map(stage => this.createPlantStageFormGroup(stage)), [
         Validators.required
       ])
     });
 
-    // We force the plant to have at least one state.
-    if (0 === this.form.get('states').value.length) {
-      this.pushState();
+    // We force the plant to have at least one stage.
+    if (0 === this.form.get('stages').value.length) {
+      this.pushStage();
     }
   }
 
-  createPlantStateFormGroup(state: PlantState = new PlantState()) {
+  createPlantStageFormGroup(stage: PlantStage = new PlantStage()) {
     return this.formBuilder.group({
-      name: this.formBuilder.control(state.name, [
+      name: this.formBuilder.control(stage.name, [
         Validators.required
       ]),
-      surfaceNeeded: this.formBuilder.control(state.surfaceNeeded, [
+      surfaceNeeded: this.formBuilder.control(stage.surfaceNeeded, [
         Validators.required
       ]),
-      duration: this.formBuilder.control(state.duration, [
+      duration: this.formBuilder.control(stage.duration, [
         Validators.required
       ])
     });
   }
 
-  pushState() {
-    (this.form.get('states') as FormArray).push(this.createPlantStateFormGroup());
+  pushStage() {
+    (this.form.get('stages') as FormArray).push(this.createPlantStageFormGroup());
   }
 
-  removeState(stateIndex: number) {
-    (this.form.get('states') as FormArray).removeAt(stateIndex);
+  removeStage(stageIndex: number) {
+    (this.form.get('stages') as FormArray).removeAt(stageIndex);
   }
 
-  onStateMoved(event: CdkDragDrop<PlantState[]>) {
+  onStageMoved(event: CdkDragDrop<PlantStage[]>) {
     // todo
   }
 

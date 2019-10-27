@@ -31,7 +31,7 @@
           <mat-error *ngIf="distribution.get('bench').invalid" i18n="@@pleaseChooseABench">Merci de choisir une
             tablette.
           </mat-error>
-        </mat-form-field>
+        </mat-form-field>éta
 
         <mat-form-field>
           <input matInput type="number" formControlName="plantQuantity"
@@ -43,14 +43,14 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label i18n="@@plantsState">État des plantes</mat-label>
-          <mat-select formControlName="plantState">
-            <mat-option *ngFor="let state of request.plant.states" [value]="state">
-              {{ state.name }}
+          <mat-label i18n="@@plantsStage">Stade des plantes</mat-label>
+          <mat-select formControlName="plantStage">
+            <mat-option *ngFor="let stage of request.plant.stages" [value]="stage">
+              {{ stage.name }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="distribution.get('plantState').invalid" i18n="@@pleaseChooseAPlantState">Merci de choisir un
-            état.
+          <mat-error *ngIf="distribution.get('plantStage').invalid" i18n="@@pleaseChooseAPlantStage">Merci de choisir un
+            stade.
           </mat-error>
         </mat-form-field>
 

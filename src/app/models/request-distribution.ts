@@ -1,8 +1,8 @@
-import {PlantState} from './plant-state';
+import {PlantStage} from './plant-stage';
 import {Bench} from './bench';
 
 export class RequestDistribution {
   plantQuantity: number;
-  plantState: PlantState;
+  plantStage: PlantStage;
   bench: Bench;
 }

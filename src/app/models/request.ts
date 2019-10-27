@@ -1,5 +1,5 @@
 import {Plant} from './plant';
-import {PlantState} from './plant-state';
+import {PlantStage} from './plant-stage';
 import {RequestDistribution} from './request-distribution';
 
 export class Request {
@@ -18,7 +18,7 @@ export class Request {
       plantExists: true,
       quantity: 50,
       plant: Plant.exampleData[0],
-      plantState: PlantState.exampleData[0],
+      plantStage: PlantStage.exampleData[0],
       comment: null,
       plantName: null,
       temperature: null,
@@ -33,7 +33,7 @@ export class Request {
       plantExists: false,
       quantity: 50,
       plant: null,
-      plantState: null,
+      plantStage: null,
       comment: 'Vous auriez du raisin dans vos serres ?',
       plantName: 'Raisin',
       temperature: null,
@@ -48,7 +48,7 @@ export class Request {
       plantExists: true,
       quantity: 200,
       plant: Plant.exampleData[1],
-      plantState: null,
+      plantStage: null,
       comment: null,
       plantName: null,
       temperature: null,
@@ -63,7 +63,7 @@ export class Request {
       plantExists: true,
       quantity: 50,
       plant: Plant.exampleData[0],
-      plantState: PlantState.exampleData[0],
+      plantStage: PlantStage.exampleData[0],
       comment: null,
       plantName: null,
       temperature: null,
@@ -78,7 +78,7 @@ export class Request {
       plantExists: false,
       quantity: 50,
       plant: null,
-      plantState: null,
+      plantStage: null,
       comment: 'Vous auriez du raisin dans vos serres ?',
       plantName: 'Raisin',
       temperature: null,
@@ -93,7 +93,7 @@ export class Request {
       plantExists: true,
       quantity: 200,
       plant: Plant.exampleData[1],
-      plantState: null,
+      plantStage: null,
       comment: null,
       plantName: null,
       temperature: null,
@@ -108,7 +108,7 @@ export class Request {
       plantExists: true,
       quantity: 50,
       plant: Plant.exampleData[0],
-      plantState: PlantState.exampleData[0],
+      plantStage: PlantStage.exampleData[0],
       comment: null,
       plantName: null,
       temperature: null,
@@ -123,7 +123,7 @@ export class Request {
       plantExists: false,
       quantity: 50,
       plant: null,
-      plantState: null,
+      plantStage: null,
       comment: 'Vous auriez du raisin dans vos serres ?',
       plantName: 'Raisin',
       temperature: null,
@@ -138,7 +138,7 @@ export class Request {
       plantExists: true,
       quantity: 200,
       plant: Plant.exampleData[1],
-      plantState: null,
+      plantStage: null,
       comment: null,
       plantName: null,
       temperature: null,
@@ -156,7 +156,7 @@ export class Request {
   quantity: number;
   plant: Plant | null;
   plantName: string | null;
-  plantState: PlantState | null;
+  plantStage: PlantStage | null;
   temperature: number | null;
   humidity: number | null;
   distributions: RequestDistribution[] = [];

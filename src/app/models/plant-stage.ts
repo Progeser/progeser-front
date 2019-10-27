@@ -1,5 +1,5 @@
-export class PlantState {
-  static exampleData: PlantState[] = [
+export class PlantStage {
+  static exampleData: PlantStage[] = [
     {
       name: 'Jeune pousse',
       surfaceNeeded: 2,

@@ -35,7 +35,7 @@ export class RequesterManageRequestComponent implements OnInit {
       plant: this.formBuilder.control(request.plant, [
         Validators.required
       ]),
-      plantState: this.formBuilder.control(request.plantState, [
+      plantStage: this.formBuilder.control(request.plantStage, [
         Validators.required
       ]),
       comment: this.formBuilder.control(request.comment),
@@ -57,15 +57,15 @@ export class RequesterManageRequestComponent implements OnInit {
   disableHiddenFormFields(plantNotExists: boolean) {
     const plantFormControl = this.form.get('plant');
     const plantNameFormControl = this.form.get('plantName');
-    const plantStateFormControl = this.form.get('plantState');
+    const plantStageFormControl = this.form.get('plantStage');
 
     if (plantNotExists) {
       plantFormControl.disable();
-      plantStateFormControl.disable();
+      plantStageFormControl.disable();
       plantNameFormControl.enable();
     } else {
       plantFormControl.enable();
-      plantStateFormControl.enable();
+      plantStageFormControl.enable();
       plantNameFormControl.disable();
     }
   }

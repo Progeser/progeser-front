@@ -61,13 +61,13 @@
     </mat-form-field>
 
     <mat-form-field *ngIf="!form.get('plantNotExists').value && form.get('plant').value != null">
-      <mat-label i18n="@@desiredPlantStateAtDueDate">État souhaité de la plante à la date d'échéance</mat-label>
-      <mat-select formControlName="plantState">
-        <mat-option *ngFor="let state of form.get('plant').value.states" [value]="state">
-          {{ state.name }}
+      <mat-label i18n="@@desiredPlantStageAtDueDate">Stade souhaité de la plante à la date d'échéance</mat-label>
+      <mat-select formControlName="plantStage">
+        <mat-option *ngFor="let stage of form.get('plant').value.stages" [value]="stage">
+          {{ stage.name }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="form.get('plantState').invalid" i18n="@@pleaseChooseAPlantState">Merci de choisir un état dans lequel vous souhaitez obtenir la plante à la fin de la culture.</mat-error>
+      <mat-error *ngIf="form.get('plantStage').invalid" i18n="@@pleaseChooseAPlantStage">Merci de choisir un stade dans lequel vous souhaitez obtenir la plante à la fin de la culture.</mat-error>
     </mat-form-field>
   </div>
 

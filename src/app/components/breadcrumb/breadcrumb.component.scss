@@ -1,0 +1,23 @@
+@import '../../../_variables.scss';
+
+.l-breadcrumb {
+  display: flex;
+  font-size: 0.7rem;
+
+  > li {
+    &:not(:last-of-type):after {
+      content: ' / ';
+      margin: 0 5px;
+      color: $greyBlack;
+    }
+
+    > a {
+      color: $black;
+      text-decoration: none;
+    }
+
+    > span {
+      color: $nuancedBlack;
+    }
+  }
+}

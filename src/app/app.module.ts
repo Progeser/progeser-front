@@ -22,6 +22,7 @@ import {
   MenuComponent,
   LoggedUserComponent,
   RequestsListComponent,
+  BreadcrumbComponent
 } from './components';
 import {
   GrowerHomeComponent,
@@ -46,7 +47,8 @@ registerLocaleData(localeFr);
     RequestsListComponent,
     RequesterManageRequestComponent,
     ManagePlantComponent,
-    ManageRequestDistributionComponent
+    ManageRequestDistributionComponent,
+    BreadcrumbComponent
   ],
   imports: [
     BrowserModule,

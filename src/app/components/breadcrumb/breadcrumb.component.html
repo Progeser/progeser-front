@@ -1,0 +1,15 @@
+<div class="l-content-block">
+  <ol class="l-breadcrumb">
+    <li>
+      <a [routerLink]="['']">Accueil</a>
+    </li>
+    <li *ngFor="let breadcrumb of breadcrumbs; let last = isLast">
+      <a *ngIf="last; else lastBreadCrumb" [routerLink]="[breadcrumb.path]">
+        {{ breadcrumb.label }}
+      </a>
+      <ng-template #lastBreadCrumb>
+        <span>{{ breadcrumb.label }}</span>
+      </ng-template>
+    </li>
+  </ol>
+</div>

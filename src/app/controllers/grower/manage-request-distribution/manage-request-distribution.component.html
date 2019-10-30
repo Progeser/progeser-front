@@ -4,7 +4,6 @@
 
     <ul>
       <li *ngFor="let distribution of form.get('requestDistributions').controls; let i = index" [formGroupName]="i"
-          cdkDrag
           class="inline-form-fields">
 
         <mat-form-field>
@@ -31,7 +30,7 @@
           <mat-error *ngIf="distribution.get('bench').invalid" i18n="@@pleaseChooseABench">Merci de choisir une
             tablette.
           </mat-error>
-        </mat-form-field>éta
+        </mat-form-field>
 
         <mat-form-field>
           <input matInput type="number" formControlName="plantQuantity"

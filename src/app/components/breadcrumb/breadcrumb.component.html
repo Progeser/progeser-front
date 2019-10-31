@@ -1,15 +1,17 @@
-<div class="l-content-block">
+<div class="l-content-block" *ngIf="breadcrumbs && breadcrumbs.length > 0">
   <ol class="l-breadcrumb">
     <li>
       <a [routerLink]="['']">Accueil</a>
     </li>
-    <li *ngFor="let breadcrumb of breadcrumbs; let last = isLast">
-      <a *ngIf="last; else lastBreadCrumb" [routerLink]="[breadcrumb.path]">
-        {{ breadcrumb.label }}
-      </a>
-      <ng-template #lastBreadCrumb>
-        <span>{{ breadcrumb.label }}</span>
-      </ng-template>
-    </li>
+    <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = isLast">
+      <li *ngIf="breadcrumb.label != null">
+        <a *ngIf="last; else lastBreadCrumb" [routerLink]="[breadcrumb.path]">
+          {{ breadcrumb.label }}
+        </a>
+        <ng-template #lastBreadCrumb>
+          <span>{{ breadcrumb.label }}</span>
+        </ng-template>
+      </li>
+    </ng-container>
   </ol>
 </div>

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {BreadCrumb} from './breadcrumb';
 import {Observable, Subscription} from 'rxjs';
@@ -20,7 +20,8 @@ export class BreadcrumbService {
   }
 
   protected buildBreadCrumb(activatedRoute: ActivatedRoute, url: string = '', breadcrumbs: Array<BreadCrumb> = []): Array<BreadCrumb> {
-    if (!activatedRoute) {
+    if (!activatedRoute
+      || (activatedRoute.routeConfig && activatedRoute.routeConfig.data && false === activatedRoute.routeConfig.data.breadcrumb)) {
       return [];
     }
 

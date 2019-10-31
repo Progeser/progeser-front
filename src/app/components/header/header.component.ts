@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuService} from '../../services';
+import {MenuService, UserService} from '../../services';
 import {environment} from '../../../environments/environment';
 
 @Component({
@@ -10,13 +10,10 @@ import {environment} from '../../../environments/environment';
 export class HeaderComponent implements OnInit {
   appName = environment.appName;
 
-  constructor(protected menuService: MenuService) {
+  constructor(protected menuService: MenuService,
+              protected userService: UserService) {
   }
 
   ngOnInit() {
-  }
-
-  toggleMenu() {
-    this.menuService.toggle();
   }
 }

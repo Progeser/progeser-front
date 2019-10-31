@@ -1,6 +1,6 @@
-<div>
-  <span>Christopher Anciaux</span>
-  <button mat-icon-button>
+<div *ngIf="userService.isUserLoggedIn()">
+  <span>{{ userService.user.firstName + ' ' + userService.user.lastName }}</span>
+  <button mat-icon-button (click)="userService.logout()">
     <mat-icon fontSet="fa" fontIcon="fa-sign-out-alt"></mat-icon>
   </button>
 </div>

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuService} from '../../services';
+import {MenuService, UserService} from '../../services';
 
 @Component({
   selector: 'app-menu',
@@ -36,7 +36,8 @@ export class MenuComponent implements OnInit {
     },
   ];
 
-  constructor(protected menuService: MenuService) {
+  constructor(protected menuService: MenuService,
+              protected userService: UserService) {
   }
 
   ngOnInit() {

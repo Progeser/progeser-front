@@ -1,4 +1,4 @@
-<nav [ngClass]="{'l-menu': true, 'l-menu-open': isOpen}">
+<nav [ngClass]="{'l-menu': true, 'l-menu-open': isOpen}" *ngIf="userService.isUserLoggedIn()">
   <ul class="l-menu-items">
     <li *ngFor="let menuItem of menuItems">
       <mat-icon fontSet="fa" [fontIcon]="menuItem.icon"></mat-icon>

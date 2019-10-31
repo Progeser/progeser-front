@@ -15,5 +15,10 @@
     flex-grow: 1;
     overflow-y: auto;
     background-color: $grey;
+
+    > .l-main-content {
+      min-height: $height;
+      height: $height;
+    }
   }
 }

@@ -1,7 +1,7 @@
 <mat-toolbar class="l-header-toolbar">
-  <button mat-icon-button (click)="toggleMenu()">
+  <button mat-icon-button *ngIf="userService.isUserLoggedIn()" (click)="menuService.toggle()">
     <mat-icon fontSet="fa" fontIcon="fa-bars"></mat-icon>
   </button>
   <h1>{{ appName }}</h1>
-  <app-logged-user class="l-header-logged-user"></app-logged-user>
+  <app-logged-user *ngIf="userService.isUserLoggedIn()" class="l-header-logged-user"></app-logged-user>
 </mat-toolbar>

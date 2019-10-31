@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Greenhouse, Request, RequestDistribution} from '../../../models';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {validateDistributionQuantity} from '../../../validators/distribution-quantity';
 
 @Component({
   selector: 'app-manage-request-distribution',
@@ -16,8 +17,6 @@ export class ManageRequestDistributionComponent implements OnInit {
   }
 
   ngOnInit() {
-    // todo: validators (for example, sum of plant quantities must be equal to the quantity of plants of the request)
-    // todo: display "50 plants still undistributed"
     // todo: plan modification
     this.request = Request.exampleData[0];
     this.greenhouses = Greenhouse.exampleData;
@@ -29,7 +28,8 @@ export class ManageRequestDistributionComponent implements OnInit {
       requestDistributions: this.formBuilder.array(
         requestDistributions.map(requestDistribution => this.createRequestDistributionFormGroup(requestDistribution)),
         [
-          Validators.required
+          Validators.required,
+          validateDistributionQuantity(this.request.quantity)
         ]
       )
     });
@@ -78,5 +78,16 @@ export class ManageRequestDistributionComponent implements OnInit {
 
   removeDistribution(index: number) {
     (this.form.get('requestDistributions') as FormArray).removeAt(index);
+  }
+
+  getNumberOfUndistributedPlants(): number {
+    return this.request.quantity - this.getNumberOfDistributedPlants();
+  }
+
+  getNumberOfDistributedPlants(): number {
+    return (this.form.get('requestDistributions') as FormArray)
+      .getRawValue()
+      .map(repartition => repartition.plantQuantity ? repartition.plantQuantity : 0)
+      .reduce((accumulator, current) => accumulator + current);
   }
 }

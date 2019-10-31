@@ -2,10 +2,23 @@
   <div class="distributions-container" formArrayName="requestDistributions">
     <mat-label i18n="@@plantDistribution">Répartition des plantes entre les serres</mat-label>
 
+    <p *ngIf="getNumberOfUndistributedPlants() >= 0; else negativeNumberOfUndistributedPlants" i18n="@@thereIsStillXPlantsToDistribute">
+      {
+          getNumberOfUndistributedPlants(),
+          plural,
+          =0 {Vous avez réparti toutes les plantes de la demande.}
+          =1 {Vous devez encore affecter une plante de la demande.}
+          other {Vous devez encore répartir {{ getNumberOfUndistributedPlants() }} plantes de la demande.}
+      }
+    </p>
+
+    <ng-template #negativeNumberOfUndistributedPlants i18n="@@tooManyDistributedPlants">
+      <p><mat-error>Vous avez réparti plus de plantes que la demande n'en nécessite.</mat-error></p>
+    </ng-template>
+
     <ul>
       <li *ngFor="let distribution of form.get('requestDistributions').controls; let i = index" [formGroupName]="i"
           class="inline-form-fields">
-
         <mat-form-field>
           <mat-label i18n="@@greenhouse">Serre</mat-label>
           <mat-select formControlName="greenhouse">
@@ -60,11 +73,12 @@
       </li>
     </ul>
 
-    <button mat-stroked-button type="button" (click)="pushDistribution()" i18n="@@addDistribution">Ajouter une tablette
-      à la répartition
+    <button mat-stroked-button type="button" (click)="pushDistribution()" i18n="@@addDistribution">
+      Ajouter une tablette à la répartition
     </button>
   </div>
 
-  <button mat-raised-button color="primary" type="submit" i18n="@@saveTheDistribution">Enregistrer la répartition
+  <button mat-raised-button color="primary" type="submit" i18n="@@saveTheDistribution">
+    Enregistrer la répartition
   </button>
 </form>

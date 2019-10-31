@@ -1,0 +1,56 @@
+@import '../../../../_variables.scss';
+
+.l-login-block-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > .l-login-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 500px;
+    max-width: 800px;
+    min-height: 60%;
+    padding: 0.83em 10px;
+
+    > * {
+      width: 90%;
+    }
+
+    > h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    > .login-fields, > .login-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    > .login-fields {
+      > mat-form-field {
+        flex-grow: unset;
+        width: 100%;
+      }
+    }
+
+    > .login-actions {
+      > button[type="submit"] {
+        margin-bottom: 1.5em;
+      }
+
+      > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        color: $nuancedBlack;
+        text-decoration: none;
+      }
+    }
+  }
+}

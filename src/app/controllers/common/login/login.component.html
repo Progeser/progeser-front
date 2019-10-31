@@ -1,0 +1,32 @@
+<div class="l-login-block-container">
+  <form class="manage-plant l-content-block l-login-block" [formGroup]="form" (ngSubmit)="submitForm()">
+    <h2 i18n="@@login">Connexion</h2>
+
+    <div class="login-fields">
+      <mat-form-field>
+        <input matInput type="email" formControlName="mail" required placeholder="Adresse e-mail" i18n-placeholder="@@email"/>
+        <mat-error *ngIf="form.get('mail').invalid" i18n="@@pleaseEnterYourEmailToLogin">
+          Merci de renseigner votre adresse e-mail pour vous connecter.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="password" formControlName="password" required placeholder="Mot de passe" i18n-placeholder="@@password"/>
+        <mat-error *ngIf="form.get('password').invalid" i18n="@@pleaseEnterYourPassword">
+          Merci de renseigner votre mot de passe pour vous connecter.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="login-actions">
+      <button mat-raised-button color="primary" type="submit" i18n="@@login">Connexion</button>
+
+      <a href="javascript:void(0)" (click)="openForgotPasswordDialog()">
+        <mat-icon>help_outline</mat-icon> <span i18n="@@IForgotMyPassword">J'ai oublié mon mot de passe</span>
+      </a>
+      <a href="javascript:void(0)" (click)="openAskForAccountDialog()">
+        <mat-icon>control_point</mat-icon> <span i18n="@@askForAccount">Demander un compte utilisateur</span>
+      </a>
+    </div>
+  </form>
+</div>

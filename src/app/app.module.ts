@@ -9,7 +9,7 @@ import localeFr from '@angular/common/locales/fr';
 import {
   MAT_DATE_LOCALE,
   MatBadgeModule,
-  MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule,
+  MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule,
   MatIconModule, MatInputModule, MatNativeDateModule, MatPaginatorIntl,
   MatPaginatorModule, MatSelectModule,
   MatTableModule,
@@ -30,6 +30,9 @@ import {
   RequesterManageRequestComponent,
   ManagePlantComponent,
   ManageRequestDistributionComponent,
+  LoginComponent,
+  ForgotPasswordDialogComponent,
+  AskForAccountDialogComponent
 } from './controllers';
 import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-paginator-intl';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -48,7 +51,10 @@ registerLocaleData(localeFr);
     RequesterManageRequestComponent,
     ManagePlantComponent,
     ManageRequestDistributionComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    LoginComponent,
+    ForgotPasswordDialogComponent,
+    AskForAccountDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +76,11 @@ registerLocaleData(localeFr);
     MatCheckboxModule,
     ReactiveFormsModule,
     DragDropModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    AskForAccountDialogComponent,
+    ForgotPasswordDialogComponent
   ],
   providers: [
     {provide: MatPaginatorIntl, useValue: getFrenchPaginatorIntl()},

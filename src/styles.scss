@@ -54,3 +54,22 @@ mat-form-field {
   align-items: center;
   flex-wrap: wrap;
 }
+
+/* Dialog styles */
+
+.mat-dialog-title {
+  text-align: center;
+}
+
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+  align-items: center;
+
+  > mat-form-field {
+    min-width: 95%;
+    max-width: 95%;
+    margin-bottom: 0.83em;
+  }
+}

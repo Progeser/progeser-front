@@ -1,0 +1,39 @@
+<h1 mat-dialog-title i18n="@@AskForAccount">Demander un compte utilisateur</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="form" class="dialog-form">
+    <mat-form-field>
+      <input matInput formControlName="firstName" required placeholder="Prénom"
+             i18n-placeholder="@@firstName"/>
+      <mat-error *ngIf="form.get('firstName').invalid" i18n="@@pleaseEnterYourFirstName">
+        Merci de renseigner votre prénom.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="lastName" required placeholder="Nom"
+             i18n-placeholder="@@lastName"/>
+      <mat-error *ngIf="form.get('lastName').invalid" i18n="@@pleaseEnterYourLastName">
+        Merci de renseigner votre nom.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="email" formControlName="mail" required placeholder="Adresse e-mail"
+             i18n-placeholder="@@email"/>
+      <mat-error *ngIf="form.get('mail').invalid" i18n="@@pleaseEnterYourEmailToRetrieveYourPassword">
+        Merci de renseigner votre adresse e-mail pour récupérer votre mot de passe.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+    <textarea matInput formControlName="description" placeholder="Pourquoi souhaitez-vous obtenir un compte utilisateur ?"
+              i18n-placeholder="@@whyDoYouWantAnAccount"></textarea>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close i18n="@@cancel">Annuler</button>
+  <button mat-button mat-raised-button color="primary" i18n="@@askForAccount" (click)="submitForm()">Demander un compte utilisateur</button>
+</div>

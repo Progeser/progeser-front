@@ -6,9 +6,18 @@ import {
   RequesterManageRequestComponent,
   ManagePlantComponent,
   ManageRequestDistributionComponent,
+  LoginComponent,
 } from './controllers';
 
 const routes: Routes = [
+  /* Common routes */
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      breadcrumb: false
+    }
+  },
   /* Grower routes */
   {
     path: 'grower-home',

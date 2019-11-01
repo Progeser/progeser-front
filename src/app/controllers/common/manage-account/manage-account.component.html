@@ -1,0 +1,69 @@
+<form class="create-account-form l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="inline-form-fields">
+    <mat-form-field>
+      <input matInput formControlName="firstName" placeholder="Prénom" required i18n-placeholder="@@firstName"/>
+      <mat-error *ngIf="form.get('firstName').invalid" i18n="@@pleaseGiveYourFirstName">
+        Merci de renseigner votre prénom.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="lastName" placeholder="Nom" required i18n-placeholder="@@name"/>
+      <mat-error *ngIf="form.get('lastName').invalid" i18n="@@pleaseGiveYourName">
+        Merci de renseigner votre nom.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="email" formControlName="mail" placeholder="Adresse e-mail" required
+             i18n-placeholder="@@email"/>
+      <mat-error *ngIf="form.get('mail').invalid" i18n="@@pleaseGiveYourMail">
+        Merci de renseigner votre adresse e-mail.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="inline-form-fields" *ngIf="isRequester()">
+    <mat-form-field>
+      <input matInput formControlName="lab" placeholder="Laboratoire" i18n-placeholder="@@lab"/>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="!form.get('responsibleNotExists').value; else responsibleNotFound">
+        <mat-label i18n="@@responsible">Responsable</mat-label>
+        <mat-select formControlName="responsible">
+          <mat-option *ngFor="let user of users" [value]="user">
+            {{ user.firstName }} {{ user.lastName }}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <ng-template #responsibleNotFound>
+      <mat-form-field>
+        <input matInput formControlName="responsible" placeholder="Responsable" i18n-placeholder="@@responsible"/>
+      </mat-form-field>
+    </ng-template>
+
+    <mat-checkbox formControlName="responsibleNotExists" i18n="@@IDontFindMyResponsible">
+      Je ne trouve pas mon responsable dans la liste
+    </mat-checkbox>
+  </div>
+
+  <div class="inline-form-fields">
+    <mat-form-field>
+      <input matInput type="password" formControlName="password" placeholder="Mot de passe" required i18n-placeholder="@@password"/>
+      <mat-error *ngIf="form.get('password').invalid" i18n="@@pleaseGiveYourPassword">
+        Merci de renseigner votre mot de passe.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="password" formControlName="repeatedPassword" placeholder="Répétez votre mot de passe" required
+             i18n-placeholder="@@repeatedPassword" [errorStateMatcher]="crossFieldErrorMatcher"/>
+      <mat-error *ngIf="form.hasError('matchFormControl')" i18n="@@passwordsDontMatch">
+        Les mots de passe ne correspondent pas.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit" i18n="@@validate">Valider</button>
+</form>

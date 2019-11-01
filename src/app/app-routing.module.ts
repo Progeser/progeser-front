@@ -8,7 +8,9 @@ import {
   ManageRequestDistributionComponent,
   LoginComponent,
   GreenhousesListComponent,
-  PlantsListComponent, InviteUserComponent,
+  PlantsListComponent,
+  InviteUserComponent,
+  ManageAccountComponent
 } from './controllers';
 
 const routes: Routes = [
@@ -18,6 +20,13 @@ const routes: Routes = [
     component: LoginComponent,
     data: {
       breadcrumb: false
+    }
+  },
+  {
+    path: 'manage-account',
+    component: ManageAccountComponent,
+    data: {
+      breadcrumb: 'Gestion de mon compte utilisateur'
     }
   },
   /* Grower routes */

@@ -9,6 +9,7 @@ export * from './common/dialogs/forgot-password-dialog/forgot-password-dialog.co
 export * from './grower/grower-home/grower-home.component';
 export * from './grower/manage-plant/manage-plant.component';
 export * from './grower/manage-request-distribution/manage-request-distribution.component';
+export * from './grower/greenhouses-list/greenhouses-list.component';
 
 /* Requester controllers */
 

@@ -7,6 +7,7 @@ import {
   ManagePlantComponent,
   ManageRequestDistributionComponent,
   LoginComponent,
+  GreenhousesListComponent,
 } from './controllers';
 
 const routes: Routes = [
@@ -38,6 +39,13 @@ const routes: Routes = [
     component: ManageRequestDistributionComponent,
     data: {
       breadcrumb: 'Répartition des plantes d\'une demande'
+    }
+  },
+  {
+    path: 'grower/greenhouses-list',
+    component: GreenhousesListComponent,
+    data: {
+      breadcrumb: 'Liste des serres'
     }
   },
   /* Requester routes */

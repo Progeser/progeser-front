@@ -8,6 +8,7 @@ import {
   ManageRequestDistributionComponent,
   LoginComponent,
   GreenhousesListComponent,
+  PlantsListComponent,
 } from './controllers';
 
 const routes: Routes = [
@@ -46,6 +47,13 @@ const routes: Routes = [
     component: GreenhousesListComponent,
     data: {
       breadcrumb: 'Liste des serres'
+    }
+  },
+  {
+    path: 'grower/plants-list',
+    component: PlantsListComponent,
+    data: {
+      breadcrumb: 'Liste des plantes'
     }
   },
   /* Requester routes */

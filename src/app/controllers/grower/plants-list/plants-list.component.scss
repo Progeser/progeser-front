@@ -1,0 +1,7 @@
+table {
+  width: 100%;
+
+  tr > th:last-of-type, tr > td:last-of-type {
+    text-align: right;
+  }
+}

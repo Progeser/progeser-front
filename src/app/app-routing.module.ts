@@ -8,7 +8,7 @@ import {
   ManageRequestDistributionComponent,
   LoginComponent,
   GreenhousesListComponent,
-  PlantsListComponent,
+  PlantsListComponent, InviteUserComponent,
 } from './controllers';
 
 const routes: Routes = [
@@ -54,6 +54,13 @@ const routes: Routes = [
     component: PlantsListComponent,
     data: {
       breadcrumb: 'Liste des plantes'
+    }
+  },
+  {
+    path: 'grower/invite-user',
+    component: InviteUserComponent,
+    data: {
+      breadcrumb: 'Envoyer une invitation d\'accès à l\'application'
     }
   },
   /* Requester routes */

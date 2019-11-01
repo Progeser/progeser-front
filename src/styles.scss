@@ -55,6 +55,14 @@ mat-form-field {
   flex-wrap: wrap;
 }
 
+.block-form-field {
+  display: block;
+}
+
+.form-one-field-by-line > mat-form-field {
+  display: block;
+}
+
 /* Dialog styles */
 
 .mat-dialog-title {

@@ -11,6 +11,7 @@ export * from './grower/manage-plant/manage-plant.component';
 export * from './grower/manage-request-distribution/manage-request-distribution.component';
 export * from './grower/greenhouses-list/greenhouses-list.component';
 export * from './grower/plants-list/plants-list.component';
+export * from './grower/invite-user/invite-user.component';
 
 /* Requester controllers */
 

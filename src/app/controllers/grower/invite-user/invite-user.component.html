@@ -1,0 +1,23 @@
+<form class="l-content-block form-one-field-by-line" [formGroup]="form" (ngSubmit)="submitForm()">
+  <mat-form-field>
+    <input matInput type="email" formControlName="userMail" required placeholder="Adresse e-mail de la personne à inviter"
+           i18n-placeholder="@@userToInviteMail"/>
+    <mat-error *ngIf="form.get('userMail').invalid" i18n="@@pleaseGiveUserToInviteMail">
+      Merci de renseigner l'adresse e-mail de la personne à inviter.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label i18n="@@plant">Rôle de la personne à inviter</mat-label>
+    <mat-select formControlName="userRole" required>
+      <mat-option *ngFor="let role of roles; let i = index" [value]="role">
+        {{ roleLabels[i] }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('userRole').invalid" i18n="@@pleaseChooseAUserRole">
+      Merci de choisir un rôle à affecter à la personne à inviter.
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" i18n="@@sendTheInvitation">Envoyer l'invitation</button>
+</form>

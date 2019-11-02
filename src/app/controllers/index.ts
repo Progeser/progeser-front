@@ -1,5 +1,6 @@
 /* Common controllers */
 
+export * from './common/home-router/home-router.component';
 export * from './common/login/login.component';
 export * from './common/manage-account/manage-account.component';
 export * from './common/dialogs/ask-for-account-dialog/ask-for-account-dialog.component';

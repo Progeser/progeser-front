@@ -1,10 +1,22 @@
 export class User {
+  static roles: string[] = [
+    'ROLE_REQUESTER',
+    'ROLE_GROWER'
+  ];
+
+  static roleLabels: string[] = [
+    'Demandeur',
+    'Serriste'
+  ];
+
   static exampleData: User[] = [
     {
       firstName: 'Christopher',
       lastName: 'Anciaux',
       mail: 'christopher.anciaux@fakemail.com',
-      roles: []
+      roles: [
+        User.roles[0]
+      ]
     },
     {
       firstName: 'Thibaut',
@@ -18,16 +30,6 @@ export class User {
       mail: 'tao.galasse@fakemail.com',
       roles: []
     }
-  ];
-
-  static roles: string[] = [
-    'ROLE_REQUESTER',
-    'ROLE_GROWER'
-  ];
-
-  static roleLabels: string[] = [
-    'Demandeur',
-    'Serriste'
   ];
 
   firstName: string;

@@ -8,33 +8,6 @@ import {MenuService, UserService} from '../../services';
 })
 export class MenuComponent implements OnInit {
   isOpen: boolean;
-  menuItems = [
-    {
-      icon: 'fa-home',
-      link: '',
-      name: 'Accueil',
-    },
-    {
-      icon: 'fa-warehouse',
-      link: '',
-      name: 'Serres',
-    },
-    {
-      icon: 'fa-leaf',
-      link: '',
-      name: 'Plantes'
-    },
-    {
-      icon: 'fa-user',
-      link: '',
-      name: 'Mes informations',
-    },
-    {
-      icon: 'fa-paper-plane',
-      link: '',
-      name: 'Inviter',
-    },
-  ];
 
   constructor(protected menuService: MenuService,
               protected userService: UserService) {

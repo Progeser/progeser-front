@@ -21,6 +21,10 @@ export class UserService {
     return null !== this.user;
   }
 
+  hasRole(role: string): boolean {
+    return this.isUserLoggedIn() && this.user.roles.includes(role);
+  }
+
   login() {
     this.user = User.exampleData[0];
   }

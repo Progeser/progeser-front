@@ -44,6 +44,7 @@ import {
 import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-paginator-intl';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ManageGreenhouseComponent } from './controllers/grower/manage-greenhouse/manage-greenhouse.component';
 import {FullCalendarModule} from '@fullcalendar/angular';
 registerLocaleData(localeFr);
 

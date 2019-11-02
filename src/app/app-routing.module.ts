@@ -10,7 +10,8 @@ import {
   GreenhousesListComponent,
   PlantsListComponent,
   InviteUserComponent,
-  ManageAccountComponent
+  ManageAccountComponent,
+  GreenhouseCalendarComponent
 } from './controllers';
 
 const routes: Routes = [
@@ -70,6 +71,13 @@ const routes: Routes = [
     component: InviteUserComponent,
     data: {
       breadcrumb: 'Envoyer une invitation d\'accès à l\'application'
+    }
+  },
+  {
+    path: 'grower/greenhouse-calendar',
+    component: GreenhouseCalendarComponent,
+    data: {
+      breadcrumb: 'Calendrier de serre'
     }
   },
   /* Requester routes */

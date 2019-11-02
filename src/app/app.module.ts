@@ -36,11 +36,13 @@ import {
   GreenhousesListComponent,
   PlantsListComponent,
   InviteUserComponent,
-  ManageAccountComponent
+  ManageAccountComponent,
+  GreenhouseCalendarComponent
 } from './controllers';
 import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-paginator-intl';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {FullCalendarModule} from '@fullcalendar/angular';
 registerLocaleData(localeFr);
 
 @NgModule({
@@ -62,7 +64,8 @@ registerLocaleData(localeFr);
     GreenhousesListComponent,
     PlantsListComponent,
     InviteUserComponent,
-    ManageAccountComponent
+    ManageAccountComponent,
+    GreenhouseCalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -84,13 +87,15 @@ registerLocaleData(localeFr);
     MatCheckboxModule,
     ReactiveFormsModule,
     DragDropModule,
-    MatDialogModule
+    MatDialogModule,
+    FullCalendarModule
   ],
   entryComponents: [
     AskForAccountDialogComponent,
     ForgotPasswordDialogComponent
   ],
   providers: [
+    {provide: LOCALE_ID, useValue: 'fr'},
     {provide: MatPaginatorIntl, useValue: getFrenchPaginatorIntl()},
     {provide: MAT_DATE_LOCALE, useValue: LOCALE_ID},
     MatDatepickerModule,

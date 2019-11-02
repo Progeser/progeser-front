@@ -13,6 +13,7 @@ export * from './grower/manage-request-distribution/manage-request-distribution.
 export * from './grower/greenhouses-list/greenhouses-list.component';
 export * from './grower/plants-list/plants-list.component';
 export * from './grower/invite-user/invite-user.component';
+export * from './grower/greenhouse-calendar/greenhouse-calendar.component';
 
 /* Requester controllers */
 

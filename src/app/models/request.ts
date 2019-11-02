@@ -14,6 +14,7 @@ export class Request {
       name: 'Roses pour le TP des M1',
       status: 1,
       creationDate: new Date('2019-09-05'),
+      cultureStartingDate: new Date('2019-09-25'),
       dueDate: new Date('2019-10-07'),
       plantExists: true,
       quantity: 50,
@@ -24,11 +25,13 @@ export class Request {
       temperature: null,
       photoPeriod: null,
       distributions: [],
+      color: '#746dff'
     },
     {
       name: 'Raisin pour le TP des M2',
       status: 1,
       creationDate: new Date('2019-07-03'),
+      cultureStartingDate: new Date('2019-08-21'),
       dueDate: new Date('2019-11-07'),
       plantExists: false,
       quantity: 50,
@@ -39,11 +42,13 @@ export class Request {
       temperature: null,
       photoPeriod: null,
       distributions: [],
+      color: '#ff333a'
     },
     {
       name: 'Petunia pour le prochain gala',
       status: 1,
       creationDate: new Date('2019-09-18'),
+      cultureStartingDate: new Date('2019-10-12'),
       dueDate: new Date('2019-11-17'),
       plantExists: true,
       quantity: 200,
@@ -54,11 +59,13 @@ export class Request {
       temperature: null,
       photoPeriod: null,
       distributions: [],
+      color: '#7f7cff'
     },
     {
       name: 'Roses pour le TP des M1',
       status: 1,
       creationDate: new Date('2019-09-05'),
+      cultureStartingDate: new Date('2019-09-15'),
       dueDate: new Date('2019-10-07'),
       plantExists: true,
       quantity: 50,
@@ -69,11 +76,13 @@ export class Request {
       temperature: null,
       photoPeriod: null,
       distributions: [],
+      color: '#c24796'
     },
     {
       name: 'Raisin pour le TP des M2',
       status: 1,
       creationDate: new Date('2019-07-03'),
+      cultureStartingDate: new Date('2019-07-20'),
       dueDate: new Date('2019-11-07'),
       plantExists: false,
       quantity: 50,
@@ -84,11 +93,13 @@ export class Request {
       temperature: null,
       photoPeriod: null,
       distributions: [],
+      color: '#333333'
     },
     {
       name: 'Petunia pour le prochain gala',
       status: 1,
       creationDate: new Date('2019-09-18'),
+      cultureStartingDate: new Date('2019-11-12'),
       dueDate: new Date('2019-11-17'),
       plantExists: true,
       quantity: 200,
@@ -99,11 +110,13 @@ export class Request {
       temperature: null,
       photoPeriod: null,
       distributions: [],
+      color: '#ffffff'
     },
     {
       name: 'Roses pour le TP des M1',
       status: 1,
       creationDate: new Date('2019-09-05'),
+      cultureStartingDate: new Date('2019-10-03'),
       dueDate: new Date('2019-10-07'),
       plantExists: true,
       quantity: 50,
@@ -114,11 +127,13 @@ export class Request {
       temperature: null,
       photoPeriod: null,
       distributions: [],
+      color: '#0035ff'
     },
     {
       name: 'Raisin pour le TP des M2',
       status: 1,
       creationDate: new Date('2019-07-03'),
+      cultureStartingDate: new Date('2019-11-01'),
       dueDate: new Date('2019-11-07'),
       plantExists: false,
       quantity: 50,
@@ -129,11 +144,13 @@ export class Request {
       temperature: null,
       photoPeriod: null,
       distributions: [],
+      color: '#0c69b9'
     },
     {
       name: 'Petunia pour le prochain gala',
       status: 1,
       creationDate: new Date('2019-09-18'),
+      cultureStartingDate: new Date('2019-11-08'),
       dueDate: new Date('2019-11-17'),
       plantExists: true,
       quantity: 200,
@@ -144,14 +161,17 @@ export class Request {
       temperature: null,
       photoPeriod: null,
       distributions: [],
+      color: '#7f37cc'
     }
   ];
 
   name: string;
   status: number;
   creationDate: Date;
+  cultureStartingDate: Date | null;
   dueDate: Date;
   comment: string | null;
+  color: string | null;
   plantExists: boolean;
   quantity: number;
   plant: Plant | null;

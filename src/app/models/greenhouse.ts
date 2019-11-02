@@ -28,7 +28,7 @@ export class Greenhouse {
   name: string;
   length: number;
   width: number;
-  benches: Bench[];
+  benches: Bench[] = [];
   occupation: number;
 
   public static calculateArableSurface(greenhouse: Greenhouse) {

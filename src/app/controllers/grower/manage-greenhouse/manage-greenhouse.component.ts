@@ -37,7 +37,7 @@ export class ManageGreenhouseComponent implements OnInit {
     });
 
     if (0 === this.form.get('benches').value.length) {
-      this.pushStage();
+      this.pushBench();
     }
   }
 
@@ -52,7 +52,7 @@ export class ManageGreenhouseComponent implements OnInit {
     });
   }
 
-  pushStage() {
+  pushBench() {
     (this.form.get('benches') as FormArray).push(this.createGreenhouseBenchFormGroup());
   }
 
@@ -60,5 +60,9 @@ export class ManageGreenhouseComponent implements OnInit {
   }
 
   onStageMoved($event: CdkDragDrop<Greenhouse[]>) {
+  }
+
+  removeBench(benchIndex: number) {
+    (this.form.get('benches') as FormArray).removeAt(benchIndex);
   }
 }

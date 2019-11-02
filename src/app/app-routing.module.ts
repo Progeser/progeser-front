@@ -14,6 +14,7 @@ import {
   GreenhouseCalendarComponent,
   HomeRouterComponent
 } from './controllers';
+import {ManageGreenhouseComponent} from './controllers/grower/manage-greenhouse/manage-greenhouse.component';
 
 const routes: Routes = [
   /* Common routes */
@@ -58,6 +59,13 @@ const routes: Routes = [
     component: ManageRequestDistributionComponent,
     data: {
       breadcrumb: 'Répartition des plantes d\'une demande'
+    }
+  },
+  {
+    path: 'grower/manage-greenhouse',
+    component: ManageGreenhouseComponent,
+    data: {
+      breadcrumb: 'Gestion des serres'
     }
   },
   {

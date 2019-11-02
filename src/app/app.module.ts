@@ -37,7 +37,8 @@ import {
   PlantsListComponent,
   InviteUserComponent,
   ManageAccountComponent,
-  GreenhouseCalendarComponent
+  GreenhouseCalendarComponent,
+  HomeRouterComponent
 } from './controllers';
 import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-paginator-intl';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -65,7 +66,8 @@ registerLocaleData(localeFr);
     PlantsListComponent,
     InviteUserComponent,
     ManageAccountComponent,
-    GreenhouseCalendarComponent
+    GreenhouseCalendarComponent,
+    HomeRouterComponent
   ],
   imports: [
     BrowserModule,

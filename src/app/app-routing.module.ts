@@ -11,11 +11,19 @@ import {
   PlantsListComponent,
   InviteUserComponent,
   ManageAccountComponent,
-  GreenhouseCalendarComponent
+  GreenhouseCalendarComponent,
+  HomeRouterComponent
 } from './controllers';
 
 const routes: Routes = [
   /* Common routes */
+  {
+    path: 'common-home',
+    component: HomeRouterComponent,
+    data: {
+      breadcrumb: false
+    }
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -95,15 +103,9 @@ const routes: Routes = [
       breadcrumb: 'Gestion d\'une demande'
     }
   },
-  /* Redirects */
-  {
-    path: '',
-    redirectTo: '/requester-home',
-    pathMatch: 'full'
-  },
   {
     path: '**',
-    component: RequesterHomeComponent,
+    component: HomeRouterComponent,
     data: {
       breadcrumb: null
     }

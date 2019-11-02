@@ -1,0 +1,49 @@
+@import '../../../../variables';
+
+.greenhouse-container {
+  margin-bottom: 1em;
+
+  > .greenhouse-drop-zone {
+    display: flex;
+    width: 65%;
+    flex-direction: column;
+    margin-bottom: .5em;
+
+
+    > li.draggable {
+      padding: 0 .5em;
+      margin: .25em 0;
+      background: rgba(238, 238, 238, 0.7);
+      border: 1px solid $greyBlack;
+      border-radius: 3px;
+    }
+
+    &.cdk-drop-list-dragging .draggable:not(.cdk-drag-placeholder) {
+      transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}
+
+.draggable {
+  cursor: move;
+
+  > .draggable-icon-information {
+    margin-right: .5em;
+  }
+}
+
+.cdk-drag-preview {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

@@ -1,4 +1,4 @@
-<form class="manage-plant l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
+<form class="manage-greenhouse l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
 
   <div class="greenhouse-container">
     <mat-form-field>
@@ -32,11 +32,9 @@
   <div class="greenhouse-benches-container">
     <mat-label i18n="@@greenhouseBench">Tablettes de la serre</mat-label>
 
-    <ul formArrayName="benches" cdkDropList class="benches-drop-zone" (cdkDropListDropped)="onStageMoved($event)">
-      <li *ngFor="let bench of form.get('benches').controls; let i = index" [formGroupName]="i" cdkDrag
-          class="inline-form-fields draggable">
-        <mat-icon class="draggable-icon-information">reorder</mat-icon>
-
+    <ul formArrayName="benches" cdkDropList class="benches-drop-zone">
+      <li *ngFor="let bench of form.get('benches').controls; let i = index" [formGroupName]="i"
+          class="inline-form-fields">
         <mat-form-field>
           <input matInput formControlName="name"
                  required placeholder="Nom de la tablette"
@@ -54,7 +52,6 @@
             Merci de renseigner la surface de la tablette.
           </mat-error>
         </mat-form-field>
-
       </li>
     </ul>
   </div>

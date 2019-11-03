@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Bench, Greenhouse} from '../../../models';
-import {CdkDragDrop} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-manage-greenhouse',
@@ -37,7 +36,7 @@ export class ManageGreenhouseComponent implements OnInit {
     });
 
     if (0 === this.form.get('benches').value.length) {
-      this.pushStage();
+      this.pushBench();
     }
   }
 
@@ -52,13 +51,10 @@ export class ManageGreenhouseComponent implements OnInit {
     });
   }
 
-  pushStage() {
+  pushBench() {
     (this.form.get('benches') as FormArray).push(this.createGreenhouseBenchFormGroup());
   }
 
   submitForm() {
-  }
-
-  onStageMoved($event: CdkDragDrop<Greenhouse[]>) {
   }
 }

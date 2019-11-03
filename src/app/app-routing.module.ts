@@ -65,7 +65,7 @@ const routes: Routes = [
     path: 'grower/manage-greenhouse',
     component: ManageGreenhouseComponent,
     data: {
-      breadcrumb: 'Gestion des serres'
+      breadcrumb: 'Gestion d\'une serre'
     }
   },
   {

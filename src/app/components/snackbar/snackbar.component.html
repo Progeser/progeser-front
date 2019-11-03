@@ -1,0 +1,11 @@
+<div class="app-snackbar">
+  <mat-icon>{{ getIcon() }}</mat-icon>
+
+  <span class="message">
+    {{ snackbarData.message }}
+  </span>
+
+  <button class="dismiss-button" mat-icon-button (click)="snackbarService.dismiss()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>

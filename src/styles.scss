@@ -84,3 +84,25 @@ mat-form-field {
     margin-bottom: 0.83em;
   }
 }
+
+/* Snackbar styles */
+
+.mat-snack-bar-container {
+  color: $black;
+
+  &.info {
+    background-color: $white;
+  }
+
+  &.success {
+    background-color: $primaryColor;
+  }
+
+  &.warning {
+    background-color: $yellow;
+  }
+
+  &.error {
+    background-color: $red;
+  }
+}

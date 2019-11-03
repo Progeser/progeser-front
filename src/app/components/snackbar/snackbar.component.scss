@@ -1,0 +1,14 @@
+.app-snackbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  > .message {
+    padding: 0 10px;
+    text-align: justify;
+  }
+
+  > .dismiss-button {
+    margin-left: auto;
+  }
+}

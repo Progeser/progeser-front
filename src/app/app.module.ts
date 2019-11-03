@@ -8,10 +8,11 @@ import {registerLocaleData} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import {
   MAT_DATE_LOCALE,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatBadgeModule,
   MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule,
   MatIconModule, MatInputModule, MatNativeDateModule, MatPaginatorIntl,
-  MatPaginatorModule, MatSelectModule,
+  MatPaginatorModule, MatSelectModule, MatSnackBarModule,
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
@@ -45,6 +46,9 @@ import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-pa
 import {ReactiveFormsModule} from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {FullCalendarModule} from '@fullcalendar/angular';
+import {SnackbarComponent} from './components/snackbar/snackbar.component';
+import {SnackbarService} from './services/snackbar/snackbar.service';
+
 registerLocaleData(localeFr);
 
 @NgModule({
@@ -70,7 +74,8 @@ registerLocaleData(localeFr);
     ManageGreenhouseComponent,
     ManageAccountComponent,
     GreenhouseCalendarComponent,
-    HomeRouterComponent
+    HomeRouterComponent,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -93,16 +98,20 @@ registerLocaleData(localeFr);
     ReactiveFormsModule,
     DragDropModule,
     MatDialogModule,
-    FullCalendarModule
+    FullCalendarModule,
+    MatSnackBarModule
   ],
   entryComponents: [
     AskForAccountDialogComponent,
-    ForgotPasswordDialogComponent
+    ForgotPasswordDialogComponent,
+    SnackbarComponent
   ],
   providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
     {provide: LOCALE_ID, useValue: 'fr'},
     {provide: MatPaginatorIntl, useValue: getFrenchPaginatorIntl()},
     {provide: MAT_DATE_LOCALE, useValue: LOCALE_ID},
+    {provide: 'SnackbarServiceInterface', useClass: SnackbarService},
     MatDatepickerModule,
   ],
   bootstrap: [AppComponent]

@@ -55,6 +55,10 @@ export class ManageGreenhouseComponent implements OnInit {
     (this.form.get('benches') as FormArray).push(this.createGreenhouseBenchFormGroup());
   }
 
+  removeBench(i: number) {
+    (this.form.get('benches') as FormArray).removeAt(i);
+  }
+
   submitForm() {
   }
 }

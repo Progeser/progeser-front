@@ -12,9 +12,9 @@ import {
   InviteUserComponent,
   ManageAccountComponent,
   GreenhouseCalendarComponent,
-  HomeRouterComponent
+  HomeRouterComponent,
+  ManageGreenhouseComponent
 } from './controllers';
-import {ManageGreenhouseComponent} from './controllers/grower/manage-greenhouse/manage-greenhouse.component';
 
 const routes: Routes = [
   /* Common routes */

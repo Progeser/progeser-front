@@ -6,19 +6,19 @@
         <span i18n="@@home">Accueil</span>
       </a>
     </li>
-    <li  *ngIf="userService.hasRole('ROLE_REQUESTER')">
+    <li *ngIf="userService.hasRole('ROLE_REQUESTER')">
       <a [routerLink]="['/requester-home']" [routerLinkActive]="'active-menu-item'">
         <mat-icon fontSet="fa" fontIcon="fa-home"></mat-icon>
         <span i18n="@@home">Accueil</span>
       </a>
     </li>
-    <li>
+    <li *ngIf="userService.hasRole('ROLE_GROWER')">
       <a [routerLink]="['/grower/greenhouses-list']" [routerLinkActive]="'active-menu-item'">
         <mat-icon fontSet="fa" fontIcon="fa-warehouse"></mat-icon>
         <span i18n="@@greenhouses">Serres</span>
       </a>
     </li>
-    <li>
+    <li *ngIf="userService.hasRole('ROLE_GROWER')">
       <a [routerLink]="['/grower/plants-list']" [routerLinkActive]="'active-menu-item'">
         <mat-icon fontSet="fa" fontIcon="fa-leaf"></mat-icon>
         <span i18n="@@plants">Plantes</span>
@@ -30,7 +30,7 @@
         <span i18n="@@myUserAccount">Mon compte utilisateur</span>
       </a>
     </li>
-    <li>
+    <li *ngIf="userService.hasRole('ROLE_GROWER')">
       <a [routerLink]="['/grower/invite-user']" [routerLinkActive]="'active-menu-item'">
         <mat-icon fontSet="fa" fontIcon="fa-paper-plane"></mat-icon>
         <span i18n="@@inviteNewUser">Inviter un nouvel utilisateur</span>

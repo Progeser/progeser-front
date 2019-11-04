@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {User} from '../../models/user';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +8,10 @@ import {User} from '../../models/user';
 export class UserService {
   protected loggedUser: User = User.exampleData[0];
 
-  constructor() { }
+  constructor(protected router: Router) { }
 
   get user(): User {
     return this.loggedUser;
-  }
-
-  set user(user: User) {
-    this.loggedUser = user;
   }
 
   isUserLoggedIn(): boolean {
@@ -26,10 +23,14 @@ export class UserService {
   }
 
   login() {
-    this.user = User.exampleData[0];
+    this.loggedUser = User.exampleData[0];
+
+    this.router.navigate(['/common-home']);
   }
 
   logout() {
-    this.user = null;
+    this.loggedUser = null;
+
+    this.router.navigate(['/common-home']);
   }
 }

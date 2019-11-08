@@ -1,6 +1,10 @@
 export class PlantStage {
   static exampleData: PlantStage[] = [
     {
+      name: 'Graine',
+      duration: 20
+    },
+    {
       name: 'Jeune pousse',
       surfaceNeeded: 2,
       duration: 15
@@ -13,6 +17,6 @@ export class PlantStage {
   ];
 
   name: string;
-  surfaceNeeded: number;
+  surfaceNeeded?: number;
   duration: number;
 }

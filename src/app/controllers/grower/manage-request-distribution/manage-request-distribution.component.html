@@ -2,26 +2,12 @@
   <div class="distributions-container" formArrayName="requestDistributions">
     <mat-label i18n="@@plantDistribution">Répartition des plantes entre les serres</mat-label>
 
-    <p *ngIf="getNumberOfUndistributedPlants() >= 0; else negativeNumberOfUndistributedPlants" i18n="@@thereIsStillXPlantsToDistribute">
-      {
-          getNumberOfUndistributedPlants(),
-          plural,
-          =0 {Vous avez réparti toutes les plantes de la demande.}
-          =1 {Vous devez encore affecter une plante de la demande.}
-          other {Vous devez encore répartir {{ getNumberOfUndistributedPlants() }} plantes de la demande.}
-      }
-    </p>
-
-    <ng-template #negativeNumberOfUndistributedPlants i18n="@@tooManyDistributedPlants">
-      <p><mat-error>Vous avez réparti plus de plantes que la demande n'en nécessite.</mat-error></p>
-    </ng-template>
-
     <ul>
       <li *ngFor="let distribution of form.get('requestDistributions').controls; let i = index" [formGroupName]="i"
-          class="inline-form-fields">
+          class="inline-form-fields distribution-group-fields">
         <mat-form-field>
           <mat-label i18n="@@greenhouse">Serre</mat-label>
-          <mat-select formControlName="greenhouse">
+          <mat-select formControlName="greenhouse" required>
             <mat-option *ngFor="let greenhouse of greenhouses" [value]="greenhouse">
               {{ greenhouse.name }}
             </mat-option>
@@ -33,7 +19,7 @@
 
         <mat-form-field>
           <mat-label i18n="@@bench">Tablette</mat-label>
-          <mat-select formControlName="bench">
+          <mat-select formControlName="bench" required>
             <ng-container *ngIf="null !== distribution.get('greenhouse').value">
               <mat-option *ngFor="let bench of distribution.get('greenhouse').value.benches" [value]="bench">
                 {{ bench.name }}
@@ -46,23 +32,43 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput type="number" formControlName="plantQuantity"
-                 placeholder="Nombre de plantes"
-                 i18n-placeholder="@@plantQuantity"/>
-          <mat-error *ngIf="distribution.get('plantQuantity').invalid" i18n="@@pleaseGivePlantQuantity">
-            Merci de renseigner le nombre de plantes à disposer.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
           <mat-label i18n="@@plantsStage">Stade des plantes</mat-label>
-          <mat-select formControlName="plantStage">
+          <mat-select formControlName="plantStage" required>
             <mat-option *ngFor="let stage of request.plant.stages" [value]="stage">
               {{ stage.name }}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="distribution.get('plantStage').invalid" i18n="@@pleaseChooseAPlantStage">Merci de choisir un
             stade.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="null == distribution.get('plantStage').value || plantStageHasSurface(distribution.get('plantStage').value); else numberOfPots">
+          <input matInput type="number" formControlName="quantity"
+                 placeholder="Nombre de plantes"
+                 i18n-placeholder="@@plantQuantity"/>
+          <mat-error *ngIf="distribution.get('quantity').invalid" i18n="@@pleaseGivePlantQuantity">
+            Merci de renseigner le nombre de plantes à disposer.
+          </mat-error>
+        </mat-form-field>
+
+        <ng-template #numberOfPots>
+          <mat-form-field>
+            <input matInput type="number" formControlName="quantity"
+                   placeholder="Nombre de pots"
+                   i18n-placeholder="@@potQuantity"/>
+            <mat-error *ngIf="distribution.get('quantity').invalid" i18n="@@pleaseGivePotQuantity">
+              Merci de renseigner le nombre de pots à disposer.
+            </mat-error>
+          </mat-form-field>
+        </ng-template>
+
+        <mat-form-field *ngIf="null != distribution.get('plantStage').value && !plantStageHasSurface(distribution.get('plantStage').value)">
+          <input matInput type="number" formControlName="potSurface"
+                 placeholder="Surface d'un pot"
+                 i18n-placeholder="@@potSurface"/>
+          <mat-error *ngIf="distribution.get('potSurface').invalid" i18n="@@pleaseGivePotSurface">
+            Merci de renseigner la surface occupée par un pot.
           </mat-error>
         </mat-form-field>
 
@@ -77,6 +83,22 @@
       Ajouter une tablette à la répartition
     </button>
   </div>
+
+  <ng-container *ngIf="allDistributionsHaveStageWithSurface()">
+    <p *ngIf="getNumberOfUndistributedPlants() >= 0; else negativeNumberOfUndistributedPlants" i18n="@@thereIsStillXPlantsToDistribute">
+      {
+          getNumberOfUndistributedPlants(),
+        plural,
+        =0 {Vous avez réparti toutes les plantes de la demande.}
+        =1 {Vous devez encore affecter une plante de la demande.}
+        other {Vous devez encore répartir {{ getNumberOfUndistributedPlants() }} plantes de la demande.}
+        }
+    </p>
+
+    <ng-template #negativeNumberOfUndistributedPlants i18n="@@tooManyDistributedPlants">
+      <p><mat-error>Vous avez réparti plus de plantes que la demande n'en nécessite.</mat-error></p>
+    </ng-template>
+  </ng-container>
 
   <button mat-raised-button color="primary" type="submit" i18n="@@saveTheDistribution">
     Enregistrer la répartition

@@ -1,3 +1,13 @@
 .distributions-container {
   margin-bottom: 1em;
+
+  .distribution-group-fields {
+    > mat-form-field {
+      max-width: calc(20% - 20px);
+    }
+
+    > button {
+      margin-left: auto;
+    }
+  }
 }

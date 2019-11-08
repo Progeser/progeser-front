@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Greenhouse, Request, RequestDistribution} from '../../../models';
+import {Greenhouse, PlantStage, Request, RequestDistribution} from '../../../models';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {validateDistributionQuantity} from '../../../validators/distribution-quantity';
 
@@ -51,12 +51,15 @@ export class ManageRequestDistributionComponent implements OnInit {
       bench: this.formBuilder.control({value: requestDistribution.bench, disabled: null !== requestDistribution.bench}, [
         Validators.required
       ]),
-      plantQuantity: this.formBuilder.control(requestDistribution.plantQuantity, [
-        Validators.required
-      ]),
       plantStage: this.formBuilder.control(requestDistribution.plantStage, [
         Validators.required
-      ])
+      ]),
+      quantity: this.formBuilder.control(requestDistribution.quantity, [
+        Validators.required
+      ]),
+      potSurface: this.formBuilder.control(requestDistribution.potSurface, [
+        Validators.required
+      ]),
     });
 
     formGroup.get('greenhouse').valueChanges.subscribe({
@@ -65,6 +68,16 @@ export class ManageRequestDistributionComponent implements OnInit {
           formGroup.get('bench').enable();
         } else {
           formGroup.get('bench').disable();
+        }
+      }
+    });
+
+    formGroup.get('plantStage').valueChanges.subscribe({
+      next: value => {
+        if (!this.plantStageHasSurface(value)) {
+          formGroup.get('potSurface').enable();
+        } else {
+          formGroup.get('potSurface').disable();
         }
       }
     });
@@ -87,7 +100,17 @@ export class ManageRequestDistributionComponent implements OnInit {
   getNumberOfDistributedPlants(): number {
     return (this.form.get('requestDistributions') as FormArray)
       .getRawValue()
-      .map(repartition => repartition.plantQuantity ? repartition.plantQuantity : 0)
+      .map(repartition => repartition.quantity ? repartition.quantity : 0)
       .reduce((accumulator, current) => accumulator + current);
+  }
+
+  plantStageHasSurface(plantStage?: PlantStage) {
+    return null != plantStage.surfaceNeeded;
+  }
+
+  allDistributionsHaveStageWithSurface() {
+    return (this.form.get('requestDistributions') as FormArray)
+      .getRawValue()
+      .every((distribution: RequestDistribution) => null == distribution.plantStage || this.plantStageHasSurface(distribution.plantStage));
   }
 }

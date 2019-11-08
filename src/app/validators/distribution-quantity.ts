@@ -6,18 +6,25 @@ export function validateDistributionQuantity(requestQuantity: number): Validator
       return null;
     }
 
-    const distributedQuantity = control.getRawValue()
-      .map(repartition => repartition.plantQuantity ? repartition.plantQuantity : 0)
-      .reduce((accumulator, current) => accumulator + current, 0);
+    const hasStageWithNoSurface = control.getRawValue()
+      .some(repartition => null != repartition.plantStage && null == repartition.plantStage.surfaceNeeded);
 
-    if (distributedQuantity !== requestQuantity) {
-      return {
-        distributionQuantity: {
-          valid: false
-        }
-      };
+    if (hasStageWithNoSurface) {
+      return null;
     }
 
-    return null;
+    const distributedQuantity = control.getRawValue()
+      .map(repartition => repartition.quantity ? repartition.quantity : 0)
+      .reduce((accumulator, current) => accumulator + current, 0);
+
+    if (distributedQuantity === requestQuantity) {
+      return null;
+    }
+
+    return {
+      distributionQuantity: {
+        valid: false
+      }
+    };
   };
 }

@@ -23,20 +23,20 @@
         </mat-form-field>
 
         <mat-form-field>
+          <input matInput type="number" formControlName="duration" required
+                 placeholder="Durée (en jours) du stade"
+                 i18n-placeholder="@@plantStageDuration"/>
+          <mat-error *ngIf="stage.get('duration').invalid" i18n="@@pleaseGiveADurationToThePlantStage">
+            Merci de renseigner la durée du stade de la plante.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
           <input matInput type="number" formControlName="surfaceNeeded"
                  placeholder="Surface nécessaire à la plante à ce stade"
                  i18n-placeholder="@@plantStageSurfaceNeeded"/>
           <mat-error *ngIf="stage.get('surfaceNeeded').invalid" i18n="@@pleaseGiveASurfaceToThePlantStage">
             Merci de renseigner la surface nécessaire à la plante.
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput type="number" formControlName="duration"
-                 placeholder="Durée (en jours) du stade"
-                 i18n-placeholder="@@plantStageDuration"/>
-          <mat-error *ngIf="stage.get('duration').invalid" i18n="@@pleaseGiveADurationToThePlantStage">
-            Merci de renseigner la durée du stade de la plante.
           </mat-error>
         </mat-form-field>
 

@@ -1,0 +1,10 @@
+<h1 mat-dialog-title *ngIf="title">{{ title }}</h1>
+
+<div mat-dialog-content>
+  <p [innerHTML]="message"></p>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false" i18n="@@cancel">Annuler</button>
+  <button mat-button [mat-dialog-close]="true" mat-raised-button color="primary" i18n="@@confirm">Confirmer</button>
+</div>

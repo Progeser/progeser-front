@@ -11,6 +11,7 @@ export class InviteUserComponent implements OnInit {
   form: FormGroup;
   roles = User.roles;
   roleLabels = User.roleLabels;
+  minValidityDate = new Date();
 
   constructor(protected formBuilder: FormBuilder) {
   }
@@ -26,7 +27,8 @@ export class InviteUserComponent implements OnInit {
       ]),
       userRole: this.formBuilder.control(null, [
         Validators.required
-      ])
+      ]),
+      userValidUntil: this.formBuilder.control(null)
     });
   }
 

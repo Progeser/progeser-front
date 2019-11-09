@@ -36,4 +36,5 @@ export class User {
   lastName: string;
   mail: string;
   roles: string[];
+  validUntil?: Date;
 }

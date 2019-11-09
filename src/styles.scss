@@ -79,9 +79,14 @@ mat-form-field {
   align-items: center;
 
   > mat-form-field {
-    min-width: 95%;
-    max-width: 95%;
+    min-width: 100%;
+    width: 100%;
     margin-bottom: 0.83em;
+  }
+
+  > .inline-form-fields {
+    min-width: 100%;
+    width: 100%;
   }
 }
 

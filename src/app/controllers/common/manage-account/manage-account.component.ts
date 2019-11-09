@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {validateMatchFormControl} from '../../../validators/match-form-control';
 import {CrossFieldErrorMatcher} from '../../../utils/error-matchers/cross-field-error-matcher';
 import {User} from '../../../models/user';
+import {MatDialog} from '@angular/material';
+import {ChangePasswordDialogComponent} from '../dialogs/change-password-dialog/change-password-dialog.component';
 
 @Component({
   selector: 'app-manage-account',
@@ -15,7 +17,8 @@ export class ManageAccountComponent implements OnInit {
 
   users = User.exampleData;
 
-  constructor(protected formBuilder: FormBuilder) {
+  constructor(protected formBuilder: FormBuilder,
+              protected dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -63,10 +66,15 @@ export class ManageAccountComponent implements OnInit {
   }
 
   isRequester(): boolean {
+    // todo
     return true;
   }
 
   submitForm() {
 
+  }
+
+  openChangePasswordDialog() {
+    this.dialog.open(ChangePasswordDialogComponent);
   }
 }

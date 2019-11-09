@@ -41,7 +41,8 @@ import {
   GreenhouseCalendarComponent,
   HomeRouterComponent,
   ManageGreenhouseComponent,
-  ConfirmationDialogComponent
+  ConfirmationDialogComponent,
+  ChangePasswordDialogComponent
 } from './controllers';
 import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-paginator-intl';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -77,7 +78,8 @@ registerLocaleData(localeFr);
     GreenhouseCalendarComponent,
     HomeRouterComponent,
     SnackbarComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ChangePasswordDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +108,7 @@ registerLocaleData(localeFr);
   entryComponents: [
     AskForAccountDialogComponent,
     ForgotPasswordDialogComponent,
+    ChangePasswordDialogComponent,
     ConfirmationDialogComponent,
     SnackbarComponent
   ],

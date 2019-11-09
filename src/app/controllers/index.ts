@@ -6,6 +6,7 @@ export * from './common/manage-account/manage-account.component';
 export * from './common/dialogs/ask-for-account-dialog/ask-for-account-dialog.component';
 export * from './common/dialogs/forgot-password-dialog/forgot-password-dialog.component';
 export * from './common/dialogs/confirmation-dialog/confirmation-dialog.component';
+export * from './common/dialogs/change-password-dialog/change-password-dialog.component';
 
 /* Grower controllers */
 

@@ -106,3 +106,11 @@ mat-form-field {
     background-color: $red;
   }
 }
+
+/* Top action buttons */
+
+.top-actions-button {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 0;
+}

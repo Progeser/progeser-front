@@ -15,7 +15,7 @@ export class User {
       lastName: 'Anciaux',
       mail: 'christopher.anciaux@fakemail.com',
       roles: [
-        User.roles[0]
+        User.roles[1]
       ]
     },
     {

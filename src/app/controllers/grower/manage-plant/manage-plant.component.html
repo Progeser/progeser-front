@@ -31,15 +31,6 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-          <input matInput type="number" formControlName="surfaceNeeded"
-                 placeholder="Surface nécessaire à la plante à ce stade"
-                 i18n-placeholder="@@plantStageSurfaceNeeded"/>
-          <mat-error *ngIf="stage.get('surfaceNeeded').invalid" i18n="@@pleaseGiveASurfaceToThePlantStage">
-            Merci de renseigner la surface nécessaire à la plante.
-          </mat-error>
-        </mat-form-field>
-
         <button mat-icon-button type="button" (click)="removeStage(i)" *ngIf="form.get('stages').value.length > 1">
           <mat-icon>delete</mat-icon>
         </button>

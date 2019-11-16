@@ -1,0 +1,4 @@
+@mixin fixed-form-fields-group-width($width) {
+  width: $width;
+  flex-wrap: nowrap;
+}

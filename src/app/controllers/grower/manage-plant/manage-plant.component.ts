@@ -3,9 +3,6 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Plant, PlantStage} from '../../../models';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
 import {MatDialog} from '@angular/material';
-import {AbstractWarnControl, warnMissingPlantStageSurface} from '../../../validators/plant-stages-warning';
-import {ConfirmationDialogComponent} from '../../common/dialogs/confirmation-dialog/confirmation-dialog.component';
-import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-manage-plant',
@@ -30,8 +27,7 @@ export class ManagePlantComponent implements OnInit {
         Validators.required
       ]),
       stages: this.formBuilder.array(plant.stages.map(stage => this.createPlantStageFormGroup(stage)), [
-        Validators.required,
-        warnMissingPlantStageSurface()
+        Validators.required
       ])
     });
 
@@ -46,7 +42,6 @@ export class ManagePlantComponent implements OnInit {
       name: this.formBuilder.control(stage.name, [
         Validators.required
       ]),
-      surfaceNeeded: this.formBuilder.control(stage.surfaceNeeded),
       duration: this.formBuilder.control(stage.duration, [
         Validators.required
       ])
@@ -65,31 +60,7 @@ export class ManagePlantComponent implements OnInit {
     // todo
   }
 
-  submitForm(confirmed = false) {
-    const stagesControl = (this.form.get('stages') as AbstractWarnControl);
-
-    if (!confirmed
-      && stagesControl.warnings
-      && stagesControl.warnings.missingPlantSurface) {
-      this.openWarningSurfaceDialog();
-
-      return;
-    }
-  }
-
-  openWarningSurfaceDialog() {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: {
-        title: 'Surface non renseignée pour un stade',
-        message: 'Une surface n\'a pas été renseignée pour au moins un stade. <br>' +
-          'L\'application ne pourra pas prévoir la surface nécessaire à la plante une fois la plante arrivée à ce stade.'
-      }
-    });
-
-    dialogRef.afterClosed().pipe(
-      filter(value => value)
-    ).subscribe({
-      next: () => this.submitForm(true)
-    });
+  submitForm() {
+    // todo
   }
 }

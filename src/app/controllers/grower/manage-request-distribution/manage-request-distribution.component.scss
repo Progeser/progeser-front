@@ -1,3 +1,5 @@
+@import '../../../../mixins';
+
 .distributions-container {
   margin-bottom: 1em;
 
@@ -8,6 +10,10 @@
 
     > button {
       margin-left: auto;
+    }
+
+    > .surface-group-fields {
+      @include fixed-form-fields-group-width(20%);
     }
   }
 }

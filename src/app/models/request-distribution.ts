@@ -1,9 +1,12 @@
 import {PlantStage} from './plant-stage';
 import {Bench} from './bench';
+import {Pot} from './pot';
 
 export class RequestDistribution {
-  quantity: number;
-  potSurface?: number;
   plantStage: PlantStage;
   bench: Bench;
+  surfaceInputtedManually: boolean;
+  quantity?: number;
+  pot?: Pot;
+  manualSurface?: number;
 }

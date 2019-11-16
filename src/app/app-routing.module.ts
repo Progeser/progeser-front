@@ -3,7 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {
   GrowerHomeComponent,
   RequesterHomeComponent,
-  RequesterManageRequestComponent,
+  ManageRequestComponent,
   ManagePlantComponent,
   ManageRequestDistributionComponent,
   LoginComponent,
@@ -41,6 +41,15 @@ const routes: Routes = [
     data: {
       roles: User.roles,
       breadcrumb: 'Gestion de mon compte utilisateur'
+    }
+  },
+  {
+    path: 'manage-request',
+    component: ManageRequestComponent,
+    canActivate: [RouteGuardService],
+    data: {
+      roles: User.roles,
+      breadcrumb: 'Gestion d\'une demande'
     }
   },
   /* Grower routes */
@@ -124,15 +133,6 @@ const routes: Routes = [
     data: {
       roles: [User.roles[0]],
       breadcrumb: null
-    }
-  },
-  {
-    path: 'requester/manage-request',
-    component: RequesterManageRequestComponent,
-    canActivate: [RouteGuardService],
-    data: {
-      roles: [User.roles[0]],
-      breadcrumb: 'Gestion d\'une demande'
     }
   },
   {

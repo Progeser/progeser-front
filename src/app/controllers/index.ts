@@ -3,6 +3,7 @@
 export * from './common/home-router/home-router.component';
 export * from './common/login/login.component';
 export * from './common/manage-account/manage-account.component';
+export * from './common/manage-request/manage-request.component';
 export * from './common/dialogs/ask-for-account-dialog/ask-for-account-dialog.component';
 export * from './common/dialogs/forgot-password-dialog/forgot-password-dialog.component';
 export * from './common/dialogs/confirmation-dialog/confirmation-dialog.component';
@@ -22,4 +23,3 @@ export * from './grower/manage-greenhouse/manage-greenhouse.component';
 /* Requester controllers */
 
 export * from './requester/requester-home/requester-home.component';
-export * from './requester/requester-manage-request/requester-manage-request.component';

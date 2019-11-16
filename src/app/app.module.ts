@@ -28,7 +28,7 @@ import {
 import {
   GrowerHomeComponent,
   RequesterHomeComponent,
-  RequesterManageRequestComponent,
+  ManageRequestComponent,
   ManagePlantComponent,
   ManageRequestDistributionComponent,
   LoginComponent,
@@ -62,7 +62,7 @@ registerLocaleData(localeFr);
     GrowerHomeComponent,
     RequesterHomeComponent,
     RequestsListComponent,
-    RequesterManageRequestComponent,
+    ManageRequestComponent,
     ManagePlantComponent,
     ManageRequestDistributionComponent,
     BreadcrumbComponent,

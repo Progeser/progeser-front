@@ -3,11 +3,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Plant, Request} from '../../../models';
 
 @Component({
-  selector: 'app-requester-manage-request',
-  templateUrl: './requester-manage-request.component.html',
-  styleUrls: ['./requester-manage-request.component.scss']
+  selector: 'app-manage-request',
+  templateUrl: './manage-request.component.html',
+  styleUrls: ['./manage-request.component.scss']
 })
-export class RequesterManageRequestComponent implements OnInit {
+export class ManageRequestComponent implements OnInit {
   form: FormGroup;
   plants = Plant.exampleData;
 

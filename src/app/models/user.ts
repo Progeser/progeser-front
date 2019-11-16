@@ -37,4 +37,11 @@ export class User {
   mail: string;
   roles: string[];
   validUntil?: Date;
+
+  static getRolesLabel(roles: string[]) {
+    return roles
+      .filter(role => User.roles.includes(role))
+      .map(role => User.roleLabels[User.roles.indexOf(role)])
+      .join(', ');
+  }
 }

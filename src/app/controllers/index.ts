@@ -20,6 +20,7 @@ export * from './grower/invite-user/invite-user.component';
 export * from './grower/greenhouse-calendar/greenhouse-calendar.component';
 export * from './grower/manage-greenhouse/manage-greenhouse.component';
 export * from './grower/accounts-list/accounts-list.component';
+export * from './grower/manage-account-rights/manage-account-rights.component';
 
 /* Requester controllers */
 

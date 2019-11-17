@@ -14,7 +14,8 @@ import {
   GreenhouseCalendarComponent,
   HomeRouterComponent,
   ManageGreenhouseComponent,
-  AccountsListComponent
+  AccountsListComponent,
+  ManageAccountRightsComponent
 } from './controllers';
 import {RouteGuardService} from './services/route-guard/route-guard.service';
 import {User} from './models/user';
@@ -124,6 +125,15 @@ const routes: Routes = [
     data: {
       roles: [User.roles[1]],
       breadcrumb: 'Liste des utilisateurs'
+    }
+  },
+  {
+    path: 'grower/manage-account-rights',
+    component: ManageAccountRightsComponent,
+    canActivate: [RouteGuardService],
+    data: {
+      roles: [User.roles[1]],
+      breadcrumb: 'Gestion des droits d\'un utilisateur'
     }
   },
   {

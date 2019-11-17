@@ -41,7 +41,13 @@ export class User {
   static getRolesLabel(roles: string[]) {
     return roles
       .filter(role => User.roles.includes(role))
-      .map(role => User.roleLabels[User.roles.indexOf(role)])
+      .map(role => User.getRoleLabel(role))
       .join(', ');
+  }
+
+  static getRoleLabel(role: string)  {
+    const roleIndex = User.roles.indexOf(role);
+
+    return -1 !== roleIndex ? User.roleLabels[User.roles.indexOf(role)] : '';
   }
 }

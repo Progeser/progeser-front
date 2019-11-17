@@ -112,6 +112,14 @@ mat-form-field {
   }
 }
 
+/* Action buttons */
+
+.actions-button {
+  > button + button {
+    margin-left: 8px;
+  }
+}
+
 /* Top action buttons */
 
 .top-actions-button {

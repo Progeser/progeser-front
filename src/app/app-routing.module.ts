@@ -15,7 +15,7 @@ import {
   HomeRouterComponent,
   ManageGreenhouseComponent,
   AccountsListComponent,
-  ManageAccountRightsComponent
+  ManageAccountRightsComponent, ManageAccountRequestComponent
 } from './controllers';
 import {RouteGuardService} from './services/route-guard/route-guard.service';
 import {User} from './models/user';
@@ -134,6 +134,15 @@ const routes: Routes = [
     data: {
       roles: [User.roles[1]],
       breadcrumb: 'Gestion des droits d\'un utilisateur'
+    }
+  },
+  {
+    path: 'grower/manage-account-request',
+    component: ManageAccountRequestComponent,
+    canActivate: [RouteGuardService],
+    data: {
+      roles: [User.roles[1]],
+      breadcrumb: 'Gestion d\'une demande de compte utilisateur'
     }
   },
   {

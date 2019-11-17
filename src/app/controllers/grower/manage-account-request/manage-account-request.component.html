@@ -1,0 +1,39 @@
+<form class="l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
+
+  <div class="inline-form-fields">
+    <mat-form-field>
+      <input matInput formControlName="firstName"
+             required placeholder="Prénom"
+             i18n-placeholder="@@firstName"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="lastName"
+             required placeholder="Nom"
+             i18n-placeholder="@@lastName"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="validUntil" [matDatepicker]="picker" placeholder="Date de fin de validité"
+             i18n-placeholder="@@endValidityDate" [min]="minValidityDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('validUntil').invalid" i18n="@@pleaseChooseADate">Merci de choisir une date correcte.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="inline-form-fields">
+    <mat-form-field class="double-size-form-field">
+      <textarea matInput formControlName="description"
+                placeholder="Description accompagnant la demande de compte utilisateur"
+                i18n-placeholder="@@descriptionLinkedToTheAccountRequest"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="actions-button">
+    <button mat-raised-button color="warn" type="button" (click)="refuseAccountRequest()" i18n="@@refuseTheRequest">
+      Refuser la demande
+    </button>
+    <button mat-raised-button color="primary" type="submit" i18n="@@acceptTheRequest">Accepter la demande</button>
+  </div>
+</form>

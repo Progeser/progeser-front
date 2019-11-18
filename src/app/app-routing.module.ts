@@ -15,7 +15,9 @@ import {
   HomeRouterComponent,
   ManageGreenhouseComponent,
   AccountsListComponent,
-  ManageAccountRightsComponent, ManageAccountRequestComponent
+  ManageAccountRightsComponent,
+  ManageAccountRequestComponent,
+  ManagePotComponent
 } from './controllers';
 import {RouteGuardService} from './services/route-guard/route-guard.service';
 import {User} from './models/user';
@@ -107,6 +109,15 @@ const routes: Routes = [
     data: {
       roles: [User.roles[1]],
       breadcrumb: 'Liste des plantes'
+    }
+  },
+  {
+    path: 'grower/manage-pot',
+    component: ManagePotComponent,
+    canActivate: [RouteGuardService],
+    data: {
+      roles: [User.roles[1]],
+      breadcrumb: 'Gestion d\'un pot'
     }
   },
   {

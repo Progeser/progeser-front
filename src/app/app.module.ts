@@ -45,7 +45,8 @@ import {
   ChangePasswordDialogComponent,
   AccountsListComponent,
   ManageAccountRightsComponent,
-  ManageAccountRequestComponent
+  ManageAccountRequestComponent,
+  ManagePotComponent
 } from './controllers';
 import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-paginator-intl';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -85,7 +86,8 @@ registerLocaleData(localeFr);
     ChangePasswordDialogComponent,
     AccountsListComponent,
     ManageAccountRightsComponent,
-    ManageAccountRequestComponent
+    ManageAccountRequestComponent,
+    ManagePotComponent
   ],
   imports: [
     BrowserModule,

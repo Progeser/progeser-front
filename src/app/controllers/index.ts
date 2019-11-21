@@ -23,6 +23,7 @@ export * from './grower/accounts-list/accounts-list.component';
 export * from './grower/manage-account-rights/manage-account-rights.component';
 export * from './grower/manage-account-request/manage-account-request.component';
 export * from './grower/manage-pot/manage-pot.component';
+export * from './grower/pots-list/pots-list.component';
 
 /* Requester controllers */
 

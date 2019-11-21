@@ -24,6 +24,12 @@
         <span i18n="@@plants">Plantes</span>
       </a>
     </li>
+    <li *ngIf="userService.hasRole('ROLE_GROWER')">
+      <a [routerLink]="['/grower/pots-list']" [routerLinkActive]="'active-menu-item'">
+        <mat-icon fontSet="fa" fontIcon="fa-archive"></mat-icon>
+        <span i18n="@@plants">Pots</span>
+      </a>
+    </li>
     <li>
       <a [routerLink]="['/manage-account']" [routerLinkActive]="'active-menu-item'">
         <mat-icon fontSet="fa" fontIcon="fa-user"></mat-icon>

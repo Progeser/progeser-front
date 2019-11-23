@@ -9,6 +9,8 @@
   color: $black;
 
   > .l-header-logged-user {
+    display: flex;
+    align-items: center;
     margin-left: auto;
   }
 }

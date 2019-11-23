@@ -23,7 +23,8 @@ import {
   MenuComponent,
   LoggedUserComponent,
   RequestsListComponent,
-  BreadcrumbComponent
+  BreadcrumbComponent,
+  ShapeFormComponent
 } from './components';
 import {
   GrowerHomeComponent,
@@ -47,7 +48,7 @@ import {
   ManageAccountRightsComponent,
   ManageAccountRequestComponent,
   ManagePotComponent,
-  PotsListComponent
+  PotsListComponent,
 } from './controllers';
 import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-paginator-intl';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -89,7 +90,8 @@ registerLocaleData(localeFr);
     ManageAccountRightsComponent,
     ManageAccountRequestComponent,
     ManagePotComponent,
-    PotsListComponent
+    PotsListComponent,
+    ShapeFormComponent
   ],
   imports: [
     BrowserModule,

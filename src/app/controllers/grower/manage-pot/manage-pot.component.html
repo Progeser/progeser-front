@@ -27,7 +27,7 @@
     <mat-form-field *ngFor="let dimension of form.get('dimensions').controls; let i = index">
       <input matInput [formControl]="dimension" required [placeholder]="form.get('shape').value.dimensionNames[i]"/>
       <mat-error *ngIf="dimension.invalid" i18n="@@pleaseInputTheDimension">
-        Merci de rensienger cette dimension.
+        Merci de renseigner cette dimension.
       </mat-error>
     </mat-form-field>
   </div>

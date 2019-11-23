@@ -46,15 +46,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-          <input matInput type="number" formControlName="surface"
-                 placeholder="Surface de la tablette"
-                 required
-                 i18n-placeholder="@@greenhouseBenchSurface"/>
-          <mat-error *ngIf="bench.get('surface').invalid" i18n="@@pleaseGiveASurfaceToTheGreenhouseBench">
-            Merci de renseigner la surface de la tablette.
-          </mat-error>
-        </mat-form-field>
+        <app-shape-form [shape]="bench.get('shape')" [dimensions]="bench.get('dimensions')"></app-shape-form>
 
         <button mat-icon-button type="button" (click)="removeBench(i)" *ngIf="form.get('benches').value.length > 1">
           <mat-icon>delete</mat-icon>

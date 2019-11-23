@@ -15,7 +15,7 @@ export class Pot {
   ];
 
   name: string;
-  surface: number;
   shape: Shape;
+  surface?: number;
   dimensions?: number[];
 }

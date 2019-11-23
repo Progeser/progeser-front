@@ -21,3 +21,8 @@ export class Shape {
   numberDimensions: number;
   dimensionNames: string[];
 }
+
+export interface ModelableInterface {
+  shape: Shape;
+  dimensions?: number[];
+}

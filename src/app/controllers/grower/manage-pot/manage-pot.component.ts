@@ -9,7 +9,6 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class ManagePotComponent implements OnInit {
   form: FormGroup;
-  shapes: Shape[] = Shape.exampleData;
 
   constructor(protected formBuilder: FormBuilder) {
   }
@@ -29,16 +28,6 @@ export class ManagePotComponent implements OnInit {
       dimensions: this.formBuilder.array([], [
         Validators.required
       ])
-    });
-
-    this.form.get('shape').valueChanges.subscribe({
-      next: (shape: Shape) => {
-        const dimensionsFormArray = this.form.get('dimensions') as FormArray;
-
-        dimensionsFormArray.clear();
-        dimensionsFormArray.controls = new Array(shape.numberDimensions);
-        dimensionsFormArray.controls.fill(this.formBuilder.control(''), 0, shape.numberDimensions);
-      }
     });
   }
 

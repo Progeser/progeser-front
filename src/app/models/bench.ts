@@ -1,19 +1,29 @@
+import {Shape} from './shape';
+
 export class Bench {
   static exampleData: Bench[] = [
     {
-      surface: 15,
-      name: 'Petite tablette'
+      name: 'Petite tablette',
+      shape: Shape.exampleData[0],
+      surface: 10,
+      dimensions: null
     },
     {
+      name: 'Tablette sur-élevée',
+      shape: Shape.exampleData[0],
       surface: 25,
-      name: 'Tablette sur-élevée'
+      dimensions: null
     },
     {
-      surface: 50,
-      name: 'Tablette grise'
+      name: 'Tablette grise',
+      shape: Shape.exampleData[0],
+      surface: 11,
+      dimensions: null
     }
   ];
 
-  surface: number;
   name: string;
+  shape: Shape;
+  surface?: number;
+  dimensions?: number[];
 }

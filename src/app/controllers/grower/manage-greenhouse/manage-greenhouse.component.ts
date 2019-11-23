@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Bench, Greenhouse} from '../../../models';
+import {Shape} from '../../../models/shape';
 
 @Component({
   selector: 'app-manage-greenhouse',
@@ -9,6 +10,7 @@ import {Bench, Greenhouse} from '../../../models';
 })
 export class ManageGreenhouseComponent implements OnInit {
   form: FormGroup;
+  shapes: Shape[] = Shape.exampleData;
 
   constructor(protected formBuilder: FormBuilder) { }
 
@@ -42,10 +44,13 @@ export class ManageGreenhouseComponent implements OnInit {
 
   createGreenhouseBenchFormGroup(bench: Bench = new Bench()) {
     return this.formBuilder.group({
-      surface: this.formBuilder.control(bench.surface, [
+      name: this.formBuilder.control(bench.name, [
         Validators.required
       ]),
-      name: this.formBuilder.control(bench.name, [
+      shape: this.formBuilder.control(null, [
+        Validators.required
+      ]),
+      dimensions: this.formBuilder.array([], [
         Validators.required
       ])
     });
@@ -60,5 +65,6 @@ export class ManageGreenhouseComponent implements OnInit {
   }
 
   submitForm() {
+    console.log(this.form.getRawValue());
   }
 }

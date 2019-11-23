@@ -46,7 +46,7 @@
           </mat-error>
         </mat-form-field>
 
-        <app-shape-form [shape]="bench.get('shape')" [dimensions]="bench.get('dimensions')"></app-shape-form>
+        <app-shape-form [form]="bench"></app-shape-form>
 
         <button mat-icon-button type="button" (click)="removeBench(i)" *ngIf="form.get('benches').value.length > 1">
           <mat-icon>delete</mat-icon>

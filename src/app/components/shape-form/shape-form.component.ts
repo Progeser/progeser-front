@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Shape} from '../../models/shape';
-import {FormArray, FormBuilder, FormControl} from '@angular/forms';
+import {Shape, ModelableInterface} from '../../models/shape';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-shape-form',
@@ -11,21 +11,18 @@ export class ShapeFormComponent implements OnInit {
   shapes: Shape[] = Shape.exampleData;
 
   @Input()
-  shape: FormControl;
-
-  @Input()
-  dimensions: FormArray;
+  form: FormGroup;
 
   constructor(protected formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.shape.valueChanges.subscribe({
+    this.form.get('shape').valueChanges.subscribe({
       next: (shape: Shape) => {
         const temporaryDimensionsFormArrayControls = new Array(shape.numberDimensions)
           .fill(null, 0, shape.numberDimensions)
           .map(() => this.formBuilder.control(null));
 
-        this.dimensions.controls = temporaryDimensionsFormArrayControls;
+        (this.form.get('dimensions') as FormArray).controls = temporaryDimensionsFormArrayControls;
       }
     });
   }

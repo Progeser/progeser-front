@@ -1,21 +1,23 @@
-<mat-form-field>
-  <mat-label i18n="@@shape">Forme</mat-label>
-  <mat-select formControlName="shape" required>
-    <mat-option *ngFor="let shape of shapes; let i = index" [value]="shape">
-      {{ shape.name }}
-    </mat-option>
-  </mat-select>
-  <mat-error *ngIf="shape.invalid" i18n="@@pleaseChooseAShape">
-    Merci de choisir une forme.
-  </mat-error>
-</mat-form-field>
-
-<ng-container *ngIf="null != shape && null != shape.value">
-  <mat-form-field *ngFor="let dimension of dimensions.controls; let i = index">
-    <input matInput [formControl]="dimensions.controls[i]"
-           required [placeholder]="shape.value.dimensionNames[i]"/>
-    <mat-error *ngIf="dimension.invalid" i18n="@@pleaseInputTheDimension">
-      Merci de renseigner cette dimension.
+<ng-container [formGroup]="form">
+  <mat-form-field>
+    <mat-label i18n="@@shape">Forme</mat-label>
+    <mat-select formControlName="shape" required>
+      <mat-option *ngFor="let shape of shapes; let i = index" [value]="shape">
+        {{ shape.name }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('shape').invalid" i18n="@@pleaseChooseAShape">
+      Merci de choisir une forme.
     </mat-error>
   </mat-form-field>
+
+  <ng-container *ngIf="null != form.get('shape') && null != form.get('shape').value">
+    <mat-form-field *ngFor="let dimension of form.get('dimensions').controls; let i = index">
+      <input matInput [formControl]="dimension"
+             type="number" required [placeholder]="form.get('shape').value.dimensionNames[i]"/>
+      <mat-error *ngIf="dimension.invalid" i18n="@@pleaseInputTheDimension">
+        Merci de renseigner cette dimension.
+      </mat-error>
+    </mat-form-field>
+  </ng-container>
 </ng-container>

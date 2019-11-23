@@ -10,26 +10,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label i18n="@@shape">Forme</mat-label>
-      <mat-select formControlName="shape" required>
-        <mat-option *ngFor="let shape of shapes; let i = index" [value]="shape">
-          {{ shape.name }}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="form.get('shape').invalid" i18n="@@pleaseChooseAShape">
-        Merci de choisir une forme.
-      </mat-error>
-    </mat-form-field>
-  </div>
-
-  <div class="inline-form-fields" formArrayName="dimensions" *ngIf="null != form.get('shape').value">
-    <mat-form-field *ngFor="let dimension of form.get('dimensions').controls; let i = index">
-      <input matInput [formControl]="dimension" required [placeholder]="form.get('shape').value.dimensionNames[i]"/>
-      <mat-error *ngIf="dimension.invalid" i18n="@@pleaseInputTheDimension">
-        Merci de renseigner cette dimension.
-      </mat-error>
-    </mat-form-field>
+    <app-shape-form [form]="form"></app-shape-form>
   </div>
 
   <button mat-raised-button color="primary" type="submit" i18n="@@saveThePot">Sauvegarder le pot</button>

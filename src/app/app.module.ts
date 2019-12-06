@@ -4,8 +4,6 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {registerLocaleData} from '@angular/common';
-import localeFr from '@angular/common/locales/fr';
 import {
   MAT_DATE_LOCALE,
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
@@ -50,14 +48,25 @@ import {
   ManagePotComponent,
   PotsListComponent,
 } from './controllers';
-import {getFrenchPaginatorIntl} from './internationalization/mat-paginator/fr-paginator-intl';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {SnackbarComponent} from './components/snackbar/snackbar.component';
 import {SnackbarService} from './services/snackbar/snackbar.service';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {
+  CaseConverterInterceptorService,
+} from './utils/http-interceptors/case-converter-interceptor/case-converter-interceptor.service';
+import {TokenInterceptorService} from './utils/http-interceptors/token-interceptor/token-interceptor.service';
+import {AuthenticationInterceptorService} from './utils/http-interceptors/authentication-interceptor/authentication-interceptor.service';
+import {MissingTranslationHandler, TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {MissingTranslationLoggerHandler} from './utils/missing-translation-logger-handler/missing-translation-logger-handler';
+import {PaginatorIntl} from './internationalization/mat-paginator/paginator-intl';
 
-registerLocaleData(localeFr);
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -94,6 +103,7 @@ registerLocaleData(localeFr);
     ShapeFormComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -115,7 +125,15 @@ registerLocaleData(localeFr);
     DragDropModule,
     MatDialogModule,
     FullCalendarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    TranslateModule.forRoot({
+      missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTranslationLoggerHandler},
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   entryComponents: [
     AskForAccountDialogComponent,
@@ -125,9 +143,26 @@ registerLocaleData(localeFr);
     SnackbarComponent
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: CaseConverterInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptorService, multi: true},
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
-    {provide: LOCALE_ID, useValue: 'fr'},
-    {provide: MatPaginatorIntl, useValue: getFrenchPaginatorIntl()},
+    {
+      provide: LOCALE_ID,
+      useFactory: (translate: TranslateService) => {
+        return translate.currentLang;
+      },
+      deps: [TranslateService]
+    },
+    {
+      provide: MatPaginatorIntl,
+      useFactory: (translate: TranslateService) => {
+        const service = new PaginatorIntl();
+        service.setTranslateService(translate);
+        return service;
+      },
+      deps: [TranslateService]
+    },
     {provide: MAT_DATE_LOCALE, useValue: LOCALE_ID},
     {provide: 'SnackbarServiceInterface', useClass: SnackbarService},
     MatDatepickerModule,

@@ -1,0 +1,212 @@
+{
+  "words": {
+    "home": "Accueil",
+    "greenhouse": "Serre",
+    "greenhouses": "Serres",
+    "pot": "Pot",
+    "pots": "Pots",
+    "myAccount": "Mon compte utilisateur",
+    "users": "Utilisateurs",
+    "name": "Nom",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "cancel": "Annuler",
+    "login": "Connexion",
+    "laboratory": "Laboratoire",
+    "responsible": "Responsable",
+    "validate": "Valider",
+    "role": "Rôle",
+    "actions": "Actions",
+    "occupation": "Occupation",
+    "requester": "Demandeur",
+    "grower": "Serriste",
+    "save": "Sauvegarder",
+    "bench": "Tablette",
+    "surface": "Surface",
+    "plant": "Plante",
+    "plants": "Plantes",
+    "dueDate": "Date d'échéance",
+    "status": "Statut",
+    "shape": "Forme",
+    "today": "Aujourd'hui",
+    "month": "Mois",
+    "week": "Semaine",
+    "day": "Jour",
+    "list": "Liste"
+  },
+  "phrases": {
+    "inviteANewUser": "Inviter un nouvel utilisateur",
+    "acceptTheRequest": "Accepter la demande",
+    "rejectTheRequest": "Refuser la demande",
+    "modifyTheRequest": "Modifier la demande",
+    "deleteTheRequest": "Supprimer la demande",
+    "askForAnAccount": "Demander un compte utilisateur",
+    "whyDoYouWantAnAccount": "Pourquoi souhaitez-vous obtenir un compte utilisateur ?",
+    "changeMyPassword": "Changer mon mot pas de passe",
+    "repeatYourNewPassword": "Répétez votre nouveau mot de passe",
+    "IForgotMyPassword": "J'ai oublié mon mot de passe",
+    "recoverMyPassword": "Récupérer mon mot de passe",
+    "IDontFindMyResponsible": "Je ne trouve pas mon responsable",
+    "repeatYourPassword": "Répétez votre mot de passe",
+    "requestName": "Nom de la demande",
+    "desiredPlantQuantity": "Quantité de plantes souhaitées",
+    "desiredPlantName": "Nom de la plante souhaitée",
+    "IDontFindMyPlant": "Je ne trouve pas ma plante dans la liste",
+    "requestComment": "Commentaire de la demande",
+    "cultureTemperature": "Température de culture",
+    "photoPeriodCulture": "Photopériode de culture",
+    "desiredPlantStageAtDueDate": "Stade souhaité de la plante à la date d'échéance",
+    "desiredDueDate": "Date d'échéance souhaitée",
+    "saveMyRequest": "Sauvegarder ma demande",
+    "modifyUserAccount": "Modifier le compte utilisateur",
+    "deleteUserAccount": "Supprimer le compte utilisateur",
+    "userAccountRequests": "Demandes de comptes utilisateurs",
+    "viewTheAccountRequest": "Voir la demande de compte utilisateur",
+    "acceptTheAccountRequest": "Accepter la demande de compte utilisateur",
+    "refuseTheAccountRequest": "Refuser la demande de compte utilisateur",
+    "addAGreenhouse": "Ajouter une serre",
+    "addAPlant": "Ajouter une plante",
+    "realSurface": "Surface réelle",
+    "arableSurface": "Surface cultivable",
+    "benchesNumber": "Nombre de tablettes",
+    "seeDetails": "Voir les détails",
+    "modifyTheGreenhouse": "Modifier la serre",
+    "deleteTheGreenhouse": "Supprimer la serre",
+    "userToInviteMail": "E-mail de la personne à inviter",
+    "userToInviteRole": "Rôle de la personne à inviter",
+    "accountValidityEndDate": "Date de fin de validité du compte",
+    "sendInvitation": "Envoyer l'invitation",
+    "endValidityDate": "Date de fin de validité",
+    "commentLinkedToTheAccountRequest": "Commentaire joint à la demande de compte",
+    "greenhouseName": "Nom de la serre",
+    "greenhouseLength": "Longueur de la serre",
+    "greenhouseWidth": "Largeur de la serre",
+    "greenhouseBenches": "Tablettes de la serre",
+    "benchName": "Nom de la tablette",
+    "addABench": "Ajouter une tablette",
+    "plantName": "Nom de la plante",
+    "plantStages": "États de la plante",
+    "plantStageName": "Nom de l'état de la plante",
+    "plantStageDuration": "Durée (en jours) du stade",
+    "addAStage": "Ajouter un stade",
+    "plantsDistribution": "Répartition des plantes entre les serres",
+    "plantsStage": "Stade des plantes",
+    "inputSurfaceManually": "Renseigner la surface manuellement",
+    "potsNumber": "Nombre de pots",
+    "modifyThePlant": "Modifier la plante",
+    "deleteThePlant": "Supprimer la plante",
+    "addAPot": "Ajouter un pot",
+    "modifyThePot": "Modifier le pot",
+    "deleteThePot": "Supprimer le pot",
+    "creationDate": "Date de création",
+    "confirm": "Confirmer",
+    "newRequest": "Nouvelle demande",
+    "myRequests": "Mes demandes",
+    "waitingRequests": "Demandes en attente",
+    "requestsOfCancelling": "Demandes d'annulation",
+    "cancelledRequests": "Demandes annulées",
+    "allRequests": "Toutes les demandes",
+    "itemsPerPage": "Éléments par page :",
+    "previousPage": "Page précédente",
+    "nextPage": "Page suivante",
+    "ofItems": "sur"
+  },
+  "validations": {
+    "pleaseInputYourFirstName": "Merci de renseigner votre prénom.",
+    "pleaseInputYourLastName": "Merci de renseigner votre nom.",
+    "pleaseInputYourEmail": "Merci de renseigner votre e-mail.",
+    "pleaseInputYourCurrentPassword": "Merci de renseigner votre mot de passe actuel.",
+    "pleaseInputYourNewPassword": "Merci de renseigner votre nouveau mot de passe.",
+    "passwordsDontMatch": "Les mots de passe ne correspondent pas.",
+    "pleaseInputYourEmailToRecoverYourPassword": "Merci de renseigner votre adresse e-mail pour récupérer votre mot de passe.",
+    "pleaseInputYourPassword": "Merci de renseigner votre mot de passe.",
+    "pleaseInputRequestName": "Merci de renseigner un nom à la demande.",
+    "pleaseInputADate": "Merci de renseigner une date.",
+    "pleaseInputDesiredPlantQuantity": "Merci de renseigner la quantité de plantes souhaitées.",
+    "pleaseInputDesiredPlantName": "Merci de renseigner le nom de la plante souhaitée.",
+    "pleaseChooseAPlant": "Merci de choisir une plante.",
+    "pleaseInputANumber": "Merci d'entrer un nombre.",
+    "pleaseInputAValidPhotoPeriodCultureValue": "Merci d'entrer une valeur de photopériode correcte (entre 0 et 24).",
+    "pleaseChooseAPlantStage": "Merci de choisir un stade.",
+    "pleaseInputUserToInviteEmail": "Merci de renseigner l'e-mail de la personne à inviter.",
+    "pleaseInputUserToInviteRole": "Merci de renseigner le rôle de la personne à inviter.",
+    "pleaseInputAValidDate": "Merci de renseigner une date valide.",
+    "pleaseChooseARole": "Merci de choisir un rôle.",
+    "pleaseInputName": "Merci de renseigner un nom.",
+    "pleaseInputLength": "Merci de renseigner une longueur.",
+    "pleaseInputWidth": "Merci de renseigner une largueur.",
+    "pleaseInputPlantStageDuration": "Merci de renseigner la durée du stade de la plante.",
+    "pleaseChooseAGreenhouse": "Merci de choisir une serre.",
+    "pleaseChooseABench": "Merci de choisir une tablette.",
+    "pleaseChooseAPot": "Merci de choisir un pot.",
+    "pleaseInputThePotsNumber": "Merci de renseigner le nombre de pots à disposer.",
+    "pleaseInputTheSurface": "Merci de renseigner la surface.",
+    "pleaseChooseAShape": "Merci de choisir une forme.",
+    "pleaseInputTheDimension": "Merci de renseigner la dimension."
+  },
+  "breadcrumbs": {
+    "manageMyAccount": "Gestion de mon compte utilisateur",
+    "manageRequest": "Gestion d'une demande",
+    "managePlant": "Gestion d'une plante",
+    "distributeRequestPlants": "Répartition des plantes d'une demande",
+    "manageGreenhouse": "Gestion d'une serre",
+    "greenhousesList": "Liste des serres",
+    "plantsList": "Liste des plantes",
+    "potsList": "Liste des pots",
+    "managePot": "Gestion d'un pot",
+    "sendApplicationInvitation": "Envoyer une invitation d'accès à l'application",
+    "usersList": "Liste des utilisateurs",
+    "manageAccountRights": "Gestion des droits d'un utilisateur",
+    "manageAccountRequest": "Gestion d'une demande de compte utilisateur",
+    "greenhouseCalendar": "Calendrier de serre"
+  },
+  "httpToSnackbarMessages": {
+    "user": {
+      "login": {
+        "400": {
+          "message": "Vos identifiants n'ont pas été reconnus."
+        },
+        "success": "Vous êtes désormais connecté.",
+        "error": "Une erreur est survenue lors de la connexion."
+      },
+      "getSelf": {
+        "error": "Une erreur est survenue lors de la récupération de votre identité."
+      },
+      "forgotPassword": {
+        "404": {
+          "message": "Il n'existe aucun compte lié à cette adresse e-mail."
+        },
+        "success": "Un e-mail va vous être envoyé pour réinitialiser votre mot de passe.",
+        "error": "Une erreur est survenue lors de la demande de réinitialisation du mot de passe."
+      }
+    },
+    "accountRequest": {
+      "find": {
+        "error": "Une erreur est survenue lors de la récupération des demandes de comptes utilisateurs."
+      },
+      "get": {
+        "404": {
+          "message": "La demande de compte utilisateur n'a pas été trouvée."
+        },
+        "error": "Une erreur est survenue lors de la récupération de la demande de compte utilisateur."
+      },
+      "create": {
+        "400": {
+          "error": "Le formulaire est incorrect, merci de vérifier votre saisie."
+        }
+      },
+      "accept": {
+        "success": "La demande de compte utilisateur a été acceptée.",
+        "error": "Une erreur est survenue lors de l'acceptation de la demande de compte utilisateur."
+      },
+      "delete": {
+        "success": "La demande de compte utilisateur a été refusée.",
+        "error": "Une erreur est survenue lors du refus de la demande de compte utilisateur."
+      }
+    }
+  }
+}

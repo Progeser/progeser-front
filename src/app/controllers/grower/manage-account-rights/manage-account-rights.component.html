@@ -3,36 +3,39 @@
   <div class="inline-form-fields">
     <mat-form-field>
       <input matInput formControlName="firstName"
-             required placeholder="Prénom"
-             i18n-placeholder="@@firstName"/>
+             required [placeholder]="'words.firstName'|translate"/>
     </mat-form-field>
 
     <mat-form-field>
       <input matInput formControlName="lastName"
-             required placeholder="Nom"
-             i18n-placeholder="@@lastName"/>
+             required [placeholder]="'words.lastName'|translate"/>
     </mat-form-field>
   </div>
 
   <div class="inline-form-fields">
     <mat-form-field>
-      <mat-label i18n="@@role">Rôle</mat-label>
-      <mat-select formControlName="roles" required multiple>
+      <mat-label>{{ 'words.role'|translate }}</mat-label>
+      <mat-select formControlName="role" required>
         <mat-option *ngFor="let role of roles" [value]="role">
-          {{ getRoleLabel(role) }}
+          {{ getRoleLabel(role)|translate }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="form.get('roles').invalid" i18n="@@pleaseChooseARole">Merci de choisir un rôle.</mat-error>
+      <mat-error *ngIf="form.get('role').invalid">
+        {{ 'validations.pleaseChooseARole'|translate }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="validUntil" [matDatepicker]="picker" placeholder="Date de fin de validité"
-             i18n-placeholder="@@endValidityDate" [min]="minValidityDate">
+      <input matInput formControlName="validUntil" [matDatepicker]="picker"
+             [placeholder]="'phrases.endValidityDate'|translate"
+             [min]="minValidityDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="form.get('validUntil').invalid" i18n="@@pleaseChooseADate">Merci de choisir une date correcte.</mat-error>
+      <mat-error *ngIf="form.get('validUntil').invalid">
+        {{ 'validations.pleaseInputAValidDate'|translate }}
+      </mat-error>
     </mat-form-field>
   </div>
 
-  <button mat-raised-button color="primary" type="submit" i18n="@@save">Enregistrer</button>
+  <button mat-raised-button color="primary" type="submit">{{ 'words.save'|translate }}</button>
 </form>

@@ -24,7 +24,7 @@ export class ManageAccountRightsComponent implements OnInit {
     this.form = this.formBuilder.group({
       firstName: this.formBuilder.control({value: user.firstName, disabled: true}),
       lastName: this.formBuilder.control({value: user.lastName, disabled: true}),
-      roles: this.formBuilder.control(user.roles, [
+      role: this.formBuilder.control(user.role, [
         Validators.required
       ]),
       validUntil: this.formBuilder.control(user.validUntil)

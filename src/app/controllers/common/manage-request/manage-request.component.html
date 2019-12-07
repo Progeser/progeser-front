@@ -1,75 +1,80 @@
 <form class="request-form l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
   <div class="inline-form-fields">
     <mat-form-field>
-      <input matInput formControlName="name" placeholder="Nom de la demande" required i18n-placeholder="@@requestName"/>
-      <mat-error *ngIf="form.get('name').invalid" i18n="@@pleaseNameYourRequest">Merci de donner un nom à votre demande.</mat-error>
+      <input matInput formControlName="name" [placeholder]="'phrases.requestName'|translate" required/>
+      <mat-error *ngIf="form.get('name').invalid">{{ 'validations.pleaseInputRequestName'|translate }}</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="dueDate" [matDatepicker]="picker" required placeholder="Date d'échéance souhaitée"
-             i18n-placeholder="@@desiredDueDate" [min]="minDueDate">
+      <input matInput formControlName="dueDate" [matDatepicker]="picker" required
+             [placeholder]="'phrases.desiredDueDate'|translate"
+             [min]="minDueDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="form.get('dueDate').invalid" i18n="@@pleaseChooseADate">Merci de choisir une date correcte.</mat-error>
+      <mat-error *ngIf="form.get('dueDate').invalid">{{ 'validations.pleaseInputADate'|translate }}</mat-error>
     </mat-form-field>
   </div>
 
   <div class="inline-form-fields">
     <mat-form-field>
-      <input type="number" matInput formControlName="quantity" required placeholder="Quantité de plantes souhaitées"
-             i18n-placeholder="@@desiredPlantQuantity"/>
-      <mat-error *ngIf="form.get('quantity').invalid" i18n="@@pleasePreciseDesiredPlantQuantity">Merci de préciser la quantité de plantes souhaitée.</mat-error>
+      <input type="number" matInput formControlName="quantity" required
+             [placeholder]="'phrases.desiredPlantQuantity'|translate"/>
+      <mat-error *ngIf="form.get('quantity').invalid">{{ 'validations.pleaseInputDesiredPlantQuantity'|translate }}</mat-error>
     </mat-form-field>
 
     <mat-form-field *ngIf="!form.get('plantNotExists').value">
-      <mat-label i18n="@@plant">Plante</mat-label>
+      <mat-label>{{ 'words.plant'|translate }}</mat-label>
       <mat-select formControlName="plant" required>
         <mat-option *ngFor="let plant of plants" [value]="plant">
           {{ plant.name }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="form.get('plant').invalid" i18n="@@pleaseChooseAPlant">Merci de choisir une plante.</mat-error>
+      <mat-error *ngIf="form.get('plant').invalid">{{ 'validations.pleaseChooseAPlant'|translate }}</mat-error>
     </mat-form-field>
 
     <mat-form-field *ngIf="form.get('plantNotExists').value">
-      <input matInput formControlName="plantName" required placeholder="Nom de la plante souhaitée"
-             i18n-placeholder="@@desiredPlantName"/>
-      <mat-error *ngIf="form.get('plantName').invalid" i18n="@@pleaseNameYourPlant">Merci de préciser le nom de la plante souhaitée.</mat-error>
+      <input matInput formControlName="plantName" required [placeholder]="'phrases.desiredPlantName'|translate"/>
+      <mat-error *ngIf="form.get('plantName').invalid">
+        {{ 'validations.pleaseInputDesiredPlantName'|translate }}
+      </mat-error>
     </mat-form-field>
 
-    <mat-checkbox formControlName="plantNotExists" i18n="@@IDontFindMyPlant">
-      Je ne trouve pas ma plante dans la liste
+    <mat-checkbox formControlName="plantNotExists">
+      {{ 'phrases.IDontFindMyPlant'|translate }}
     </mat-checkbox>
   </div>
 
   <mat-form-field class="double-size-form-field">
-    <textarea matInput formControlName="comment" placeholder="Commentaire de la demande"
-              i18n-placeholder="@@requestComment"></textarea>
+    <textarea matInput formControlName="comment" [placeholder]="'phrases.requestComment'|translate"></textarea>
   </mat-form-field>
 
   <div class="inline-form-fields">
     <mat-form-field>
-      <input type="number" matInput formControlName="temperature" placeholder="Température de culture"
-             i18n-placeholder="@@cultureTemperature"/>
-      <mat-error *ngIf="form.get('temperature').invalid" i18n="@@pleaseEnterANumber">Merci d'entrer un nombre.</mat-error>
+      <input type="number" matInput formControlName="temperature"
+             [placeholder]="'phrases.cultureTemperature'|translate"/>
+      <mat-error *ngIf="form.get('temperature').invalid">{{ 'validations.pleaseInputANumber'|translate }}</mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input type="number" matInput formControlName="photoPeriod" placeholder="Photopériode de culture"
-             i18n-placeholder="@@culturePhotoPeriod"/>
-      <mat-error *ngIf="form.get('photoPeriod').invalid" i18n="@@pleaseEnterAValidHumidityValue">Merci d'entrer une valeur de photopériode correcte (entre 0 et 24).</mat-error>
+      <input type="number" matInput formControlName="photoPeriod"
+             [placeholder]="'phrases.photoPeriodCulture'|translate"/>
+      <mat-error *ngIf="form.get('photoPeriod').invalid">
+        {{ 'validations.pleaseInputAValidPhotoPeriodCultureValue'|translate }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field *ngIf="!form.get('plantNotExists').value && form.get('plant').value != null">
-      <mat-label i18n="@@desiredPlantStageAtDueDate">Stade souhaité de la plante à la date d'échéance</mat-label>
+      <mat-label>{{ 'phrases.desiredPlantStageAtDueDate'|translate }}</mat-label>
       <mat-select formControlName="plantStage">
         <mat-option *ngFor="let stage of form.get('plant').value.stages" [value]="stage">
           {{ stage.name }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="form.get('plantStage').invalid" i18n="@@pleaseChooseAPlantStage">Merci de choisir un stade dans lequel vous souhaitez obtenir la plante à la fin de la culture.</mat-error>
+      <mat-error *ngIf="form.get('plantStage').invalid">
+        {{ 'validations.pleaseChooseAPlantStage'|translate }}
+      </mat-error>
     </mat-form-field>
   </div>
 
-  <button mat-raised-button color="primary" type="submit" i18n="@@saveMyRequest">Enregistrer ma demande</button>
+  <button mat-raised-button color="primary" type="submit">{{ 'phrases.saveMyRequest'|translate }}</button>
 </form>

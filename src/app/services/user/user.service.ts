@@ -1,36 +1,73 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {User} from '../../models/user';
 import {Router} from '@angular/router';
+import {Token} from '../../models/token';
+import {HttpUserService} from '../http';
+import {SnackbarService} from '../snackbar/snackbar.service';
+import {catchError, switchMap, tap} from 'rxjs/operators';
+import {Observable, throwError} from 'rxjs';
+import {LoginAction} from '../../models/actions/login-action';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  protected loggedUser: User = User.exampleData[0];
+  protected loggedUser: User = null;
+  protected userToken: Token = null;
 
-  constructor(protected router: Router) { }
+  constructor(protected router: Router,
+              protected httpUserService: HttpUserService,
+              protected snackbarService: SnackbarService) {
+  }
 
   get user(): User {
     return this.loggedUser;
   }
 
+  get token(): Token {
+    return this.userToken;
+  }
+
+  hasToken(): boolean {
+    return null != this.token;
+  }
+
   isUserLoggedIn(): boolean {
-    return null !== this.user;
+    return this.hasToken() && null !== this.user;
   }
 
   hasRole(role: string): boolean {
-    return this.isUserLoggedIn() && this.user.roles.includes(role);
+    return this.isUserLoggedIn() && this.user.role === role;
   }
 
-  login() {
-    this.loggedUser = User.exampleData[0];
+  login(login: LoginAction) {
+    this.httpUserService.login(login).pipe(
+      tap(userToken => this.userToken = userToken),
+      switchMap(() => this.httpUserService.getSelf()),
+      tap(loggedUser => this.loggedUser = loggedUser),
+      tap(() => this.router.navigate(['/common-home']))
+    ).subscribe();
+  }
 
-    this.router.navigate(['/common-home']);
+  refreshToken(): Observable<any> {
+    return this.httpUserService.refreshToken(this.token.refreshToken).pipe(
+      catchError(error => {
+        this.logoutAfterSessionExpired();
+
+        return throwError(error);
+      })
+    );
   }
 
   logout() {
     this.loggedUser = null;
+    this.userToken = null;
 
     this.router.navigate(['/common-home']);
+  }
+
+  logoutAfterSessionExpired() {
+    this.logout();
+    this.snackbarService.error('Votre session a expiré, merci de vous reconnecter pour continuer à utiliser l\'application.');
   }
 }

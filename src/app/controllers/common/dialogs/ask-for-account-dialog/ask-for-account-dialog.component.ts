@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
+import {AccountRequestService} from '../../../../services/http/account-request/account-request.service';
+import {SnackbarService} from '../../../../services';
 
 @Component({
   selector: 'app-ask-for-account-dialog',
@@ -11,7 +13,9 @@ export class AskForAccountDialogComponent implements OnInit {
   form: FormGroup;
 
   constructor(protected dialogRef: MatDialogRef<AskForAccountDialogComponent>,
-              protected formBuilder: FormBuilder) {
+              protected formBuilder: FormBuilder,
+              protected httpAccountRequestService: AccountRequestService,
+              protected snackbarService: SnackbarService) {
   }
 
   ngOnInit() {
@@ -26,14 +30,20 @@ export class AskForAccountDialogComponent implements OnInit {
       lastName: this.formBuilder.control(null, [
         Validators.required
       ]),
-      mail: this.formBuilder.control(null, [
+      email: this.formBuilder.control(null, [
         Validators.required
       ]),
-      description: this.formBuilder.control(null)
+      comment: this.formBuilder.control(null)
     });
   }
 
   submitForm() {
-    this.dialogRef.close();
+    if (!this.form.valid) {
+      return;
+    }
+
+    this.httpAccountRequestService.create(this.form.value).subscribe({
+      next: () => this.dialogRef.close()
+    });
   }
 }

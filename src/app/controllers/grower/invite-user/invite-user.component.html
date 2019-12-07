@@ -1,30 +1,30 @@
 <form class="l-content-block form-one-field-by-line" [formGroup]="form" (ngSubmit)="submitForm()">
   <mat-form-field>
-    <input matInput type="email" formControlName="userMail" required placeholder="Adresse e-mail de la personne à inviter"
-           i18n-placeholder="@@userToInviteMail"/>
-    <mat-error *ngIf="form.get('userMail').invalid" i18n="@@pleaseGiveUserToInviteMail">
-      Merci de renseigner l'adresse e-mail de la personne à inviter.
+    <input matInput type="email" formControlName="userMail" required [placeholder]="'phrases.userToInviteMail'|translate"/>
+    <mat-error *ngIf="form.get('userMail').invalid">
+      {{ 'validations.pleaseInputUserToInviteEmail'|translate }}
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label i18n="@@plant">Rôle de la personne à inviter</mat-label>
+    <mat-label>{{ 'phrases.userToInviteRole'|translate }}</mat-label>
     <mat-select formControlName="userRole" required>
       <mat-option *ngFor="let role of roles; let i = index" [value]="role">
-        {{ roleLabels[i] }}
+        {{ roleLabels[i]|translate }}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="form.get('userRole').invalid" i18n="@@pleaseChooseAUserRole">
-      Merci de choisir un rôle à affecter à la personne à inviter.
+    <mat-error *ngIf="form.get('userRole').invalid">
+      {{ 'validations.pleaseInputUserToInviteRole'|translate }}
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput formControlName="userValidUntil" [matDatepicker]="picker" placeholder="Date de fin de validité du compte"
-           i18n-placeholder="@@accountValidityEndDate" [min]="minValidityDate">
+    <input matInput formControlName="userValidUntil" [matDatepicker]="picker"
+           [placeholder]="'phrases.accountValidityEndDate'|translate"
+           [min]="minValidityDate">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit" i18n="@@sendTheInvitation">Envoyer l'invitation</button>
+  <button mat-raised-button color="primary" type="submit">{{ 'phrases.sendInvitation'|translate }}</button>
 </form>

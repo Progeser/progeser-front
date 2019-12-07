@@ -24,4 +24,8 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.breadcrumbSubscription.unsubscribe();
   }
+
+  getTranslationLabel(translationKey: string): string {
+    return `breadcrumbs.${translationKey}`;
+  }
 }

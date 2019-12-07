@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router} from '@angular/router';
-import {UserService} from '..';
+import {UserService} from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class RouteGuardService implements CanActivate {
     }
 
     if (null != route.data.roles
-      && !this.userService.user.roles.some(role => route.data.roles.includes(role))) {
+      && !route.data.roles.some(role => this.userService.user.role === role)) {
       this.router.navigate(['/common-home']);
 
       return false;

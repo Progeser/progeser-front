@@ -20,7 +20,7 @@ import {
   ManagePotComponent,
   PotsListComponent
 } from './controllers';
-import {RouteGuardService} from './services/route-guard/route-guard.service';
+import {RouteGuardService} from './services';
 import {User} from './models/user';
 
 const routes: Routes = [
@@ -45,7 +45,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: User.roles,
-      breadcrumb: 'Gestion de mon compte utilisateur'
+      breadcrumb: 'manageMyAccount'
     }
   },
   {
@@ -54,7 +54,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: User.roles,
-      breadcrumb: 'Gestion d\'une demande'
+      breadcrumb: 'manageRequest'
     }
   },
   /* Grower routes */
@@ -73,7 +73,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Gestion des plantes'
+      breadcrumb: 'managePlant'
     }
   },
   {
@@ -82,7 +82,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Répartition des plantes d\'une demande'
+      breadcrumb: 'distributeRequestPlants'
     }
   },
   {
@@ -91,7 +91,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Gestion d\'une serre'
+      breadcrumb: 'manageGreenhouse'
     }
   },
   {
@@ -100,7 +100,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Liste des serres'
+      breadcrumb: 'greenhousesList'
     }
   },
   {
@@ -109,7 +109,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Liste des plantes'
+      breadcrumb: 'plantsList'
     }
   },
   {
@@ -118,7 +118,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Liste des pots'
+      breadcrumb: 'potsList'
     }
   },
   {
@@ -127,7 +127,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Gestion d\'un pot'
+      breadcrumb: 'managePot'
     }
   },
   {
@@ -136,7 +136,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Envoyer une invitation d\'accès à l\'application'
+      breadcrumb: 'sendApplicationInvitation'
     }
   },
   {
@@ -145,7 +145,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Liste des utilisateurs'
+      breadcrumb: 'usersList'
     }
   },
   {
@@ -154,16 +154,16 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Gestion des droits d\'un utilisateur'
+      breadcrumb: 'manageAccountRights'
     }
   },
   {
-    path: 'grower/manage-account-request',
+    path: 'grower/manage-account-request/:id',
     component: ManageAccountRequestComponent,
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Gestion d\'une demande de compte utilisateur'
+      breadcrumb: 'manageAccountRequest'
     }
   },
   {
@@ -172,7 +172,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'Calendrier de serre'
+      breadcrumb: 'greenhouseCalendar'
     }
   },
   /* Requester routes */

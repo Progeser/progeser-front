@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
+import {HttpUserService} from '../../../../services';
+import {switchMap} from 'rxjs/operators';
+import {ForgotPasswordAction} from '../../../../models/actions/forgot-password-action';
 
 @Component({
   selector: 'app-forgot-password-dialog',
@@ -11,7 +14,8 @@ export class ForgotPasswordDialogComponent implements OnInit {
   form: FormGroup;
 
   constructor(protected dialogRef: MatDialogRef<ForgotPasswordDialogComponent>,
-              protected formBuilder: FormBuilder) {
+              protected formBuilder: FormBuilder,
+              protected httpUserService: HttpUserService) {
   }
 
   ngOnInit() {
@@ -20,13 +24,21 @@ export class ForgotPasswordDialogComponent implements OnInit {
 
   protected initForm() {
     this.form = this.formBuilder.group({
-      mail: this.formBuilder.control(null, [
-        Validators.required
+      email: this.formBuilder.control(null, [
+        Validators.required,
+        Validators.email
       ])
     });
   }
 
   submitForm() {
-    this.dialogRef.close();
+    if (this.form.invalid) {
+      return;
+    }
+
+    // todo: message for success / error
+    this.httpUserService.forgotPassword(ForgotPasswordAction.buildFromFormGroup(this.form)).pipe(
+      switchMap(() => this.dialogRef.close)
+    ).subscribe();
   }
 }

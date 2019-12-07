@@ -1,8 +1,9 @@
 import {Plant} from './plant';
 import {PlantStage} from './plant-stage';
 import {RequestDistribution} from './request-distribution';
+import {Resource} from './resource';
 
-export class Request {
+export class Request extends Resource{
   static statusLabels = [
     'En attente',
     'Acceptée',
@@ -11,6 +12,7 @@ export class Request {
 
   static exampleData: Request[] = [
     {
+      id: 1,
       name: 'Roses pour le TP des M1',
       status: 1,
       creationDate: new Date('2019-09-05'),
@@ -28,6 +30,7 @@ export class Request {
       color: '#746dff'
     },
     {
+      id: 2,
       name: 'Raisin pour le TP des M2',
       status: 1,
       creationDate: new Date('2019-07-03'),
@@ -45,6 +48,7 @@ export class Request {
       color: '#ff333a'
     },
     {
+      id: 3,
       name: 'Petunia pour le prochain gala',
       status: 1,
       creationDate: new Date('2019-09-18'),
@@ -62,6 +66,7 @@ export class Request {
       color: '#7f7cff'
     },
     {
+      id: 4,
       name: 'Roses pour le TP des M1',
       status: 1,
       creationDate: new Date('2019-09-05'),
@@ -79,6 +84,7 @@ export class Request {
       color: '#c24796'
     },
     {
+      id: 5,
       name: 'Raisin pour le TP des M2',
       status: 1,
       creationDate: new Date('2019-07-03'),
@@ -96,6 +102,7 @@ export class Request {
       color: '#333333'
     },
     {
+      id: 6,
       name: 'Petunia pour le prochain gala',
       status: 1,
       creationDate: new Date('2019-09-18'),
@@ -113,6 +120,7 @@ export class Request {
       color: '#ffffff'
     },
     {
+      id: 7,
       name: 'Roses pour le TP des M1',
       status: 1,
       creationDate: new Date('2019-09-05'),
@@ -130,6 +138,7 @@ export class Request {
       color: '#0035ff'
     },
     {
+      id: 8,
       name: 'Raisin pour le TP des M2',
       status: 1,
       creationDate: new Date('2019-07-03'),
@@ -147,6 +156,7 @@ export class Request {
       color: '#0c69b9'
     },
     {
+      id: 9,
       name: 'Petunia pour le prochain gala',
       status: 1,
       creationDate: new Date('2019-09-18'),

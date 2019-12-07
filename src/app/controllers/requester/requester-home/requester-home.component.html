@@ -1,21 +1,25 @@
 <nav class="top-actions-button">
-  <button mat-raised-button color="primary" i18n="@@newRequest">
-    Nouvelle demande
+  <button mat-raised-button color="primary">
+    {{ 'phrases.newRequest'|translate }}
   </button>
 </nav>
 
 <mat-tab-group class="mat-elevation-z3">
   <mat-tab>
-    <ng-template mat-tab-label i18n="@@myRequests">
-      Mes demandes
+    <ng-template mat-tab-label>
+      <ng-container>
+        {{ 'phrases.myRequests'|translate }}
+      </ng-container>
     </ng-template>
 
     <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
   </mat-tab>
 
   <mat-tab>
-    <ng-template mat-tab-label i18n="@@myCanceledRequests">
-        Mes demandes annulées
+    <ng-template mat-tab-label>
+      <ng-container>
+        {{ 'phrases.cancelledRequests'|translate }}
+      </ng-container>
     </ng-template>
 
     <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>

@@ -10,6 +10,10 @@ export class SnackbarService implements SnackbarServiceInterface {
   constructor(protected snackBar: MatSnackBar) {
   }
 
+  message(type: string, message: string, duration?: number) {
+    this.openSnackbar(message, type, duration);
+  }
+
   info(message: string, duration?: number) {
     this.openSnackbar(message, 'info', duration);
   }

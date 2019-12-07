@@ -1,6 +1,7 @@
-import {Component, Inject, LOCALE_ID, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import {Request} from '../../../models';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-greenhouse-calendar',
@@ -9,16 +10,17 @@ import {Request} from '../../../models';
 })
 export class GreenhouseCalendarComponent implements OnInit {
   calendarPlugins = [dayGridPlugin];
-  calendarTexts = {
-    today:    'Aujourd\'hui',
-    month:    'Mois',
-    week:     'Semaine',
-    day:      'Jour',
-    list:     'Liste'
-  };
+  calendarTexts;
   greenhouseRequests;
 
-  constructor(@Inject(LOCALE_ID) public locale: string) {
+  constructor(protected translateService: TranslateService) {
+    this.translateService.onLangChange.subscribe({
+      next: () => {
+        this.setCalendarLabels();
+      }
+    });
+
+    this.setCalendarLabels();
   }
 
   ngOnInit() {
@@ -36,5 +38,15 @@ export class GreenhouseCalendarComponent implements OnInit {
         allDay: true
       };
     });
+  }
+
+  protected setCalendarLabels() {
+    this.calendarTexts = {
+      today:    this.translateService.instant('words.today'),
+      month:    this.translateService.instant('words.month'),
+      week:     this.translateService.instant('words.week'),
+      day:      this.translateService.instant('words.day'),
+      list:     this.translateService.instant('words.list')
+    };
   }
 }

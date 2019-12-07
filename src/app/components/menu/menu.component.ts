@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuService, UserService} from '../../services';
+import {User} from '../../models/user';
 
 @Component({
   selector: 'app-menu',
@@ -8,6 +9,7 @@ import {MenuService, UserService} from '../../services';
 })
 export class MenuComponent implements OnInit {
   isOpen: boolean;
+  roles = User.roles;
 
   constructor(protected menuService: MenuService,
               protected userService: UserService) {

@@ -1,7 +1,7 @@
 <div class="l-content-block">
   <full-calendar
     defaultView="dayGridMonth"
-    [locale]="locale"
+    [locale]="translateService.currentLang"
     [firstDay]="1"
     [plugins]="calendarPlugins"
     [events]="greenhouseRequests"

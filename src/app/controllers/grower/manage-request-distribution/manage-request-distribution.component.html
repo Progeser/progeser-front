@@ -1,24 +1,24 @@
 <form class="manage-request-distribution l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
   <div class="distributions-container" formArrayName="requestDistributions">
-    <mat-label i18n="@@plantDistribution">Répartition des plantes entre les serres</mat-label>
+    <mat-label>{{ 'phrases.plantsDistribution'|translate }}</mat-label>
 
     <ul>
       <li *ngFor="let distribution of form.get('requestDistributions').controls; let i = index" [formGroupName]="i"
           class="inline-form-fields distribution-group-fields">
         <mat-form-field>
-          <mat-label i18n="@@greenhouse">Serre</mat-label>
+          <mat-label>{{ 'words.greenhouse'|translate }}</mat-label>
           <mat-select formControlName="greenhouse" required>
             <mat-option *ngFor="let greenhouse of greenhouses" [value]="greenhouse">
               {{ greenhouse.name }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="distribution.get('greenhouse').invalid" i18n="@@pleaseChooseAGreenhouse">Merci de choisir
-            une serre.
+          <mat-error *ngIf="distribution.get('greenhouse').invalid">
+            {{ 'validations.pleaseChooseAGreenhouse'|translate }}
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label i18n="@@bench">Tablette</mat-label>
+          <mat-label>{{ 'words.bench'|translate }}</mat-label>
           <mat-select formControlName="bench" required>
             <ng-container *ngIf="null !== distribution.get('greenhouse').value">
               <mat-option *ngFor="let bench of distribution.get('greenhouse').value.benches" [value]="bench">
@@ -26,47 +26,46 @@
               </mat-option>
             </ng-container>
           </mat-select>
-          <mat-error *ngIf="distribution.get('bench').invalid" i18n="@@pleaseChooseABench">Merci de choisir une
-            tablette.
+          <mat-error *ngIf="distribution.get('bench').invalid">
+            {{ 'validations.pleaseChooseABench'|translate }}
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label i18n="@@plantsStage">Stade des plantes</mat-label>
+          <mat-label>{{ 'phrases.plantsStage'|translate }}</mat-label>
           <mat-select formControlName="plantStage" required>
             <mat-option *ngFor="let stage of request.plant.stages" [value]="stage">
               {{ stage.name }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="distribution.get('plantStage').invalid" i18n="@@pleaseChooseAPlantStage">Merci de choisir un
-            stade.
+          <mat-error *ngIf="distribution.get('plantStage').invalid">
+            {{ 'validations.pleaseChooseAPlantStage'|translate }}
           </mat-error>
         </mat-form-field>
 
-        <mat-checkbox formControlName="surfaceInputtedManually" i18n="@@inputTheSurfaceManually">
-          Renseigner la surface manuellement
+        <mat-checkbox formControlName="surfaceInputtedManually">
+          {{ 'phrases.inputSurfaceManually'|translate }}
         </mat-checkbox>
 
         <div class="inline-form-fields surface-group-fields">
           <ng-container *ngIf="true != distribution.get('surfaceInputtedManually').value; else manualSurface">
             <mat-form-field>
               <input matInput required type="number" formControlName="quantity"
-                     placeholder="Nombre de pots"
-                     i18n-placeholder="@@potQuantity"/>
-              <mat-error *ngIf="distribution.get('quantity').invalid" i18n="@@pleaseGivePotQuantity">
-                Merci de renseigner le nombre de pots à disposer.
+                     [placeholder]="'phrases.potsNumber'|translate"/>
+              <mat-error *ngIf="distribution.get('quantity').invalid">
+                {{ 'validations.pleaseInputThePotsNumber'|translate }}
               </mat-error>
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label i18n="@@pot">Pot</mat-label>
+              <mat-label>{{ 'words.pot'|translate }}</mat-label>
               <mat-select formControlName="pot" required>
                 <mat-option *ngFor="let pot of pots" [value]="pot">
                   {{ pot.name }}
                 </mat-option>
               </mat-select>
-              <mat-error *ngIf="distribution.get('pot').invalid" i18n="@@pleaseChooseAPot">Merci de choisir un
-                pot.
+              <mat-error *ngIf="distribution.get('pot').invalid">
+                {{ 'validations.pleaseChooseAPot'|translate }}
               </mat-error>
             </mat-form-field>
           </ng-container>
@@ -74,10 +73,9 @@
           <ng-template #manualSurface>
             <mat-form-field>
               <input matInput required type="number" formControlName="manualSurface"
-                     placeholder="Surface"
-                     i18n-placeholder="@@surface"/>
-              <mat-error *ngIf="distribution.get('manualSurface').invalid" i18n="@@pleaseGiveSurface">
-                Merci de renseigner la surface.
+                     [placeholder]="'words.surface'|translate"/>
+              <mat-error *ngIf="distribution.get('manualSurface').invalid">
+                {{ 'validations.pleaseInputTheSurface'|translate }}
               </mat-error>
             </mat-form-field>
           </ng-template>
@@ -90,12 +88,12 @@
       </li>
     </ul>
 
-    <button mat-stroked-button type="button" (click)="pushDistribution()" i18n="@@addDistribution">
-      Ajouter une tablette à la répartition
+    <button mat-stroked-button type="button" (click)="pushDistribution()">
+      {{ 'phrases.addABench'|translate }}
     </button>
   </div>
 
-  <button mat-raised-button color="primary" type="submit" i18n="@@saveTheDistribution">
-    Enregistrer la répartition
+  <button mat-raised-button color="primary" type="submit">
+    {{ 'words.save'|translate }}
   </button>
 </form>

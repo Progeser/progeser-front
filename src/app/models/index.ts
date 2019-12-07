@@ -1,3 +1,4 @@
+export * from './resource';
 export * from './request';
 export * from './plant';
 export * from './plant-stage';

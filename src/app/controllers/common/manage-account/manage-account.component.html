@@ -1,41 +1,40 @@
 <nav class="top-actions-button">
-  <button mat-raised-button color="primary" i18n="@@changeMyPassword" (click)="openChangePasswordDialog()">
-    Changer mon mot de passe
+  <button mat-raised-button color="primary" (click)="openChangePasswordDialog()">
+    {{ 'phrases.changeMyPassword'|translate }}
   </button>
 </nav>
 
 <form class="create-account-form l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
   <div class="inline-form-fields">
     <mat-form-field>
-      <input matInput formControlName="firstName" placeholder="Prénom" required i18n-placeholder="@@firstName"/>
-      <mat-error *ngIf="form.get('firstName').invalid" i18n="@@pleaseGiveYourFirstName">
-        Merci de renseigner votre prénom.
+      <input matInput formControlName="firstName" [placeholder]="'words.firstName'|translate" required />
+      <mat-error *ngIf="form.get('firstName').invalid">
+        {{ 'validations.pleaseInputYourFirstName'|translate }}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="lastName" placeholder="Nom" required i18n-placeholder="@@name"/>
-      <mat-error *ngIf="form.get('lastName').invalid" i18n="@@pleaseGiveYourName">
-        Merci de renseigner votre nom.
+      <input matInput formControlName="lastName" [placeholder]="'words.lastName'|translate" required />
+      <mat-error *ngIf="form.get('lastName').invalid">
+        {{ 'validations.pleaseInputYourLastName'|translate }}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput type="email" formControlName="mail" placeholder="Adresse e-mail" required
-             i18n-placeholder="@@email"/>
-      <mat-error *ngIf="form.get('mail').invalid" i18n="@@pleaseGiveYourMail">
-        Merci de renseigner votre adresse e-mail.
+      <input matInput type="email" formControlName="email" [placeholder]="'words.email'|translate" required />
+      <mat-error *ngIf="form.get('email').invalid">
+        {{ 'validations.pleaseInputYourEmail'|translate }}
       </mat-error>
     </mat-form-field>
   </div>
 
   <div class="inline-form-fields" *ngIf="isRequester()">
     <mat-form-field>
-      <input matInput formControlName="lab" placeholder="Laboratoire" i18n-placeholder="@@lab"/>
+      <input matInput formControlName="lab" [placeholder]="'words.laboratory'|translate" />
     </mat-form-field>
 
     <mat-form-field *ngIf="!form.get('responsibleNotExists').value; else responsibleNotFound">
-        <mat-label i18n="@@responsible">Responsable</mat-label>
+        <mat-label>{{ 'words.responsible'|translate }}</mat-label>
         <mat-select formControlName="responsible">
           <mat-option *ngFor="let user of users" [value]="user">
             {{ user.firstName }} {{ user.lastName }}
@@ -45,31 +44,31 @@
 
     <ng-template #responsibleNotFound>
       <mat-form-field>
-        <input matInput formControlName="responsible" placeholder="Responsable" i18n-placeholder="@@responsible"/>
+        <input matInput formControlName="responsible" [placeholder]="'words.responsible'|translate" />
       </mat-form-field>
     </ng-template>
 
-    <mat-checkbox formControlName="responsibleNotExists" i18n="@@IDontFindMyResponsible">
-      Je ne trouve pas mon responsable dans la liste
+    <mat-checkbox formControlName="responsibleNotExists">
+      {{ 'phrases.IDontFindMyResponsible'|translate }}
     </mat-checkbox>
   </div>
 
   <div class="inline-form-fields">
     <mat-form-field>
-      <input matInput type="password" formControlName="password" placeholder="Mot de passe" required i18n-placeholder="@@password"/>
-      <mat-error *ngIf="form.get('password').invalid" i18n="@@pleaseGiveYourPassword">
-        Merci de renseigner votre mot de passe.
+      <input matInput type="password" formControlName="password" [placeholder]="'words.password'|translate" required/>
+      <mat-error *ngIf="form.get('password').invalid">
+        {{ 'validations.pleaseInputYourPassword'|translate }}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput type="password" formControlName="repeatedPassword" placeholder="Répétez votre mot de passe" required
-             i18n-placeholder="@@repeatedPassword" [errorStateMatcher]="crossFieldErrorMatcher"/>
-      <mat-error *ngIf="form.hasError('matchFormControl')" i18n="@@passwordsDontMatch">
-        Les mots de passe ne correspondent pas.
+      <input matInput type="password" formControlName="repeatedPassword" [placeholder]="'phrases.repeatYourPassword'|translate" required
+             [errorStateMatcher]="crossFieldErrorMatcher"/>
+      <mat-error *ngIf="form.hasError('matchFormControl')">
+        {{ 'validations.passwordsDontMatch'|translate }}
       </mat-error>
     </mat-form-field>
   </div>
 
-  <button mat-raised-button color="primary" type="submit" i18n="@@validate">Valider</button>
+  <button mat-raised-button color="primary" type="submit">{{ 'words.validate'|translate }}</button>
 </form>

@@ -1,42 +1,48 @@
-export class User {
+import {Resource} from './resource';
+
+export class User extends Resource {
   static roles: string[] = [
-    'ROLE_REQUESTER',
-    'ROLE_GROWER'
+    'requester',
+    'grower'
   ];
 
   static roleLabels: string[] = [
-    'Demandeur',
-    'Serriste'
+    'words.requester',
+    'words.grower'
   ];
 
   static exampleData: User[] = [
     {
+      id: 1,
       firstName: 'Christopher',
       lastName: 'Anciaux',
-      mail: 'christopher.anciaux@fakemail.com',
-      roles: [
-        User.roles[1]
-      ]
+      email: 'christopher.anciaux@fakemail.com',
+      role: User.roles[1]
     },
     {
+      id: 2,
       firstName: 'Thibaut',
       lastName: 'Strecker',
-      mail: 'thibaut.strecker@fakemail.com',
-      roles: []
+      email: 'thibaut.strecker@fakemail.com',
+      role: User.roles[1]
     },
     {
+      id: 3,
       firstName: 'Tao',
       lastName: 'Galasse',
-      mail: 'tao.galasse@fakemail.com',
-      roles: []
+      email: 'tao.galasse@fakemail.com',
+      role: User.roles[2]
     }
   ];
 
+  id: number;
   firstName: string;
   lastName: string;
-  mail: string;
-  roles: string[];
+  email: string;
+  role: string;
   validUntil?: Date;
+  lab?: string;
+  responsible?: User | string;
 
   static getRolesLabel(roles: string[]) {
     return roles
@@ -45,7 +51,7 @@ export class User {
       .join(', ');
   }
 
-  static getRoleLabel(role: string)  {
+  static getRoleLabel(role: string) {
     const roleIndex = User.roles.indexOf(role);
 
     return -1 !== roleIndex ? User.roleLabels[User.roles.indexOf(role)] : '';

@@ -1,39 +1,40 @@
-<form class="l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
-
+<form class="l-content-block" [formGroup]="form">
   <div class="inline-form-fields">
     <mat-form-field>
       <input matInput formControlName="firstName"
-             required placeholder="Prénom"
-             i18n-placeholder="@@firstName"/>
+             required [placeholder]="'words.firstName'|translate"/>
     </mat-form-field>
 
     <mat-form-field>
       <input matInput formControlName="lastName"
-             required placeholder="Nom"
-             i18n-placeholder="@@lastName"/>
+             required [placeholder]="'words.lastName'|translate"/>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="validUntil" [matDatepicker]="picker" placeholder="Date de fin de validité"
-             i18n-placeholder="@@endValidityDate" [min]="minValidityDate">
+      <input matInput formControlName="validUntil" [matDatepicker]="picker"
+             [placeholder]="'phrases.endValidityDate'|translate"
+             [min]="minValidityDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="form.get('validUntil').invalid" i18n="@@pleaseChooseADate">Merci de choisir une date correcte.</mat-error>
+      <mat-error *ngIf="form.get('validUntil').invalid">
+        {{ 'validations.pleaseInputAValidDate'|translate }}
+      </mat-error>
     </mat-form-field>
   </div>
 
   <div class="inline-form-fields">
     <mat-form-field class="double-size-form-field">
-      <textarea matInput formControlName="description"
-                placeholder="Description accompagnant la demande de compte utilisateur"
-                i18n-placeholder="@@descriptionLinkedToTheAccountRequest"></textarea>
+      <textarea matInput formControlName="comment"
+                [placeholder]="'phrases.commentLinkedToTheAccountRequest'|translate"></textarea>
     </mat-form-field>
   </div>
 
   <div class="actions-button">
-    <button mat-raised-button color="warn" type="button" (click)="refuseAccountRequest()" i18n="@@refuseTheRequest">
-      Refuser la demande
+    <button mat-raised-button color="warn" type="button" (click)="refuseAccountRequest()">
+      {{ 'phrases.refuseTheAccountRequest'|translate }}
     </button>
-    <button mat-raised-button color="primary" type="submit" i18n="@@acceptTheRequest">Accepter la demande</button>
+    <button mat-raised-button color="primary" type="button" (click)="acceptAccountRequest()">
+      {{ 'phrases.acceptTheAccountRequest'|translate }}
+    </button>
   </div>
 </form>

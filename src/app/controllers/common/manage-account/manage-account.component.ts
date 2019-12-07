@@ -41,7 +41,7 @@ export class ManageAccountComponent implements OnInit {
       lastName: this.formBuilder.control(null, [
         Validators.required
       ]),
-      mail: this.formBuilder.control(null, [
+      email: this.formBuilder.control(null, [
         Validators.required,
         Validators.email
       ]),

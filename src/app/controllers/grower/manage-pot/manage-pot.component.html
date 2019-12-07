@@ -3,16 +3,15 @@
   <div class="inline-form-fields">
     <mat-form-field>
       <input matInput formControlName="name"
-             required placeholder="Nom"
-             i18n-placeholder="@@name"/>
-      <mat-error *ngIf="form.get('name').invalid" i18n="@@pleaseInputAName">
-        Merci de renseigner un nom.
+             required [placeholder]="'words.name'|translate"/>
+      <mat-error *ngIf="form.get('name').invalid">
+        {{ 'validations.pleaseInputName'|translate }}
       </mat-error>
     </mat-form-field>
 
     <app-shape-form [form]="form"></app-shape-form>
   </div>
 
-  <button mat-raised-button color="primary" type="submit" i18n="@@saveThePot">Sauvegarder le pot</button>
+  <button mat-raised-button color="primary" type="submit">{{ 'words.save'|translate }}</button>
 </form>
 

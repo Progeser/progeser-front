@@ -4,6 +4,7 @@ import {UserService} from '../../../services';
 import {MatDialog} from '@angular/material';
 import {AskForAccountDialogComponent} from '../dialogs/ask-for-account-dialog/ask-for-account-dialog.component';
 import {ForgotPasswordDialogComponent} from '../dialogs/forgot-password-dialog/forgot-password-dialog.component';
+import {LoginAction} from '../../../models/actions/login-action';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   initForm() {
     this.form = this.formBuilder.group({
-      mail: this.formBuilder.control(null, [
+      email: this.formBuilder.control(null, [
         Validators.required
       ]),
       password: this.formBuilder.control(null, [
@@ -34,7 +35,11 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm() {
-    this.userService.login();
+    if (!this.form.valid) {
+      return;
+    }
+
+    this.userService.login(LoginAction.buildFromFormGroup(this.form));
   }
 
   openForgotPasswordDialog() {

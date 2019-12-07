@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material';
 import {Request} from '../../models';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-requests-list',
@@ -22,7 +23,7 @@ export class RequestsListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false})
   protected paginator: MatPaginator;
 
-  constructor() {
+  constructor(protected translateService: TranslateService) {
   }
 
   ngOnInit() {

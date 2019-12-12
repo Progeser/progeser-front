@@ -8,6 +8,7 @@ export * from './common/dialogs/ask-for-account-dialog/ask-for-account-dialog.co
 export * from './common/dialogs/forgot-password-dialog/forgot-password-dialog.component';
 export * from './common/dialogs/confirmation-dialog/confirmation-dialog.component';
 export * from './common/dialogs/change-password-dialog/change-password-dialog.component';
+export * from './common/table-paginator/table-paginator.component';
 
 /* Grower controllers */
 

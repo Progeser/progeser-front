@@ -50,7 +50,7 @@
       </span>
     </ng-template>
 
-    <table mat-table [dataSource]="accountRequests?.items">
+    <table mat-table [dataSource]="accountRequests">
       <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef>{{ 'words.firstName'|translate }}</th>
         <td mat-cell *matCellDef="let accountRequest">{{ accountRequest.firstName }}</td>
@@ -63,20 +63,23 @@
 
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>{{ 'words.actions'|translate }}</th>
-        <td mat-cell *matCellDef="let accountRequest">
-          <button mat-icon-button
-                  [matTooltip]="'phrases.viewTheAccountRequest'|translate"
-                  matTooltipPosition="after">
+        <td mat-cell *matCellDef="let accountRequest; let i = index">
+          <a mat-icon-button
+             [matTooltip]="'phrases.viewTheAccountRequest'|translate"
+             matTooltipPosition="after"
+             [routerLink]="['/grower/manage-account-request/', accountRequest.id]">
             <mat-icon>visibility</mat-icon>
-          </button>
+          </a>
           <button mat-icon-button
                   [matTooltip]="'phrases.acceptTheAccountRequest'|translate"
-                  matTooltipPosition="after">
+                  matTooltipPosition="after"
+                  (click)="handleAccountRequest(accountRequest.id, i, true)">
             <mat-icon>done</mat-icon>
           </button>
           <button mat-icon-button
                   [matTooltip]="'phrases.refuseTheAccountRequest'|translate"
-                  matTooltipPosition="after">
+                  matTooltipPosition="after"
+                  (click)="handleAccountRequest(accountRequest.id, i, false)">
             <mat-icon>clear</mat-icon>
           </button>
         </td>

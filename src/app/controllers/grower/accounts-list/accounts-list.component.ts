@@ -5,6 +5,8 @@ import {AccountRequestService, SnackbarService} from '../../../services';
 import {PaginatedResource} from '../../../models/paginated-resource';
 import {TablePaginatorComponent} from '../../common/table-paginator/table-paginator.component';
 import {startWith, switchMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-accounts-list',
@@ -39,4 +41,9 @@ export class AccountsListComponent implements AfterViewInit {
     });
   }
 
+  handleAccountRequest(accountRequestId: number, accountRequestIndex: number, accept: boolean) {
+    this.httpAccountRequestService.handleAccountRequest(accountRequestId, accept).subscribe({
+      next: () => this.accountRequests.removeItemByIndex(accountRequestIndex)
+    });
+  }
 }

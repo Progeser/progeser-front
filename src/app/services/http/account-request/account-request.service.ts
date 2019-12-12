@@ -16,6 +16,17 @@ export class AccountRequestService extends ResourceService<AccountRequest> {
     super(http, responseToSnackbarHandler, 'account_requests');
   }
 
+  handleAccountRequest(accountRequestId: number, accept: boolean): Observable<AccountRequest | void> {
+    let observableAction: Observable<AccountRequest | void>;
+    if (true === accept) {
+      observableAction = this.accept(accountRequestId);
+    } else {
+      observableAction = this.delete(accountRequestId);
+    }
+
+    return observableAction;
+  }
+
   accept(accountRequestId: number): Observable<AccountRequest> {
     return this.handleRequest('POST', `/${accountRequestId}/accept`, 'accept');
   }

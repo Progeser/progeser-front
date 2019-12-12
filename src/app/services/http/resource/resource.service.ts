@@ -55,7 +55,7 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
   }
 
   create(resource: T): Observable<T> {
-    return this.handleRequest<T>('POST', null, 'post', {body: resource});
+    return this.handleRequest<T>('POST',  '', 'create', {body: resource});
   }
 
   update(resource: T): Observable<T> {

@@ -197,7 +197,9 @@
       "create": {
         "400": {
           "error": "Le formulaire est incorrect, merci de vérifier votre saisie."
-        }
+        },
+        "success": "Votre demande de compte utilisateur a bien été envoyée.",
+        "error": "Une erreur est survenue lors de l'envoi de la demande de compte utilisateur."
       },
       "accept": {
         "success": "La demande de compte utilisateur a été acceptée.",

@@ -43,6 +43,6 @@ export class UserService extends BaseService {
   }
 
   forgotPassword(forgotPasswordAction: ForgotPasswordAction): Observable<void> {
-    return this.handleRequest<void>('GET', `${this.baseApiUrl}/passwords/forgot`, 'forgotPassword', {body: forgotPasswordAction});
+    return this.handleRequest<void>('POST', `${this.baseApiUrl}/passwords/forgot`, 'forgotPassword', {body: forgotPasswordAction});
   }
 }

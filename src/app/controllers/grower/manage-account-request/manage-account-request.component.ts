@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {AccountRequest} from '../../../models/account-request';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AccountRequestService} from '../../../services/http/account-request/account-request.service';
 import {SnackbarService} from '../../../services';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-manage-account-request',
@@ -17,6 +18,7 @@ export class ManageAccountRequestComponent implements OnInit {
 
   constructor(protected formBuilder: FormBuilder,
               protected snackbarService: SnackbarService,
+              protected router: Router,
               protected route: ActivatedRoute,
               protected httpAccountRequestService: AccountRequestService) { }
 
@@ -37,11 +39,9 @@ export class ManageAccountRequestComponent implements OnInit {
     });
   }
 
-  acceptAccountRequest() {
-    this.httpAccountRequestService.accept(this.accountRequest.id).subscribe();
-  }
-
-  refuseAccountRequest() {
-    this.httpAccountRequestService.delete(this.accountRequest.id).subscribe();
+  handleAccountRequest(accept: boolean) {
+    this.httpAccountRequestService.handleAccountRequest(this.accountRequest.id, accept).pipe(
+      switchMap(() => this.router.navigate(['/grower/accounts-list']))
+    ).subscribe();
   }
 }

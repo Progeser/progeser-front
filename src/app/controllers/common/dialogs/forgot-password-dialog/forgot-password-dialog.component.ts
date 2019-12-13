@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
 import {HttpUserService} from '../../../../services';
 import {switchMap} from 'rxjs/operators';
-import {ForgotPasswordAction} from '../../../../models/actions/forgot-password-action';
 
 @Component({
   selector: 'app-forgot-password-dialog',
@@ -36,8 +35,7 @@ export class ForgotPasswordDialogComponent implements OnInit {
       return;
     }
 
-    // todo: message for success / error
-    this.httpUserService.forgotPassword(ForgotPasswordAction.buildFromFormGroup(this.form)).pipe(
+    this.httpUserService.forgotPassword(this.form.value).pipe(
       switchMap(() => this.dialogRef.close)
     ).subscribe();
   }

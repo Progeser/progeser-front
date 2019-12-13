@@ -6,7 +6,6 @@ import {Token} from '../../../models/token';
 import {LoginAction} from '../../../models/actions/login-action';
 import {User} from '../../../models/user';
 import {BaseService} from '../base/base.service';
-import {ForgotPasswordAction} from '../../../models/actions/forgot-password-action';
 import {ResponseToSnackbarHandlerService} from '../response-to-snackbar-handler/response-to-snackbar-handler.service';
 
 @Injectable({
@@ -42,7 +41,7 @@ export class UserService extends BaseService {
     return this.handleRequest<User>('GET', `${this.baseApiUrl}/me`, 'getSelf');
   }
 
-  forgotPassword(forgotPasswordAction: ForgotPasswordAction): Observable<void> {
-    return this.handleRequest<void>('POST', `${this.baseApiUrl}/passwords/forgot`, 'forgotPassword', {body: forgotPasswordAction});
+  forgotPassword(forgotPasswordForm): Observable<void> {
+    return this.handleRequest<void>('POST', `${this.baseApiUrl}/passwords/forgot`, 'forgotPassword', {body: forgotPasswordForm});
   }
 }

@@ -91,4 +91,41 @@
 
     <app-table-paginator [length]="accountRequests?.items.length" #accountRequestsPaginator></app-table-paginator>
   </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <span matBadge="4" matBadgeOverlap="false" matBadgeColor="warn">
+        {{ 'phrases.sentInvitations'|translate }}
+      </span>
+    </ng-template>
+
+    <table mat-table [dataSource]="invites">
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef>{{ 'words.firstName'|translate }}</th>
+        <td mat-cell *matCellDef="let invite">{{ invite.firstName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef>{{ 'words.lastName'|translate }}</th>
+        <td mat-cell *matCellDef="let invite">{{ invite.lastName }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>{{ 'words.actions'|translate }}</th>
+        <td mat-cell *matCellDef="let invite; let i = index">
+          <button mat-icon-button
+                  [matTooltip]="'phrases.cancelTheInvite'|translate"
+                  matTooltipPosition="after"
+                  (click)="cancelInvite(invite.id, i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="invitesColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: invitesColumns;"></tr>
+    </table>
+
+    <app-table-paginator [length]="invites?.items.length" #invitesPaginator></app-table-paginator>
+  </mat-tab>
 </mat-tab-group>

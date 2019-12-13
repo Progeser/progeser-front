@@ -76,8 +76,11 @@
     "seeDetails": "Voir les détails",
     "modifyTheGreenhouse": "Modifier la serre",
     "deleteTheGreenhouse": "Supprimer la serre",
-    "userToInviteMail": "E-mail de la personne à inviter",
+    "userToInviteEmail": "E-mail de la personne à inviter",
     "userToInviteRole": "Rôle de la personne à inviter",
+    "userToInviteFirstName": "Prénom de la personne à inviter",
+    "userToInviteLastName": "Nom de la personne à inviter",
+    "userToInviteLaboratory": "Laboratoire de la personne à inviter",
     "accountValidityEndDate": "Date de fin de validité du compte",
     "sendInvitation": "Envoyer l'invitation",
     "endValidityDate": "Date de fin de validité",
@@ -113,7 +116,9 @@
     "itemsPerPage": "Éléments par page :",
     "previousPage": "Page précédente",
     "nextPage": "Page suivante",
-    "ofItems": "sur"
+    "ofItems": "sur",
+    "sentInvitations": "Invitations envoyées",
+    "cancelTheInvite": "Annuler l'invitation"
   },
   "validations": {
     "pleaseInputYourFirstName": "Merci de renseigner votre prénom.",
@@ -134,6 +139,8 @@
     "pleaseChooseAPlantStage": "Merci de choisir un stade.",
     "pleaseInputUserToInviteEmail": "Merci de renseigner l'e-mail de la personne à inviter.",
     "pleaseInputUserToInviteRole": "Merci de renseigner le rôle de la personne à inviter.",
+    "pleaseInputUserToInviteFirstName": "Merci de renseigner le prénom de la personne à inviter.",
+    "pleaseInputUserToInviteLastName": "Merci de renseigner le nom de la personne à inviter.",
     "pleaseInputAValidDate": "Merci de renseigner une date valide.",
     "pleaseChooseARole": "Merci de choisir un rôle.",
     "pleaseInputName": "Merci de renseigner un nom.",
@@ -196,7 +203,7 @@
       },
       "create": {
         "400": {
-          "error": "Le formulaire est incorrect, merci de vérifier votre saisie."
+          "message": "Le formulaire est incorrect, merci de vérifier votre saisie."
         },
         "success": "Votre demande de compte utilisateur a bien été envoyée.",
         "error": "Une erreur est survenue lors de l'envoi de la demande de compte utilisateur."
@@ -208,6 +215,28 @@
       "delete": {
         "success": "La demande de compte utilisateur a été refusée.",
         "error": "Une erreur est survenue lors du refus de la demande de compte utilisateur."
+      }
+    },
+    "invite": {
+      "find": {
+        "error": "Une erreur est survenue lors de la récupération des invitations."
+      },
+      "get": {
+        "404": {
+          "message": "L'invitation n'a pas été trouvée."
+        },
+        "error": "Une erreur est survenue lors de la récupération de l'invitation"
+      },
+      "create": {
+        "400": {
+          "message": "Le formulaire semble contenir une erreur, merci de vérifier votre saisie."
+        },
+        "success": "L'invitation a bien été envoyée.",
+        "error": "Une erreur est survenue lors de l'envoi de l'invitation."
+      },
+      "delete": {
+        "success": "L'invitation a bien été annulée.",
+        "error": "L'invitation n'a pas pu être annulée."
       }
     }
   }

@@ -1,23 +1,42 @@
 <form class="l-content-block form-one-field-by-line" [formGroup]="form" (ngSubmit)="submitForm()">
   <mat-form-field>
-    <input matInput type="email" formControlName="userMail" required [placeholder]="'phrases.userToInviteMail'|translate"/>
-    <mat-error *ngIf="form.get('userMail').invalid">
+    <input matInput type="email" formControlName="email" required [placeholder]="'phrases.userToInviteEmail'|translate"/>
+    <mat-error *ngIf="form.get('email').invalid">
       {{ 'validations.pleaseInputUserToInviteEmail'|translate }}
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>{{ 'phrases.userToInviteRole'|translate }}</mat-label>
-    <mat-select formControlName="userRole" required>
+    <mat-select formControlName="role" required>
       <mat-option *ngFor="let role of roles; let i = index" [value]="role">
         {{ roleLabels[i]|translate }}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="form.get('userRole').invalid">
+    <mat-error *ngIf="form.get('role').invalid">
       {{ 'validations.pleaseInputUserToInviteRole'|translate }}
     </mat-error>
   </mat-form-field>
 
+  <mat-form-field>
+    <input matInput type="text" formControlName="firstName" required [placeholder]="'phrases.userToInviteFirstName'|translate"/>
+    <mat-error *ngIf="form.get('firstName').invalid">
+      {{ 'validations.pleaseInputUserToInviteFirstName'|translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" formControlName="lastName" required [placeholder]="'phrases.userToInviteLastName'|translate"/>
+    <mat-error *ngIf="form.get('lastName').invalid">
+      {{ 'validations.pleaseInputUserToInviteLastName'|translate }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="form.get('role').value === roles[0]">
+    <input matInput type="text" formControlName="laboratory" [placeholder]="'phrases.userToInviteLaboratory'|translate"/>
+  </mat-form-field>
+
+  <!-- todo: add possibility to choose end validity date of the account directly when inviting
   <mat-form-field>
     <input matInput formControlName="userValidUntil" [matDatepicker]="picker"
            [placeholder]="'phrases.accountValidityEndDate'|translate"
@@ -25,6 +44,7 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+  -->
 
   <button mat-raised-button color="primary" type="submit">{{ 'phrases.sendInvitation'|translate }}</button>
 </form>

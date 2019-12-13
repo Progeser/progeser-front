@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../../models/user';
+import {InviteService} from '../../../services/http';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-invite-user',
@@ -13,7 +15,9 @@ export class InviteUserComponent implements OnInit {
   roleLabels = User.roleLabels;
   minValidityDate = new Date();
 
-  constructor(protected formBuilder: FormBuilder) {
+  constructor(protected formBuilder: FormBuilder,
+              protected router: Router,
+              protected httpInviteService: InviteService) {
   }
 
   ngOnInit() {
@@ -22,17 +26,25 @@ export class InviteUserComponent implements OnInit {
 
   initForm() {
     this.form = this.formBuilder.group({
-      userMail: this.formBuilder.control(null, [
+      email: this.formBuilder.control(null, [
         Validators.required
       ]),
-      userRole: this.formBuilder.control(null, [
+      role: this.formBuilder.control(null, [
         Validators.required
       ]),
-      userValidUntil: this.formBuilder.control(null)
+      firstName: this.formBuilder.control(null),
+      lastName: this.formBuilder.control(null),
+      laboratory: this.formBuilder.control(null),
     });
   }
 
   submitForm() {
+    if (this.form.invalid) {
+      return;
+    }
 
+    this.httpInviteService.create(this.form.value).subscribe({
+      next: () => this.router.navigate(['/grower/accounts-list'])
+    });
   }
 }

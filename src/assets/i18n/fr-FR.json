@@ -118,7 +118,8 @@
     "nextPage": "Page suivante",
     "ofItems": "sur",
     "sentInvitations": "Invitations envoyées",
-    "cancelTheInvite": "Annuler l'invitation"
+    "cancelTheInvite": "Annuler l'invitation",
+    "saveMyPassword": "Enregistrer mon mot de passe"
   },
   "validations": {
     "pleaseInputYourFirstName": "Merci de renseigner votre prénom.",
@@ -169,7 +170,8 @@
     "usersList": "Liste des utilisateurs",
     "manageAccountRights": "Gestion des droits d'un utilisateur",
     "manageAccountRequest": "Gestion d'une demande de compte utilisateur",
-    "greenhouseCalendar": "Calendrier de serre"
+    "greenhouseCalendar": "Calendrier de serre",
+    "finalizeMyAccount": "Finaliser mon inscription"
   },
   "httpToSnackbarMessages": {
     "user": {
@@ -182,6 +184,24 @@
       },
       "getSelf": {
         "error": "Une erreur est survenue lors de la récupération de votre identité."
+      },
+      "updateSelf": {
+        "success": "Votre compte a bien été mis à jour.",
+        "error": "Une erreur est survenue pendant la mise à jour de votre compte."
+      },
+      "updatePassword": {
+        "400": {
+          "message": "Les données saisies ne sont pas correctes, merci de vérifier le formulaire."
+        },
+        "success": "Votre mot de passe a bien été mis à jour.",
+        "error": "Une erreur est survenue pendant la mise à jour de votre mot de passe."
+      },
+      "createAccount": {
+        "404": {
+          "message": "Votre invitation n'existe pas ou a déjà été validée."
+        },
+        "success": "Votre compte a bien été créé, vous êtes désormais connecté.",
+        "error": "Une erreur est survenue lors de la création de votre compte."
       },
       "forgotPassword": {
         "404": {

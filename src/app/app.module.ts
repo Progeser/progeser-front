@@ -47,7 +47,8 @@ import {
   ManageAccountRequestComponent,
   ManagePotComponent,
   PotsListComponent,
-  TablePaginatorComponent
+  TablePaginatorComponent,
+  CreateAccountComponent
 } from './controllers';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -102,7 +103,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ManagePotComponent,
     PotsListComponent,
     ShapeFormComponent,
-    TablePaginatorComponent
+    TablePaginatorComponent,
+    CreateAccountComponent
   ],
   imports: [
     HttpClientModule,

@@ -7,17 +7,42 @@ import {SnackbarService} from '../snackbar/snackbar.service';
 import {catchError, switchMap, tap} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
 import {LoginAction} from '../../models/actions/login-action';
+import {UpdateUserAction} from '../../models/actions/update-user-action';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  static readonly CREATION_TYPES = [
+    'FROM_INVITE',
+    'FROM_ACCOUNT_REQUEST'
+  ];
+
   protected loggedUser: User = null;
   protected userToken: Token = null;
 
   constructor(protected router: Router,
               protected httpUserService: HttpUserService,
               protected snackbarService: SnackbarService) {
+  }
+
+  createUser(creationType: string, creationToken: string, userInformationForm): Observable<User> {
+    let observable: Observable<User>;
+    if (creationType === UserService.CREATION_TYPES[0]) {
+      observable = this.httpUserService.createFromInvite(creationToken, userInformationForm);
+    } else {
+      observable = this.httpUserService.createFromAccountRequest(creationToken, userInformationForm);
+    }
+
+    return observable.pipe(
+      tap(user => this.setUserAfterCreation(user))
+    );
+  }
+
+  updateUser(updateUserAction: UpdateUserAction): Observable<User> {
+    return this.httpUserService.updateSelf(updateUserAction).pipe(
+      tap((user) => this.loggedUser = user)
+    );
   }
 
   get user(): User {
@@ -40,6 +65,12 @@ export class UserService {
     return this.isUserLoggedIn() && this.user.role === role;
   }
 
+  setUserAfterCreation(user: User) {
+    this.userToken = user.token;
+    user.token = null;
+    this.loggedUser = user;
+  }
+
   login(login: LoginAction) {
     this.httpUserService.login(login).pipe(
       tap(userToken => this.userToken = userToken),
@@ -51,6 +82,7 @@ export class UserService {
 
   refreshToken(): Observable<any> {
     return this.httpUserService.refreshToken(this.token.refreshToken).pipe(
+      tap(userToken => this.userToken = userToken),
       catchError(error => {
         this.logoutAfterSessionExpired();
 

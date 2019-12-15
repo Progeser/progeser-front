@@ -7,6 +7,8 @@ import {LoginAction} from '../../../models/actions/login-action';
 import {User} from '../../../models/user';
 import {BaseService} from '../base/base.service';
 import {ResponseToSnackbarHandlerService} from '../response-to-snackbar-handler/response-to-snackbar-handler.service';
+import {UpdateUserAction} from '../../../models/actions/update-user-action';
+import {FormGroup} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +41,30 @@ export class UserService extends BaseService {
 
   getSelf(): Observable<User> {
     return this.handleRequest<User>('GET', `${this.baseApiUrl}/me`, 'getSelf');
+  }
+
+  updateSelf(updateUserAction: UpdateUserAction): Observable<User> {
+    return this.handleRequest<User>('PUT', `${this.baseApiUrl}/me`, 'updateSelf', {body: updateUserAction});
+  }
+
+  updatePassword(newPasswordForm: FormGroup): Observable<void> {
+    return this.handleRequest<void>('PUT', `${this.baseApiUrl}/passwords`, 'updatePassword', {body: newPasswordForm});
+  }
+
+  createFromInvite(inviteToken: string, userInformationForm: FormGroup): Observable<User> {
+    return this.handleRequest<User>(
+      'POST',
+      `${this.baseApiUrl}/users/${inviteToken}/create_from_invite`,
+      'createAccount', {body: userInformationForm}
+      );
+  }
+
+  createFromAccountRequest(creationToken: string, userInformationForm: FormGroup): Observable<User> {
+    return this.handleRequest<User>(
+      'POST',
+      `${this.baseApiUrl}/users/${creationToken}/create_from_account_request`,
+      'createAccount', {body: userInformationForm}
+    );
   }
 
   forgotPassword(forgotPasswordForm): Observable<void> {

@@ -7,32 +7,27 @@
 <form class="create-account-form l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
   <div class="inline-form-fields">
     <mat-form-field>
-      <input matInput formControlName="firstName" [placeholder]="'words.firstName'|translate" required />
+      <input matInput formControlName="firstName" [placeholder]="'words.firstName'|translate" required/>
       <mat-error *ngIf="form.get('firstName').invalid">
         {{ 'validations.pleaseInputYourFirstName'|translate }}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput formControlName="lastName" [placeholder]="'words.lastName'|translate" required />
+      <input matInput formControlName="lastName" [placeholder]="'words.lastName'|translate" required/>
       <mat-error *ngIf="form.get('lastName').invalid">
         {{ 'validations.pleaseInputYourLastName'|translate }}
       </mat-error>
     </mat-form-field>
-
-    <mat-form-field>
-      <input matInput type="email" formControlName="email" [placeholder]="'words.email'|translate" required />
-      <mat-error *ngIf="form.get('email').invalid">
-        {{ 'validations.pleaseInputYourEmail'|translate }}
-      </mat-error>
-    </mat-form-field>
   </div>
+
 
   <div class="inline-form-fields" *ngIf="isRequester()">
     <mat-form-field>
-      <input matInput formControlName="lab" [placeholder]="'words.laboratory'|translate" />
+      <input matInput formControlName="laboratory" [placeholder]="'words.laboratory'|translate"/>
     </mat-form-field>
 
+    <!-- todo: possibility to choose a responsible
     <mat-form-field *ngIf="!form.get('responsibleNotExists').value; else responsibleNotFound">
         <mat-label>{{ 'words.responsible'|translate }}</mat-label>
         <mat-select formControlName="responsible">
@@ -51,23 +46,7 @@
     <mat-checkbox formControlName="responsibleNotExists">
       {{ 'phrases.IDontFindMyResponsible'|translate }}
     </mat-checkbox>
-  </div>
-
-  <div class="inline-form-fields">
-    <mat-form-field>
-      <input matInput type="password" formControlName="password" [placeholder]="'words.password'|translate" required/>
-      <mat-error *ngIf="form.get('password').invalid">
-        {{ 'validations.pleaseInputYourPassword'|translate }}
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput type="password" formControlName="repeatedPassword" [placeholder]="'phrases.repeatYourPassword'|translate" required
-             [errorStateMatcher]="crossFieldErrorMatcher"/>
-      <mat-error *ngIf="form.hasError('matchFormControl')">
-        {{ 'validations.passwordsDontMatch'|translate }}
-      </mat-error>
-    </mat-form-field>
+    -->
   </div>
 
   <button mat-raised-button color="primary" type="submit">{{ 'words.validate'|translate }}</button>

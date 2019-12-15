@@ -18,9 +18,10 @@ import {
   ManageAccountRightsComponent,
   ManageAccountRequestComponent,
   ManagePotComponent,
-  PotsListComponent
+  PotsListComponent,
+  CreateAccountComponent
 } from './controllers';
-import {RouteGuardService} from './services';
+import {RouteGuardService, UserService} from './services';
 import {User} from './models/user';
 
 const routes: Routes = [
@@ -37,6 +38,22 @@ const routes: Routes = [
     component: LoginComponent,
     data: {
       breadcrumb: false
+    }
+  },
+  {
+    path: 'create-account/:token',
+    component: CreateAccountComponent,
+    data: {
+      breadcrumb: 'finalizeMyAccount',
+      type: UserService.CREATION_TYPES[0]
+    }
+  },
+  {
+    path: 'validate-account/:token',
+    component: CreateAccountComponent,
+    data: {
+      breadcrumb: 'finalizeMyAccount',
+      type: UserService.CREATION_TYPES[1]
     }
   },
   {

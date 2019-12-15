@@ -1,4 +1,5 @@
 import {Resource} from './resource';
+import {Token} from './token';
 
 export class User extends Resource {
   static roles: string[] = [
@@ -41,8 +42,9 @@ export class User extends Resource {
   email: string;
   role: string;
   validUntil?: Date;
-  lab?: string;
+  laboratory?: string;
   responsible?: User | string;
+  token?: Token; // In case the token is delivered directly when creating the account (after invite or request)
 
   static getRolesLabel(roles: string[]) {
     return roles

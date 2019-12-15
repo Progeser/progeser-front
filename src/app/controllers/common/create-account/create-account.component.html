@@ -1,0 +1,27 @@
+<form class="create-account-form l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="inline-form-fields">
+    <mat-form-field>
+      <input matInput type="password" formControlName="password" [placeholder]="'words.password'|translate" required/>
+      <mat-error *ngIf="form.get('password').invalid">
+        {{ 'validations.pleaseInputYourPassword'|translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="password" formControlName="passwordConfirmation"
+             [placeholder]="'phrases.repeatYourPassword'|translate" required
+             [errorStateMatcher]="crossFieldErrorMatcher"/>
+      <mat-error *ngIf="form.hasError('matchFormControl')">
+        {{ 'validations.passwordsDontMatch'|translate }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="inline-form-fields" *ngIf="form.get('laboratory')">
+    <mat-form-field>
+      <input matInput type="text" formControlName="laboratory" [placeholder]="'words.laboratory'|translate" />
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit">{{ 'phrases.saveMyPassword'|translate }}</button>
+</form>

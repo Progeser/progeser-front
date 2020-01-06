@@ -89,7 +89,7 @@
       <tr mat-row *matRowDef="let row; columns: accountRequestsColumns;"></tr>
     </table>
 
-    <app-table-paginator [length]="accountRequests?.items.length" #accountRequestsPaginator></app-table-paginator>
+    <app-table-paginator [fetcher]="httpAccountRequestService" #accountRequestsPaginator></app-table-paginator>
   </mat-tab>
 
   <mat-tab>
@@ -126,6 +126,6 @@
       <tr mat-row *matRowDef="let row; columns: invitesColumns;"></tr>
     </table>
 
-    <app-table-paginator [length]="invites?.items.length" #invitesPaginator></app-table-paginator>
+    <app-table-paginator [fetcher]="httpInviteService" #invitesPaginator></app-table-paginator>
   </mat-tab>
 </mat-tab-group>

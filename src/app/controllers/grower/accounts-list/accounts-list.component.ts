@@ -4,7 +4,6 @@ import {AccountRequest} from '../../../models/account-request';
 import {AccountRequestService, InviteService, SnackbarService} from '../../../services';
 import {PaginatedResource} from '../../../models/paginated-resource';
 import {TablePaginatorComponent} from '../../common/table-paginator/table-paginator.component';
-import {startWith, switchMap} from 'rxjs/operators';
 import {Invite} from '../../../models/invite';
 
 @Component({
@@ -25,10 +24,10 @@ export class AccountsListComponent implements AfterViewInit {
   invites?: PaginatedResource<Invite> = null;
 
   @ViewChild('accountRequestsPaginator', {static: true})
-  accountRequestsPaginator: TablePaginatorComponent;
+  accountRequestsPaginator: TablePaginatorComponent<AccountRequest>;
 
   @ViewChild('invitesPaginator', {static: true})
-  invitesPaginator: TablePaginatorComponent;
+  invitesPaginator: TablePaginatorComponent<Invite>;
 
   constructor(protected snackbarService: SnackbarService,
               protected httpAccountRequestService: AccountRequestService,
@@ -36,23 +35,12 @@ export class AccountsListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.accountRequestsPaginator.pageChange.pipe(
-      startWith({}),
-      switchMap(() => this.httpAccountRequestService.find(
-        this.accountRequestsPaginator.paginator.pageIndex + 1,
-        this.accountRequestsPaginator.paginator.pageSize
-      ))
-    ).subscribe({
+    // todo: list non-accepted requests only
+    this.accountRequestsPaginator.pageChange.subscribe({
       next: accountRequests => this.accountRequests = accountRequests
     });
 
-    this.invitesPaginator.pageChange.pipe(
-      startWith({}),
-      switchMap(() => this.httpInviteService.find(
-        this.invitesPaginator.paginator.pageIndex + 1,
-        this.invitesPaginator.paginator.pageSize
-      ))
-    ).subscribe({
+    this.invitesPaginator.pageChange.subscribe({
       next: invites => this.invites = invites
     });
   }

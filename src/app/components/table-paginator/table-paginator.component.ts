@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {MatPaginator, PageEvent} from '@angular/material';
-import {environment} from '../../../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {startWith, switchMap, tap} from 'rxjs/operators';
-import {PaginatedResource} from '../../../models/paginated-resource';
-import {ResourceService} from '../../../services/http/resource/resource.service';
-import {Resource} from '../../../models';
+import {PaginatedResource} from '../../models/paginated-resource';
+import {ResourceService} from '../../services/http/resource/resource.service';
+import {Resource} from '../../models';
 
 @Component({
   selector: 'app-table-paginator',

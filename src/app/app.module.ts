@@ -22,7 +22,8 @@ import {
   LoggedUserComponent,
   RequestsListComponent,
   BreadcrumbComponent,
-  ShapeFormComponent
+  ShapeFormComponent,
+  TablePaginatorComponent
 } from './components';
 import {
   GrowerHomeComponent,
@@ -47,7 +48,6 @@ import {
   ManageAccountRequestComponent,
   ManagePotComponent,
   PotsListComponent,
-  TablePaginatorComponent,
   CreateAccountComponent
 } from './controllers';
 import {ReactiveFormsModule} from '@angular/forms';

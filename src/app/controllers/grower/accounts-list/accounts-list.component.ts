@@ -3,7 +3,7 @@ import {User} from '../../../models/user';
 import {AccountRequest} from '../../../models/account-request';
 import {AccountRequestService, InviteService, SnackbarService} from '../../../services';
 import {PaginatedResource} from '../../../models/paginated-resource';
-import {TablePaginatorComponent} from '../../common/table-paginator/table-paginator.component';
+import {TablePaginatorComponent} from '../../../components/table-paginator/table-paginator.component';
 import {Invite} from '../../../models/invite';
 
 @Component({

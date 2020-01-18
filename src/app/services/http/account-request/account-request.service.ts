@@ -13,7 +13,7 @@ export class AccountRequestService extends ResourceService<AccountRequest> {
 
   constructor(protected http: HttpClient,
               protected responseToSnackbarHandler: ResponseToSnackbarHandlerService) {
-    super(http, responseToSnackbarHandler, 'account_requests');
+    super(http, responseToSnackbarHandler, AccountRequest, 'account_requests');
   }
 
   handleAccountRequest(accountRequestId: number, accept: boolean): Observable<AccountRequest | void> {

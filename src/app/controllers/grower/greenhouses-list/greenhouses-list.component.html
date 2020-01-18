@@ -18,7 +18,7 @@
 
     <ng-container matColumnDef="arableSurface">
       <th mat-header-cell *matHeaderCellDef>{{ 'phrases.arableSurface'|translate }}</th>
-      <td mat-cell *matCellDef="let greenhouse">{{ calculateArableSurface(greenhouse) }} m²</td>
+      <td mat-cell *matCellDef="let greenhouse">{{ greenhouse.calculateArableArea() }} m²</td>
     </ng-container>
 
     <ng-container matColumnDef="numberOfBenches">

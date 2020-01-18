@@ -1,33 +1,42 @@
-import {Shape} from './shape';
+import {ModelableInterface, Shape} from './shape';
 import {Resource} from './resource';
+import {Transform, Type} from 'class-transformer';
+import {transformAreaAttribute, transformShapeAttribute} from '../utils/data-converters/modelable-converters';
 
-export class Bench extends Resource {
+export class Bench implements Resource, ModelableInterface {
   static exampleData: Bench[] = [
     {
       id: 1,
       name: 'Petite tablette',
       shape: Shape.exampleData[0],
-      surface: 10,
+      area: 10,
       dimensions: null
     },
     {
       id: 2,
       name: 'Tablette sur-élevée',
       shape: Shape.exampleData[0],
-      surface: 25,
+      area: 25,
       dimensions: null
     },
     {
       id: 3,
       name: 'Tablette grise',
       shape: Shape.exampleData[0],
-      surface: 11,
+      area: 11,
       dimensions: null
     }
   ];
 
+  id: number;
   name: string;
-  shape: Shape;
-  surface?: number;
+
+  @Transform(transformShapeAttribute)
+  @Type(() => Shape)
+  shape?: Shape;
+
+  @Transform(transformAreaAttribute)
+  area?: number;
+
   dimensions?: number[];
 }

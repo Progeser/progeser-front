@@ -1,6 +1,7 @@
 import {Resource} from './resource';
 
-export class Invite extends Resource {
+export class Invite implements Resource {
+  id: number;
   email: string;
   role: string;
   firstName: string;

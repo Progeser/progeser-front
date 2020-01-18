@@ -2,8 +2,9 @@ import {Plant} from './plant';
 import {PlantStage} from './plant-stage';
 import {RequestDistribution} from './request-distribution';
 import {Resource} from './resource';
+import {Type} from 'class-transformer';
 
-export class Request extends Resource{
+export class Request implements Resource {
   static statusLabels = [
     'En attente',
     'Acceptée',
@@ -15,8 +16,8 @@ export class Request extends Resource{
       id: 1,
       name: 'Roses pour le TP des M1',
       status: 1,
-      creationDate: new Date('2019-09-05'),
-      cultureStartingDate: new Date('2019-09-25'),
+      createdAt: new Date('2019-09-05'),
+      cultureStartingAt: new Date('2019-09-25'),
       dueDate: new Date('2019-10-07'),
       plantExists: true,
       quantity: 50,
@@ -33,8 +34,8 @@ export class Request extends Resource{
       id: 2,
       name: 'Raisin pour le TP des M2',
       status: 1,
-      creationDate: new Date('2019-07-03'),
-      cultureStartingDate: new Date('2019-08-21'),
+      createdAt: new Date('2019-07-03'),
+      cultureStartingAt: new Date('2019-08-21'),
       dueDate: new Date('2019-11-07'),
       plantExists: false,
       quantity: 50,
@@ -51,8 +52,8 @@ export class Request extends Resource{
       id: 3,
       name: 'Petunia pour le prochain gala',
       status: 1,
-      creationDate: new Date('2019-09-18'),
-      cultureStartingDate: new Date('2019-10-12'),
+      createdAt: new Date('2019-09-18'),
+      cultureStartingAt: new Date('2019-10-12'),
       dueDate: new Date('2019-11-17'),
       plantExists: true,
       quantity: 200,
@@ -69,8 +70,8 @@ export class Request extends Resource{
       id: 4,
       name: 'Roses pour le TP des M1',
       status: 1,
-      creationDate: new Date('2019-09-05'),
-      cultureStartingDate: new Date('2019-09-15'),
+      createdAt: new Date('2019-09-05'),
+      cultureStartingAt: new Date('2019-09-15'),
       dueDate: new Date('2019-10-07'),
       plantExists: true,
       quantity: 50,
@@ -87,8 +88,8 @@ export class Request extends Resource{
       id: 5,
       name: 'Raisin pour le TP des M2',
       status: 1,
-      creationDate: new Date('2019-07-03'),
-      cultureStartingDate: new Date('2019-07-20'),
+      createdAt: new Date('2019-07-03'),
+      cultureStartingAt: new Date('2019-07-20'),
       dueDate: new Date('2019-11-07'),
       plantExists: false,
       quantity: 50,
@@ -105,8 +106,8 @@ export class Request extends Resource{
       id: 6,
       name: 'Petunia pour le prochain gala',
       status: 1,
-      creationDate: new Date('2019-09-18'),
-      cultureStartingDate: new Date('2019-11-12'),
+      createdAt: new Date('2019-09-18'),
+      cultureStartingAt: new Date('2019-11-12'),
       dueDate: new Date('2019-11-17'),
       plantExists: true,
       quantity: 200,
@@ -123,8 +124,8 @@ export class Request extends Resource{
       id: 7,
       name: 'Roses pour le TP des M1',
       status: 1,
-      creationDate: new Date('2019-09-05'),
-      cultureStartingDate: new Date('2019-10-03'),
+      createdAt: new Date('2019-09-05'),
+      cultureStartingAt: new Date('2019-10-03'),
       dueDate: new Date('2019-10-07'),
       plantExists: true,
       quantity: 50,
@@ -141,8 +142,8 @@ export class Request extends Resource{
       id: 8,
       name: 'Raisin pour le TP des M2',
       status: 1,
-      creationDate: new Date('2019-07-03'),
-      cultureStartingDate: new Date('2019-11-01'),
+      createdAt: new Date('2019-07-03'),
+      cultureStartingAt: new Date('2019-11-01'),
       dueDate: new Date('2019-11-07'),
       plantExists: false,
       quantity: 50,
@@ -159,8 +160,8 @@ export class Request extends Resource{
       id: 9,
       name: 'Petunia pour le prochain gala',
       status: 1,
-      creationDate: new Date('2019-09-18'),
-      cultureStartingDate: new Date('2019-11-08'),
+      createdAt: new Date('2019-09-18'),
+      cultureStartingAt: new Date('2019-11-08'),
       dueDate: new Date('2019-11-17'),
       plantExists: true,
       quantity: 200,
@@ -175,19 +176,35 @@ export class Request extends Resource{
     }
   ];
 
+  id: number;
   name: string;
   status: number;
-  creationDate: Date;
-  cultureStartingDate: Date | null;
+
+  @Type(() => Date)
+  createdAt: Date;
+
+  @Type(() => Date)
+  cultureStartingAt?: Date;
+
+  @Type(() => Date)
   dueDate: Date;
-  comment: string | null;
-  color: string | null;
+
+  comment?: string;
+  color?: string;
   plantExists: boolean;
   quantity: number;
-  plant: Plant | null;
-  plantName: string | null;
-  plantStage: PlantStage | null;
-  temperature: number | null;
-  photoPeriod: number | null;
-  distributions: RequestDistribution[] = [];
+
+  @Type(() => Plant)
+  plant?: Plant;
+
+  plantName?: string;
+
+  @Type(() => PlantStage)
+  plantStage?: PlantStage;
+
+  temperature?: number;
+  photoPeriod?: number;
+
+  @Type(() => RequestDistribution)
+  distributions?: RequestDistribution[] = [];
 }

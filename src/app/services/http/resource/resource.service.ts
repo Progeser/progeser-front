@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Resource} from '../../../models';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {BaseService} from '../base/base.service';
 import {PaginatedResource} from '../../../models/paginated-resource';
 import {map} from 'rxjs/operators';
 import {ResponseToSnackbarHandlerService} from '../response-to-snackbar-handler/response-to-snackbar-handler.service';
+import {classToPlain, plainToClass} from 'class-transformer';
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +16,10 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
 
   protected constructor(protected http: HttpClient,
                         protected responseToSnackbarHandler: ResponseToSnackbarHandlerService,
+                        protected typeClassReference: new (...args: any[]) => T,
                         protected endpoint: string) {
     super(http, responseToSnackbarHandler);
-
     this.resourceEndpoint = `${this.baseApiUrl}/${this.endpoint}`;
-  }
-
-  protected handleRequest<R>(method: string, url = '', translationPath?: string, options?: object): Observable<R> {
-    return super.handleRequest<R>(method, `${this.getResourceEndpoint()}${url}`, translationPath, options);
-  }
-
-  protected getResourceEndpoint(): string {
-    return this.resourceEndpoint;
   }
 
   find(currentPage = 1, itemsPerPage = 25): Observable<PaginatedResource<T>> {
@@ -44,25 +37,53 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
           parseInt(headers.get('Pagination-Per'), 10),
           parseInt(headers.get('Pagination-Total-Pages'), 10),
           parseInt(headers.get('Pagination-Total-Count'), 10),
-          response.body
+          plainToClass<T, object[]>(this.typeClassReference, response.body)
         );
       })
     );
   }
 
-  get(id: number): Observable<T> {
-    return this.handleRequest<T>('GET', `/${id}`, 'get');
+  get(id?: number, newInstance?: T): Observable<T> {
+    if (null === id) {
+      return of(newInstance);
+    }
+
+    return this.handleResourceRequest('GET', `/${id}`, 'get');
   }
 
   create(resource: T): Observable<T> {
-    return this.handleRequest<T>('POST',  '', 'create', {body: resource});
+    return this.handleResourceRequest('POST', '', 'create', {
+      body: classToPlain<T>(resource)
+    });
   }
 
   update(resource: T): Observable<T> {
-    return this.handleRequest<T>('PUT', `/${resource.id}`, 'update', {body: resource});
+    return this.handleResourceRequest('PUT', `/${resource.id}`, 'update', {
+      body: classToPlain<T>(resource)
+    });
   }
 
   delete(id: number): Observable<void> {
     return this.handleRequest<void>('DELETE', `/${id}`, 'delete');
+  }
+
+  saveForm(resource: T, form: any) {
+    const mergedResource: T = Object.assign(resource, form);
+
+    if (null === mergedResource.id) {
+      return this.create(mergedResource);
+    }
+
+    return this.update(mergedResource);
+  }
+
+  protected handleResourceRequest(method: string, url = '', translationPath?: string, options?: object): Observable<T> {
+    return super.handleRequest<T>(method, `${this.getResourceEndpoint()}${url}`, translationPath, options).pipe(
+      map(resource => plainToClass<T, object>(this.typeClassReference, resource))
+    );
+  }
+
+  protected getResourceEndpoint(): string {
+    return this.resourceEndpoint;
   }
 }

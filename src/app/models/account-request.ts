@@ -1,6 +1,7 @@
 import {Resource} from './resource';
+import {Type} from 'class-transformer';
 
-export class AccountRequest extends Resource {
+export class AccountRequest implements Resource {
   static exampleData: AccountRequest[] = [
     {
       id: 1,
@@ -28,6 +29,10 @@ export class AccountRequest extends Resource {
   email: string;
   comment?: string;
   accepted?: boolean;
+
+  @Type(() => Date)
   createdAt?: Date;
+
+  @Type(() => Date)
   updatedAt?: Date;
 }

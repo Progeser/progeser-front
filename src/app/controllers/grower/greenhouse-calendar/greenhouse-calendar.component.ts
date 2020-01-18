@@ -32,7 +32,7 @@ export class GreenhouseCalendarComponent implements OnInit {
     return requests.map(request => {
       return {
         title: request.name,
-        start: request.cultureStartingDate,
+        start: request.cultureStartingAt,
         end: request.dueDate,
         color: request.color,
         allDay: true

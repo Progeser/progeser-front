@@ -1,6 +1,6 @@
 import {Resource} from './resource';
 
-export class PlantStage extends Resource{
+export class PlantStage implements Resource {
   static exampleData: PlantStage[] = [
     {
       id: 1,
@@ -19,6 +19,7 @@ export class PlantStage extends Resource{
     }
   ];
 
+  id: number;
   name: string;
   duration: number;
 }

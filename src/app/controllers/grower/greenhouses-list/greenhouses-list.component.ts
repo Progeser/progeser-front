@@ -7,7 +7,6 @@ import {Greenhouse} from '../../../models';
   styleUrls: ['./greenhouses-list.component.scss']
 })
 export class GreenhousesListComponent implements OnInit {
-  calculateArableSurface = Greenhouse.calculateArableSurface;
   greenhouses: Greenhouse[] = Greenhouse.exampleData;
 
   columns = [

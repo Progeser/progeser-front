@@ -1,7 +1,8 @@
 import {PlantStage} from './plant-stage';
 import {Resource} from './resource';
+import {Type} from 'class-transformer';
 
-export class Plant extends Resource {
+export class Plant implements Resource {
   static exampleData: Plant[] = [
     {
       id: 1,
@@ -20,6 +21,9 @@ export class Plant extends Resource {
     }
   ];
 
+  id: number;
   name: string;
+
+  @Type(() => PlantStage)
   stages: PlantStage[] = [];
 }

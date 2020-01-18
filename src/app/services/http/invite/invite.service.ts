@@ -13,7 +13,7 @@ export class InviteService extends ResourceService<Invite> {
 
   constructor(protected http: HttpClient,
               protected responseToSnackbarHandler: ResponseToSnackbarHandlerService) {
-    super(http, responseToSnackbarHandler, 'invites');
+    super(http, responseToSnackbarHandler, Invite, 'invites');
   }
 
   retry(inviteId: number): Observable<void> {

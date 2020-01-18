@@ -1,7 +1,7 @@
 import {Resource} from './resource';
 import {Token} from './token';
 
-export class User extends Resource {
+export class User implements Resource {
   static roles: string[] = [
     'requester',
     'grower'

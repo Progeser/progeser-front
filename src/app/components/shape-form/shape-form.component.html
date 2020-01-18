@@ -1,7 +1,7 @@
 <ng-container [formGroup]="form">
   <mat-form-field>
     <mat-label>{{ 'words.shape'|translate }}</mat-label>
-    <mat-select formControlName="shape" required>
+    <mat-select formControlName="shape" [compareWith]="compareByName" required>
       <mat-option *ngFor="let shape of shapes; let i = index" [value]="shape">
         {{ shape.name }}
       </mat-option>

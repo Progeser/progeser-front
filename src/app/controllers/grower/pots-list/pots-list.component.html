@@ -1,7 +1,7 @@
 <nav class="top-actions-button">
-  <button mat-raised-button color="primary">
+  <a mat-raised-button color="primary" [routerLink]="['/grower/manage-pot']">
     {{ 'phrases.addAPot'|translate }}
-  </button>
+  </a>
 </nav>
 
 <div class="mat-elevation-z3">
@@ -13,15 +13,17 @@
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>{{ 'words.actions'|translate }}</th>
-      <td mat-cell *matCellDef="let pot">
-        <button mat-icon-button
-                [matTooltip]="'phrases.modifyThePot'|translate"
-                matTooltipPosition="after">
+      <td mat-cell *matCellDef="let pot; let i = index">
+        <a mat-icon-button
+           [matTooltip]="'phrases.modifyThePot'|translate"
+           matTooltipPosition="after"
+           [routerLink]="['/grower/manage-pot/', pot.id]">
           <mat-icon>create</mat-icon>
-        </button>
+        </a>
         <button mat-icon-button
                 [matTooltip]="'phrases.deleteThePot'|translate"
-                matTooltipPosition="after">
+                matTooltipPosition="after"
+                (click)="deletePot(pot.id, i)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
@@ -31,7 +33,5 @@
     <tr mat-row *matRowDef="let row; columns: columns;"></tr>
   </table>
 
-  <mat-paginator [length]="pots.length"
-                 [pageSize]="numberItemsPerPage">
-  </mat-paginator>
+  <app-table-paginator [fetcher]="httpPotService" #potsPaginator></app-table-paginator>
 </div>

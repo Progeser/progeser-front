@@ -258,6 +258,33 @@
         "success": "L'invitation a bien été annulée.",
         "error": "L'invitation n'a pas pu être annulée."
       }
+    },
+    "pot": {
+      "find": {
+        "error": "Une erreur est survenue lors de la récupération des pots."
+      },
+      "get": {
+        "404": {
+          "message": "Le pot n'a pas été trouvé."
+        },
+        "error": "Une erreur est survenue lors de la récupération du pot."
+      },
+      "create": {
+        "400": {
+          "message": "Le formulaire semble contenir une erreur, merci de vérifier votre saisie."
+        },
+        "success": "Le pot a bien été créé.",
+        "error": "Une erreur est survenue lors de la création du pot."
+      },
+      "delete": {
+        "success": "Le pot a bien été supprimé.",
+        "error": "Le pot a bien été supprimé."
+      }
+    },
+    "shape": {
+      "find": {
+        "error": "Une erreur est survenue lors de la récupération des formes."
+      }
     }
   }
 }

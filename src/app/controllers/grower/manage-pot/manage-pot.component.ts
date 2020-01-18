@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Shape} from '../../../models/shape';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {PotService} from '../../../services/http/pot/pot.service';
+import {map, switchMap} from 'rxjs/operators';
+import {Pot} from '../../../models/pot';
 
 @Component({
   selector: 'app-manage-pot',
@@ -8,29 +11,43 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./manage-pot.component.scss']
 })
 export class ManagePotComponent implements OnInit {
+  pot: Pot = null;
   form: FormGroup;
 
-  constructor(protected formBuilder: FormBuilder) {
+  constructor(protected formBuilder: FormBuilder,
+              protected router: Router,
+              protected route: ActivatedRoute,
+              protected httpPotService: PotService) {
   }
 
   ngOnInit() {
-    this.initForm();
+    this.route.params.pipe(
+      map(params => params.id),
+      switchMap(id => this.httpPotService.get(id, new Pot()))
+    ).subscribe({
+      next: pot => {
+        this.pot = pot;
+        this.initForm();
+      },
+      error: () => this.router.navigate(['/grower/pots-list'])
+    });
   }
 
   initForm() {
     this.form = this.formBuilder.group({
-      name: this.formBuilder.control(null, [
+      name: this.formBuilder.control(this.pot.name, [
         Validators.required
       ]),
-      shape: this.formBuilder.control(null, [
+      shape: this.formBuilder.control(this.pot.shape, [
         Validators.required
       ]),
-      dimensions: this.formBuilder.array([], [
+      dimensions: this.formBuilder.array(this.pot.dimensions, [
         Validators.required
       ])
     });
   }
 
   submitForm() {
+    this.httpPotService.saveForm(this.pot, this.form.value).subscribe();
   }
 }

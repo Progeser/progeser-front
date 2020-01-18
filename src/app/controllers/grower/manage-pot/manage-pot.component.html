@@ -1,4 +1,4 @@
-<form class="l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
+<form class="l-content-block" *ngIf="form" [formGroup]="form" (ngSubmit)="submitForm()">
 
   <div class="inline-form-fields">
     <mat-form-field>

@@ -139,7 +139,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'grower/manage-pot',
+    path: 'grower/manage-pot/:id',
     component: ManagePotComponent,
     canActivate: [RouteGuardService],
     data: {

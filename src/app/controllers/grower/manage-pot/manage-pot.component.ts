@@ -23,7 +23,7 @@ export class ManagePotComponent implements OnInit {
   ngOnInit() {
     this.route.params.pipe(
       map(params => params.id),
-      switchMap(id => this.httpPotService.get(id, new Pot()))
+      switchMap(id => this.httpPotService.get(id))
     ).subscribe({
       next: pot => {
         this.pot = pot;

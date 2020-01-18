@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import {Resource} from '../../../models';
 import {Observable, of} from 'rxjs';
 import {BaseService} from '../base/base.service';
@@ -22,30 +22,19 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
     this.resourceEndpoint = `${this.baseApiUrl}/${this.endpoint}`;
   }
 
-  find(currentPage = 1, itemsPerPage = 25): Observable<PaginatedResource<T>> {
-    const queryParams = new HttpParams()
-      .set('page[number]', currentPage.toString())
-      .set('page[size]', itemsPerPage.toString());
-
-    return this.http.get<T[]>(this.getResourceEndpoint(), {params: queryParams, observe: 'response'}).pipe(
+  find(currentPage?: number, itemsPerPage?: number): Observable<PaginatedResource<T>> {
+    return this.http.get<T[]>(this.getResourceEndpoint(), {
+      params: this.getPaginationParams(currentPage, itemsPerPage),
+      observe: 'response'
+    }).pipe(
       this.responseToSnackbarHandler.handle(this.translationPath + '.find'),
-      map(response => {
-        const headers = response.headers;
-
-        return new PaginatedResource<T>(
-          parseInt(headers.get('Pagination-Current-Page'), 10),
-          parseInt(headers.get('Pagination-Per'), 10),
-          parseInt(headers.get('Pagination-Total-Pages'), 10),
-          parseInt(headers.get('Pagination-Total-Count'), 10),
-          plainToClass<T, object[]>(this.typeClassReference, response.body)
-        );
-      })
+      map(response => this.getPaginatedResources(response))
     );
   }
 
-  get(id?: number, newInstance?: T): Observable<T> {
+  get(id?: number): Observable<T> {
     if (null === id) {
-      return of(newInstance);
+      return of(new this.typeClassReference());
     }
 
     return this.handleResourceRequest('GET', `/${id}`, 'get');
@@ -77,13 +66,31 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
     return this.update(mergedResource);
   }
 
+  getResourceEndpoint(): string {
+    return this.resourceEndpoint;
+  }
+
   protected handleResourceRequest(method: string, url = '', translationPath?: string, options?: object): Observable<T> {
     return super.handleRequest<T>(method, `${this.getResourceEndpoint()}${url}`, translationPath, options).pipe(
       map(resource => plainToClass<T, object>(this.typeClassReference, resource))
     );
   }
 
-  protected getResourceEndpoint(): string {
-    return this.resourceEndpoint;
+  protected getPaginationParams(currentPage = 1, itemsPerPage = 25): HttpParams {
+    return new HttpParams()
+      .set('page[number]', currentPage.toString())
+      .set('page[size]', itemsPerPage.toString());
+  }
+
+  protected getPaginatedResources(response: HttpResponse<T[]>): PaginatedResource<T> {
+    const headers = response.headers;
+
+    return new PaginatedResource<T>(
+      parseInt(headers.get('Pagination-Current-Page'), 10),
+      parseInt(headers.get('Pagination-Per'), 10),
+      parseInt(headers.get('Pagination-Total-Pages'), 10),
+      parseInt(headers.get('Pagination-Total-Count'), 10),
+      plainToClass<T, object>(this.typeClassReference, response.body)
+    );
   }
 }

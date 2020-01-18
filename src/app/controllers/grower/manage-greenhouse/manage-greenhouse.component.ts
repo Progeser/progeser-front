@@ -23,7 +23,7 @@ export class ManageGreenhouseComponent implements OnInit {
       name: this.formBuilder.control(greenhouse.name, [
         Validators.required
       ]),
-      length: this.formBuilder.control(greenhouse.length, [
+      length: this.formBuilder.control(greenhouse.height, [
         Validators.required
       ]),
       width: this.formBuilder.control(greenhouse.width, [

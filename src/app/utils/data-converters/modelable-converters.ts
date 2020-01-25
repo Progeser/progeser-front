@@ -17,3 +17,12 @@ export function transformAreaAttribute(value, modelable: ModelableInterface, typ
 
   return undefined;
 }
+
+export function transformDimensionAttribute(value, modelable: ModelableInterface, type): any {
+  if (TransformationType.PLAIN_TO_CLASS === type
+    && null == value) {
+    return [];
+  }
+
+  return value;
+}

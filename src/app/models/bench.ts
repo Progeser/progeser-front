@@ -1,7 +1,7 @@
 import {ModelableInterface, Shape} from './shape';
 import {Resource} from './resource';
 import {Transform, Type} from 'class-transformer';
-import {transformAreaAttribute, transformShapeAttribute} from '../utils/data-converters/modelable-converters';
+import {transformAreaAttribute, transformDimensionAttribute, transformShapeAttribute} from '../utils/data-converters/modelable-converters';
 
 export class Bench implements Resource, ModelableInterface {
   static exampleData: Bench[] = [
@@ -38,5 +38,6 @@ export class Bench implements Resource, ModelableInterface {
   @Transform(transformAreaAttribute)
   area?: number;
 
-  dimensions?: number[];
+  @Transform(transformDimensionAttribute)
+  dimensions?: number[] = [];
 }

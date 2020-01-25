@@ -12,7 +12,8 @@ export class Greenhouse implements Resource {
 
   @Type(() => Bench)
   benches: Bench[] = [];
-  occupation: number;
+
+  occupancy: number;
 
   calculateArableArea() {
     return this.benches

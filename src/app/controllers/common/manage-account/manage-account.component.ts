@@ -27,13 +27,13 @@ export class ManageAccountComponent implements OnInit {
 
   initForm() {
     this.form = this.formBuilder.group({
-      firstName: this.formBuilder.control(null, [
+      firstName: this.formBuilder.control(this.user.firstName, [
         Validators.required
       ]),
-      lastName: this.formBuilder.control(null, [
+      lastName: this.formBuilder.control(this.user.lastName, [
         Validators.required
       ]),
-      laboratory: this.formBuilder.control(null),
+      laboratory: this.formBuilder.control(this.user.laboratory),
     });
   }
 

@@ -1,4 +1,4 @@
-<form class="manage-greenhouse l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
+<form (ngSubmit)="submitForm()" *ngIf="form" [formGroup]="form" class="manage-greenhouse l-content-block">
 
   <div class="greenhouse-container">
     <mat-form-field>
@@ -28,30 +28,7 @@
     </mat-form-field>
   </div>
 
-  <div class="greenhouse-benches-container">
-    <mat-label>{{ 'phrases.greenhouseBenches'|translate }}</mat-label>
-
-    <ul formArrayName="benches" cdkDropList class="benches-drop-zone">
-      <li *ngFor="let bench of form.get('benches').controls; let i = index" [formGroupName]="i"
-          class="inline-form-fields">
-        <mat-form-field>
-          <input matInput formControlName="name"
-                 required [placeholder]="'phrases.benchName'|translate"/>
-          <mat-error *ngIf="bench.get('name').invalid">
-            {{ 'validations.pleaseInputName'|translate }}
-          </mat-error>
-        </mat-form-field>
-
-        <app-shape-form [form]="bench"></app-shape-form>
-
-        <button mat-icon-button type="button" (click)="removeBench(i)" *ngIf="form.get('benches').value.length > 1">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </li>
-    </ul>
-
-    <button mat-stroked-button type="button" (click)="pushBench()">{{ 'phrases.addABench'|translate }}</button>
-  </div>
+  <app-benches-form #benchesForm></app-benches-form>
 
   <button mat-raised-button color="primary" type="submit">{{ 'words.save'|translate }}</button>
 </form>

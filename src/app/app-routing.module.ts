@@ -103,7 +103,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'grower/manage-greenhouse',
+    path: 'grower/manage-greenhouse/:id',
     component: ManageGreenhouseComponent,
     canActivate: [RouteGuardService],
     data: {

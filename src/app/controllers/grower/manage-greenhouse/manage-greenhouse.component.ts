@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Bench, Greenhouse} from '../../../models';
-import {Shape} from '../../../models/shape';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Greenhouse} from '../../../models';
+import {ActivatedRoute, Router} from '@angular/router';
+import {GreenhouseService} from '../../../services/http';
+import {map, switchMap} from 'rxjs/operators';
+import {BenchesFormComponent} from '../../../components';
 
 @Component({
   selector: 'app-manage-greenhouse',
@@ -10,61 +13,54 @@ import {Shape} from '../../../models/shape';
 })
 export class ManageGreenhouseComponent implements OnInit {
   form: FormGroup;
-  shapes: Shape[] = Shape.exampleData;
+  greenhouse: Greenhouse;
 
-  constructor(protected formBuilder: FormBuilder) { }
+  @ViewChild('benchesForm', {static: false})
+  benchesForm: BenchesFormComponent;
+
+  constructor(protected formBuilder: FormBuilder,
+              protected router: Router,
+              protected route: ActivatedRoute,
+              protected httpGreenhouseService: GreenhouseService) {
+  }
 
   ngOnInit() {
-    this.initForm(new Greenhouse());
+    this.route.params.pipe(
+      map(params => params.id),
+      switchMap(id => this.httpGreenhouseService.get(id))
+    ).subscribe({
+      next: greenhouse => {
+        this.greenhouse = greenhouse;
+        this.initForm();
+      },
+      error: () => this.router.navigate(['/grower/greenhouses-list'])
+    });
   }
 
-  initForm(greenhouse: Greenhouse) {
+  initForm() {
     this.form = this.formBuilder.group({
-      name: this.formBuilder.control(greenhouse.name, [
+      name: this.formBuilder.control(this.greenhouse.name, [
         Validators.required
       ]),
-      length: this.formBuilder.control(greenhouse.height, [
+      length: this.formBuilder.control(this.greenhouse.height, [
         Validators.required
       ]),
-      width: this.formBuilder.control(greenhouse.width, [
+      width: this.formBuilder.control(this.greenhouse.width, [
         Validators.required
       ]),
-      occupation: this.formBuilder.control(greenhouse.occupation, [
-      Validators.required
-      ]),
-      benches: this.formBuilder.array(greenhouse.benches.map(bench => this.createGreenhouseBenchFormGroup(bench)), [
+      occupancy: this.formBuilder.control(this.greenhouse.occupancy, [
         Validators.required
       ])
     });
-
-    if (0 === this.form.get('benches').value.length) {
-      this.pushBench();
-    }
-  }
-
-  createGreenhouseBenchFormGroup(bench: Bench = new Bench()) {
-    return this.formBuilder.group({
-      name: this.formBuilder.control(bench.name, [
-        Validators.required
-      ]),
-      shape: this.formBuilder.control(null, [
-        Validators.required
-      ]),
-      dimensions: this.formBuilder.array([], [
-        Validators.required
-      ])
-    });
-  }
-
-  pushBench() {
-    (this.form.get('benches') as FormArray).push(this.createGreenhouseBenchFormGroup());
-  }
-
-  removeBench(i: number) {
-    (this.form.get('benches') as FormArray).removeAt(i);
   }
 
   submitForm() {
-    console.log(this.form.getRawValue());
+    if (this.form.invalid || null == this.benchesForm || !this.benchesForm.valid()) {
+      return;
+    }
+
+    this.httpGreenhouseService.saveForm(this.greenhouse, this.form.value).pipe(
+      switchMap(() => this.benchesForm.saveBenches())
+    ).subscribe();
   }
 }

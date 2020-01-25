@@ -21,7 +21,7 @@
     "validate": "Valider",
     "role": "Rôle",
     "actions": "Actions",
-    "occupation": "Occupation",
+    "occupancy": "Occupation",
     "requester": "Demandeur",
     "grower": "Serriste",
     "save": "Sauvegarder",
@@ -276,14 +276,58 @@
         "success": "Le pot a bien été créé.",
         "error": "Une erreur est survenue lors de la création du pot."
       },
+      "update": {
+        "success": "Le pot a bien été mis à jour.",
+        "error": "Une erreur est survenue lors de la mise à jour du pot."
+      },
       "delete": {
         "success": "Le pot a bien été supprimé.",
-        "error": "Le pot a bien été supprimé."
+        "error": "Le pot n'a pas pu être supprimé."
       }
     },
     "shape": {
       "find": {
         "error": "Une erreur est survenue lors de la récupération des formes."
+      }
+    },
+    "greenhouse": {
+      "find": {
+        "error": "Une erreur est survenue lors de la récupération de la liste des serres."
+      },
+      "get": {
+        "404": {
+          "message": "La serre n'a pas été trouvée."
+        },
+        "error": "Une erreur est survenue lors de la récupération de la serre."
+      },
+      "create": {
+        "success": "La serre a bien été créée.",
+        "error": "Une erreur est survenue lors de la récupération de la serre."
+      },
+      "update": {
+        "success": "La serre a bien été mise à jour.",
+        "error": "Une erreur est survenue lors de la mise à jour de la serre."
+      },
+      "delete": {
+        "success": "La serre a bien été supprimée.",
+        "error": "La serre n'a pas pu être supprimée."
+      }
+    },
+    "bench": {
+      "find": {
+        "error": "Une erreur est survenue lors de la récupération des tablettes de la serre."
+      },
+      "create": {
+        "success": "La table a bien été créée.",
+        "error": "Une erreur est survenue lors de la récupération de la tablette."
+      },
+      "update": {
+        "success": "La tablette a bien été mise à jour.",
+        "error": "Une erreur est survenue lors de la mise à jour de la tablette."
+      },
+      "delete": {
+        "success": "La tablette a bien été supprimée.",
+        "error": "La tablette n'a pas pu être supprimée."
       }
     }
   }

@@ -33,7 +33,7 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
   }
 
   get(id?: number): Observable<T> {
-    if (null === id) {
+    if (undefined === id || null === id) {
       return of(new this.typeClassReference());
     }
 
@@ -53,10 +53,14 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
   }
 
   delete(id: number): Observable<void> {
-    return this.handleRequest<void>('DELETE', `/${id}`, 'delete');
+    if (undefined === id || null === id) {
+      return of(null);
+    }
+
+    return this.handleRequest<void>('DELETE', `${this.getResourceEndpoint()}/${id}`, 'delete');
   }
 
-  saveForm(resource: T, form: any) {
+  saveForm(resource: T, form: any): Observable<T> {
     const mergedResource: T = Object.assign(resource, form);
 
     if (null === mergedResource.id) {

@@ -20,8 +20,6 @@ export class ShapeFormComponent implements OnInit {
               protected httpShapeService: ShapeService) { }
 
   ngOnInit() {
-    console.log(this.form.get('shape').value);
-
     this.httpShapeService.find().subscribe({
       next: shapes => this.shapes = shapes
     });

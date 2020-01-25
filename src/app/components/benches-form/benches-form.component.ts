@@ -82,6 +82,6 @@ export class BenchesFormComponent {
   }
 
   saveBenches() {
-    return this.httpBenchService.saveAllForms(this.cachedBenches, this.cachedBenchFormGroups);
+    return this.httpBenchService.saveAll(this.cachedBenches, this.greenhouse, this.cachedBenchFormGroups);
   }
 }

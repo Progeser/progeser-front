@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Pot} from '../../../models/pot';
 import {PotService} from '../../../services/http/pot/pot.service';
 import {PaginatedResource} from '../../../models/paginated-resource';
-import {TablePaginatorComponent} from '../../../components';
+import {PaginatorComponent} from '../../../components';
 
 @Component({
   selector: 'app-pots-list',
@@ -17,7 +17,7 @@ export class PotsListComponent implements AfterViewInit {
   pots: PaginatedResource<Pot> = null;
 
   @ViewChild('potsPaginator', {static: true})
-  potsPaginator: TablePaginatorComponent<Pot>;
+  potsPaginator: PaginatorComponent<Pot>;
 
   constructor(protected httpPotService: PotService) { }
 

@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Greenhouse} from '../../../models';
 import {PaginatedResource} from '../../../models/paginated-resource';
-import {TablePaginatorComponent} from '../../../components';
+import {PaginatorComponent} from '../../../components';
 import {GreenhouseService} from '../../../services/http';
 
 @Component({
@@ -13,16 +13,16 @@ export class GreenhousesListComponent implements AfterViewInit {
   columns = [
     'name',
     'realSurface',
+    'occupancy',
     // todo: add back this columns when available in API
     // 'arableSurface',
     // 'numberOfBenches',
-    // 'occupation',
     'actions'
   ];
   greenhouses: PaginatedResource<Greenhouse> = null;
 
   @ViewChild('greenhousesPaginator', {static: true})
-  greenhousesPaginator: TablePaginatorComponent<Greenhouse>;
+  greenhousesPaginator: PaginatorComponent<Greenhouse>;
 
   constructor(protected httpGreenhouseService: GreenhouseService) { }
 

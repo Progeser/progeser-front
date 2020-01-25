@@ -26,9 +26,9 @@
       <td mat-cell *matCellDef="let greenhouse">{{ greenhouse.benches.length }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="occupation">
-      <th mat-header-cell *matHeaderCellDef>{{ 'words.occupation'|translate }}</th>
-      <td mat-cell *matCellDef="let greenhouse">{{ greenhouse.occupation }} %</td>
+    <ng-container matColumnDef="occupancy">
+      <th mat-header-cell *matHeaderCellDef>{{ 'words.occupancy'|translate }}</th>
+      <td mat-cell *matCellDef="let greenhouse">{{ greenhouse.occupancy }} %</td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
@@ -58,5 +58,5 @@
     <tr mat-row *matRowDef="let row; columns: columns;"></tr>
   </table>
 
-  <app-table-paginator [fetcher]="httpGreenhouseService" #greenhousesPaginator></app-table-paginator>
+  <app-paginator [fetcher]="httpGreenhouseService" #greenhousesPaginator></app-paginator>
 </div>

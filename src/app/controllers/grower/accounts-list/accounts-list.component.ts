@@ -3,7 +3,7 @@ import {User} from '../../../models/user';
 import {AccountRequest} from '../../../models/account-request';
 import {AccountRequestService, InviteService, SnackbarService} from '../../../services';
 import {PaginatedResource} from '../../../models/paginated-resource';
-import {TablePaginatorComponent} from '../../../components/table-paginator/table-paginator.component';
+import {PaginatorComponent} from '../../../components/paginator/paginator.component';
 import {Invite} from '../../../models/invite';
 
 @Component({
@@ -24,10 +24,10 @@ export class AccountsListComponent implements AfterViewInit {
   invites?: PaginatedResource<Invite> = null;
 
   @ViewChild('accountRequestsPaginator', {static: true})
-  accountRequestsPaginator: TablePaginatorComponent<AccountRequest>;
+  accountRequestsPaginator: PaginatorComponent<AccountRequest>;
 
   @ViewChild('invitesPaginator', {static: true})
-  invitesPaginator: TablePaginatorComponent<Invite>;
+  invitesPaginator: PaginatorComponent<Invite>;
 
   constructor(protected snackbarService: SnackbarService,
               protected httpAccountRequestService: AccountRequestService,

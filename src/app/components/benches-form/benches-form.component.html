@@ -1,0 +1,26 @@
+<div class="greenhouse-benches-container">
+  <mat-label>{{ 'phrases.greenhouseBenches'|translate }}</mat-label>
+
+  <ul>
+    <li *ngFor="let benchFormGroup of cachedBenchFormGroups; let i = index" [formGroup]="benchFormGroup"
+        class="inline-form-fields">
+      <mat-form-field>
+        <input matInput formControlName="name"
+               required [placeholder]="'phrases.benchName'|translate"/>
+        <mat-error *ngIf="benchFormGroup.get('name').invalid">
+          {{ 'validations.pleaseInputName'|translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <app-shape-form [form]="benchFormGroup"></app-shape-form>
+
+      <button mat-icon-button type="button" (click)="removeBench(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
+
+  <app-paginator [fetcher]="httpBenchService" [fetcherArguments]="[greenhouse]" #benchesPaginator></app-paginator>
+
+  <button mat-stroked-button type="button" (click)="pushBench()">{{ 'phrases.addABench'|translate }}</button>
+</div>

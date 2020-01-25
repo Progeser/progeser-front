@@ -23,7 +23,8 @@ import {
   RequestsListComponent,
   BreadcrumbComponent,
   ShapeFormComponent,
-  TablePaginatorComponent
+  PaginatorComponent,
+  BenchesFormComponent
 } from './components';
 import {
   GrowerHomeComponent,
@@ -103,8 +104,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ManagePotComponent,
     PotsListComponent,
     ShapeFormComponent,
-    TablePaginatorComponent,
-    CreateAccountComponent
+    PaginatorComponent,
+    CreateAccountComponent,
+    BenchesFormComponent
   ],
   imports: [
     HttpClientModule,

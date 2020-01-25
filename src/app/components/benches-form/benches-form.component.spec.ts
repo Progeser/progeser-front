@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TablePaginatorComponent } from './table-paginator.component';
+import { BenchesFormComponent } from './benches-form.component';
 
-describe('TablePaginatorComponent', () => {
-  let component: TablePaginatorComponent;
-  let fixture: ComponentFixture<TablePaginatorComponent>;
+describe('BenchesFormComponent', () => {
+  let component: BenchesFormComponent;
+  let fixture: ComponentFixture<BenchesFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TablePaginatorComponent ]
+      declarations: [ BenchesFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TablePaginatorComponent);
+    fixture = TestBed.createComponent(BenchesFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

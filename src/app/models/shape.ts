@@ -1,25 +1,30 @@
 export class Shape {
   static otherShape: Shape = {
-    name: 'autre',
+    name: 'other',
+    displayName: 'autre',
     dimensionNames: []
   };
 
   static exampleData: Shape[] = [
     {
       name: 'Rectangle',
+      displayName: 'Rectangle',
       dimensionNames: ['Longueur', 'Largeur']
     },
     {
-      name: 'Carré',
+      name: 'Square',
+      displayName: 'Carré',
       dimensionNames: ['Longueur']
     },
     {
-      name: 'Autre',
+      name: 'Other',
+      displayName: 'Autre',
       dimensionNames: ['Surface']
     }
   ];
 
   name: string;
+  displayName: string;
   dimensionNames?: string[] = [];
 }
 

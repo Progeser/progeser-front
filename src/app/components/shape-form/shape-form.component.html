@@ -3,7 +3,7 @@
     <mat-label>{{ 'words.shape'|translate }}</mat-label>
     <mat-select formControlName="shape" [compareWith]="compareByName" required>
       <mat-option *ngFor="let shape of shapes; let i = index" [value]="shape">
-        {{ shape.name }}
+        {{ shape.displayName }}
       </mat-option>
     </mat-select>
     <mat-error *ngIf="form.get('shape').invalid">
@@ -12,6 +12,13 @@
   </mat-form-field>
 
   <ng-container *ngIf="null != form.get('shape') && null != form.get('shape').value">
+    <mat-form-field *ngIf="form.get('area')">
+      <input [placeholder]="'words.surface'|translate" formControlName="area" matInput required type="number"/>
+      <mat-error *ngIf="form.get('area').invalid">
+        {{ 'validations.pleaseInputTheSurface'|translate }}
+      </mat-error>
+    </mat-form-field>
+
     <mat-form-field *ngFor="let dimension of form.get('dimensions').controls; let i = index">
       <input matInput [formControl]="dimension"
              type="number" required [placeholder]="form.get('shape').value.dimensionNames[i]"/>

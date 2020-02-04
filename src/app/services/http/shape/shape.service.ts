@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {ResponseToSnackbarHandlerService} from '../response-to-snackbar-handler/response-to-snackbar-handler.service';
 import {Observable, of} from 'rxjs';
 import {Shape} from '../../../models/shape';
-import {share, tap} from 'rxjs/operators';
+import {map, share} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,12 @@ export class ShapeService extends BaseService {
     if (null == this.shapesListSubscription) {
       this.shapesListSubscription = this.handleRequest<Shape[]>('GET', this.baseUrl, 'find').pipe(
         share(),
-        tap(shapes => this.cachedShapes = shapes)
+        map(shapes => {
+          shapes.push(Shape.otherShape);
+          this.cachedShapes = shapes;
+
+          return shapes;
+        })
       );
     }
 

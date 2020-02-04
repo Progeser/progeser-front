@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Shape} from '../../models/shape';
-import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ShapeService} from '../../services/http/shape/shape.service';
 import {compareByProperty} from '../../utils/comparators/compare-by-property';
 
@@ -24,14 +24,42 @@ export class ShapeFormComponent implements OnInit {
       next: shapes => this.shapes = shapes
     });
 
-    this.form.get('shape').valueChanges.subscribe({
-      next: (shape: Shape) => {
-        const temporaryDimensionsFormArrayControls = new Array(shape.dimensionNames.length)
-          .fill(null, 0, shape.dimensionNames.length)
-          .map(() => this.formBuilder.control(null));
+    this.toggleAreaField(this.form.get('shape').value);
+    this.listenShapeChange();
+  }
 
-        (this.form.get('dimensions') as FormArray).controls = temporaryDimensionsFormArrayControls;
-      }
+  listenShapeChange() {
+    this.form.get('shape').valueChanges.subscribe({
+      next: (shape: Shape) => this.chooseAreaOrDimensions(shape)
     });
+  }
+
+  chooseAreaOrDimensions(shape: Shape) {
+    this.toggleAreaField(shape);
+    this.hydrateDimensionsArrayByShape(shape);
+  }
+
+  toggleAreaField(shape: Shape) {
+    if (shape.name !== Shape.otherShape.name) {
+      this.form.removeControl('area');
+
+      return;
+    }
+
+    if (null === this.form.get('area')) {
+      this.form.addControl('area', this.formBuilder.control(null, [
+        Validators.required
+      ]));
+    }
+  }
+
+  hydrateDimensionsArrayByShape(shape: Shape) {
+    const temporaryDimensionsFormArrayControls = new Array(shape.dimensionNames.length)
+      .fill(null, 0, shape.dimensionNames.length)
+      .map(() => this.formBuilder.control(null, [
+        Validators.required
+      ]));
+
+    (this.form.get('dimensions') as FormArray).controls = temporaryDimensionsFormArrayControls;
   }
 }

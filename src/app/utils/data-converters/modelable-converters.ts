@@ -10,9 +10,16 @@ export function transformShapeAttribute(value, modelable: ModelableInterface, ty
 }
 
 export function transformAreaAttribute(value, modelable: ModelableInterface, type): any {
-  if (TransformationType.CLASS_TO_PLAIN === type
-    && modelable.shape.name === Shape.otherShape.name) {
-    return value;
+  if (modelable.shape.name !== Shape.otherShape.name) {
+    return undefined;
+  }
+
+  if (TransformationType.PLAIN_TO_CLASS === type) {
+    return Number(value);
+  }
+
+  if (TransformationType.CLASS_TO_PLAIN === type) {
+    return value.toFixed(2);
   }
 
   return undefined;
@@ -22,6 +29,11 @@ export function transformDimensionAttribute(value, modelable: ModelableInterface
   if (TransformationType.PLAIN_TO_CLASS === type
     && null == value) {
     return [];
+  }
+
+  if (TransformationType.CLASS_TO_PLAIN === type
+      && 0 === value.length) {
+    return undefined;
   }
 
   return value;

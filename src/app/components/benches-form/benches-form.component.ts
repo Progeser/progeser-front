@@ -2,7 +2,7 @@ import {Component, Input, ViewChild} from '@angular/core';
 import {PaginatedResource} from '../../models/paginated-resource';
 import {Bench, Greenhouse} from '../../models';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {PaginatorComponent} from '..';
+import {PaginatorComponent} from '../paginator/paginator.component';
 import {BenchService} from '../../services/http';
 
 @Component({
@@ -50,6 +50,9 @@ export class BenchesFormComponent {
         Validators.required
       ]),
       dimensions: this.formBuilder.array(bench.dimensions, [
+        Validators.required
+      ]),
+      area: this.formBuilder.control(bench.area, [
         Validators.required
       ])
     });

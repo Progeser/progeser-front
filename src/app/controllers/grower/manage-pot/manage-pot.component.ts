@@ -43,6 +43,9 @@ export class ManagePotComponent implements OnInit {
       ]),
       dimensions: this.formBuilder.array(this.pot.dimensions, [
         Validators.required
+      ]),
+      area: this.formBuilder.control(this.pot.area, [
+        Validators.required
       ])
     });
   }

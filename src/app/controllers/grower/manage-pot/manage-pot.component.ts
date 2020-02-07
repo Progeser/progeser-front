@@ -41,9 +41,7 @@ export class ManagePotComponent implements OnInit {
       shape: this.formBuilder.control(this.pot.shape, [
         Validators.required
       ]),
-      dimensions: this.formBuilder.array(this.pot.dimensions, [
-        Validators.required
-      ]),
+      dimensions: this.formBuilder.array(this.pot.dimensions),
       area: this.formBuilder.control(this.pot.area, [
         Validators.required
       ])
@@ -51,6 +49,10 @@ export class ManagePotComponent implements OnInit {
   }
 
   submitForm() {
+    if (this.form.invalid) {
+      return;
+    }
+
     this.httpPotService.saveForm(this.pot, this.form.value).subscribe();
   }
 }

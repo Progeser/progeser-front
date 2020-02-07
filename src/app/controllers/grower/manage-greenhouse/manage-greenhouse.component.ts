@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Greenhouse} from '../../../models';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GreenhouseService} from '../../../services/http';
-import {map, switchMap} from 'rxjs/operators';
+import {map, switchMap, tap} from 'rxjs/operators';
 import {BenchesFormComponent} from '../../../components';
 
 @Component({
@@ -42,13 +42,10 @@ export class ManageGreenhouseComponent implements OnInit {
       name: this.formBuilder.control(this.greenhouse.name, [
         Validators.required
       ]),
-      length: this.formBuilder.control(this.greenhouse.height, [
+      height: this.formBuilder.control(this.greenhouse.height, [
         Validators.required
       ]),
       width: this.formBuilder.control(this.greenhouse.width, [
-        Validators.required
-      ]),
-      occupancy: this.formBuilder.control(this.greenhouse.occupancy, [
         Validators.required
       ])
     });
@@ -60,7 +57,8 @@ export class ManageGreenhouseComponent implements OnInit {
     }
 
     this.httpGreenhouseService.saveForm(this.greenhouse, this.form.value).pipe(
-      switchMap(() => this.benchesForm.saveBenches())
+      tap(greenhouse => this.greenhouse = greenhouse),
+      switchMap(greenhouse => this.benchesForm.saveBenches(greenhouse))
     ).subscribe();
   }
 }

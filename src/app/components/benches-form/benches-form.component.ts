@@ -11,8 +11,8 @@ import {BenchService} from '../../services/http';
   styleUrls: ['./benches-form.component.scss']
 })
 export class BenchesFormComponent {
-  cachedBenches: Bench[];
-  cachedBenchFormGroups: FormGroup[];
+  cachedBenches: Bench[] = [];
+  cachedBenchFormGroups: FormGroup[] = [];
   cachedBenchesPaginator: PaginatorComponent<Bench>;
 
   @Input()
@@ -49,9 +49,7 @@ export class BenchesFormComponent {
       shape: this.formBuilder.control(bench.shape, [
         Validators.required
       ]),
-      dimensions: this.formBuilder.array(bench.dimensions, [
-        Validators.required
-      ]),
+      dimensions: this.formBuilder.array(bench.dimensions),
       area: this.formBuilder.control(bench.area, [
         Validators.required
       ])
@@ -84,7 +82,7 @@ export class BenchesFormComponent {
     return true;
   }
 
-  saveBenches() {
-    return this.httpBenchService.saveAll(this.cachedBenches, this.greenhouse, this.cachedBenchFormGroups);
+  saveBenches(greenhouse: Greenhouse) {
+    return this.httpBenchService.saveAll(this.cachedBenches, greenhouse, this.cachedBenchFormGroups);
   }
 }

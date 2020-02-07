@@ -10,10 +10,10 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput type="number" formControlName="length"
+      <input formControlName="height" matInput type="number"
              [placeholder]="'phrases.greenhouseLength'|translate"
              required/>
-      <mat-error *ngIf="form.get('length').invalid">
+      <mat-error *ngIf="form.get('height').invalid">
         {{ 'validations.pleaseInputLength'|translate }}
       </mat-error>
     </mat-form-field>
@@ -28,7 +28,7 @@
     </mat-form-field>
   </div>
 
-  <app-benches-form #benchesForm></app-benches-form>
+  <app-benches-form #benchesForm [greenhouse]="greenhouse" class="greenhouse-benches-container"></app-benches-form>
 
   <button mat-raised-button color="primary" type="submit">{{ 'words.save'|translate }}</button>
 </form>

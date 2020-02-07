@@ -40,7 +40,7 @@ export class ShapeFormComponent implements OnInit {
   }
 
   toggleAreaField(shape: Shape) {
-    if (shape.name !== Shape.otherShape.name) {
+    if (null == shape || shape.name !== Shape.otherShape.name) {
       this.form.removeControl('area');
 
       return;
@@ -54,12 +54,13 @@ export class ShapeFormComponent implements OnInit {
   }
 
   hydrateDimensionsArrayByShape(shape: Shape) {
-    const temporaryDimensionsFormArrayControls = new Array(shape.dimensionNames.length)
-      .fill(null, 0, shape.dimensionNames.length)
-      .map(() => this.formBuilder.control(null, [
-        Validators.required
-      ]));
+    const dimensionsFormArray = this.form.get('dimensions') as FormArray;
+    dimensionsFormArray.clear();
 
-    (this.form.get('dimensions') as FormArray).controls = temporaryDimensionsFormArrayControls;
+    Array(shape.dimensionNames.length)
+      .fill(null, 0, shape.dimensionNames.length)
+      .map(() => dimensionsFormArray.push(this.formBuilder.control(null, [
+        Validators.required
+      ])));
   }
 }

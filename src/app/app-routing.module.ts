@@ -103,7 +103,16 @@ const routes: Routes = [
     }
   },
   {
-    path: 'grower/manage-greenhouse/:id',
+    path: 'grower/greenhouses-list',
+    component: GreenhousesListComponent,
+    canActivate: [RouteGuardService],
+    data: {
+      roles: [User.roles[1]],
+      breadcrumb: 'greenhousesList'
+    }
+  },
+  {
+    path: 'grower/manage-greenhouse',
     component: ManageGreenhouseComponent,
     canActivate: [RouteGuardService],
     data: {
@@ -112,12 +121,12 @@ const routes: Routes = [
     }
   },
   {
-    path: 'grower/greenhouses-list',
-    component: GreenhousesListComponent,
+    path: 'grower/manage-greenhouse/:id',
+    component: ManageGreenhouseComponent,
     canActivate: [RouteGuardService],
     data: {
       roles: [User.roles[1]],
-      breadcrumb: 'greenhousesList'
+      breadcrumb: 'manageGreenhouse'
     }
   },
   {
@@ -136,6 +145,15 @@ const routes: Routes = [
     data: {
       roles: [User.roles[1]],
       breadcrumb: 'potsList'
+    }
+  },
+  {
+    path: 'grower/manage-pot',
+    component: ManagePotComponent,
+    canActivate: [RouteGuardService],
+    data: {
+      roles: [User.roles[1]],
+      breadcrumb: 'managePot'
     }
   },
   {

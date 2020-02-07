@@ -42,7 +42,8 @@ export class BenchService extends ResourceService<Bench> {
   save(resource: Bench, greenhouse: Greenhouse, form: any): Observable<Bench> {
     const mergedResource: Bench = Object.assign(resource, form);
 
-    if (null === mergedResource.id) {
+    // todo: remove duplicated
+    if (undefined === mergedResource.id || null === mergedResource.id) {
       return this.createInGreenhouse(mergedResource, greenhouse);
     }
 

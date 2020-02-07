@@ -63,7 +63,8 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
   saveForm(resource: T, form: any): Observable<T> {
     const mergedResource: T = Object.assign(resource, form);
 
-    if (null === mergedResource.id) {
+    // todo: create util to check a resource is new
+    if (undefined === mergedResource.id || null === mergedResource.id) {
       return this.create(mergedResource);
     }
 

@@ -27,13 +27,13 @@ export class ShapeService extends BaseService {
 
     if (null == this.shapesListSubscription) {
       this.shapesListSubscription = this.handleRequest<Shape[]>('GET', this.baseUrl, 'find').pipe(
-        share(),
         map(shapes => {
           shapes.push(Shape.otherShape);
           this.cachedShapes = shapes;
 
           return shapes;
-        })
+        }),
+        share()
       );
     }
 

@@ -1,26 +1,24 @@
-<div class="greenhouse-benches-container">
-  <mat-label>{{ 'phrases.greenhouseBenches'|translate }}</mat-label>
+<mat-label>{{ 'phrases.greenhouseBenches'|translate }}</mat-label>
 
-  <ul>
-    <li *ngFor="let benchFormGroup of cachedBenchFormGroups; let i = index" [formGroup]="benchFormGroup"
-        class="inline-form-fields">
-      <mat-form-field>
-        <input matInput formControlName="name"
-               required [placeholder]="'phrases.benchName'|translate"/>
-        <mat-error *ngIf="benchFormGroup.get('name').invalid">
-          {{ 'validations.pleaseInputName'|translate }}
-        </mat-error>
-      </mat-form-field>
+<ul>
+  <li *ngFor="let benchFormGroup of cachedBenchFormGroups; let i = index" [formGroup]="benchFormGroup"
+      class="inline-form-fields">
+    <mat-form-field>
+      <input [placeholder]="'phrases.benchName'|translate" formControlName="name"
+             matInput required/>
+      <mat-error *ngIf="benchFormGroup.get('name').invalid">
+        {{ 'validations.pleaseInputName'|translate }}
+      </mat-error>
+    </mat-form-field>
 
-      <app-shape-form [form]="benchFormGroup"></app-shape-form>
+    <app-shape-form [form]="benchFormGroup"></app-shape-form>
 
-      <button mat-icon-button type="button" (click)="removeBench(i)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </li>
-  </ul>
+    <button (click)="removeBench(i)" mat-icon-button type="button">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </li>
+</ul>
 
-  <app-paginator [fetcher]="httpBenchService" [fetcherArguments]="[greenhouse]" #benchesPaginator></app-paginator>
+<app-paginator #benchesPaginator *ngIf="null != greenhouse.id" [fetcherArguments]="[greenhouse]" [fetcher]="httpBenchService"></app-paginator>
 
-  <button mat-stroked-button type="button" (click)="pushBench()">{{ 'phrases.addABench'|translate }}</button>
-</div>
+<button (click)="pushBench()" mat-stroked-button type="button">{{ 'phrases.addABench'|translate }}</button>

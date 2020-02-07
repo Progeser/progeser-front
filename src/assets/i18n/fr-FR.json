@@ -318,7 +318,7 @@
         "error": "Une erreur est survenue lors de la récupération des tablettes de la serre."
       },
       "create": {
-        "success": "La table a bien été créée.",
+        "success": "La tablette a bien été créée.",
         "error": "Une erreur est survenue lors de la récupération de la tablette."
       },
       "update": {

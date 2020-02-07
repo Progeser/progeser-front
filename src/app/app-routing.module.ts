@@ -85,15 +85,6 @@ const routes: Routes = [
     }
   },
   {
-    path: 'grower/manage-plant',
-    component: ManagePlantComponent,
-    canActivate: [RouteGuardService],
-    data: {
-      roles: [User.roles[1]],
-      breadcrumb: 'managePlant'
-    }
-  },
-  {
     path: 'grower/manage-request-distribution',
     component: ManageRequestDistributionComponent,
     canActivate: [RouteGuardService],
@@ -136,6 +127,24 @@ const routes: Routes = [
     data: {
       roles: [User.roles[1]],
       breadcrumb: 'plantsList'
+    }
+  },
+  {
+    path: 'grower/manage-plant',
+    component: ManagePlantComponent,
+    canActivate: [RouteGuardService],
+    data: {
+      roles: [User.roles[1]],
+      breadcrumb: 'managePlant'
+    }
+  },
+  {
+    path: 'grower/manage-plant/:id',
+    component: ManagePlantComponent,
+    canActivate: [RouteGuardService],
+    data: {
+      roles: [User.roles[1]],
+      breadcrumb: 'managePlant'
     }
   },
   {

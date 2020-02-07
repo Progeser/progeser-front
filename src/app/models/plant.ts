@@ -1,6 +1,6 @@
 import {PlantStage} from './plant-stage';
 import {Resource} from './resource';
-import {Type} from 'class-transformer';
+import {Expose, Type} from 'class-transformer';
 
 export class Plant implements Resource {
   static exampleData: Plant[] = [
@@ -24,6 +24,7 @@ export class Plant implements Resource {
   id: number;
   name: string;
 
+  @Expose({ name: 'plantStages' })
   @Type(() => PlantStage)
   stages: PlantStage[] = [];
 }

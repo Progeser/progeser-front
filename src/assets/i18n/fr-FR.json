@@ -319,8 +319,8 @@
       },
       "create": {
         "success": "La tablette a bien été créée.",
-        "error": "Une erreur est survenue lors de la récupération de la tablette."
-      },
+        "error": "Une erreur est survenue lors de la création de la tablette."
+    },
       "update": {
         "success": "La tablette a bien été mise à jour.",
         "error": "Une erreur est survenue lors de la mise à jour de la tablette."
@@ -334,9 +334,15 @@
       "find": {
         "error": "Une erreur est survenue lors de la récupération des plantes."
       },
+      "get": {
+        "404": {
+          "message": "La plante n'a pas été trouvée."
+        },
+        "error": "Une erreur est survenue lors de la récupération de la plante."
+      },
       "create": {
         "success": "La plante a bien été créée.",
-        "error": "Une erreur est survenue lors de la récupération de la plante."
+        "error": "Une erreur est survenue lors de la création de la plante."
       },
       "update": {
         "success": "La plante a bien été mise à jour.",

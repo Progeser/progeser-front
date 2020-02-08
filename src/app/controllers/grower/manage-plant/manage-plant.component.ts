@@ -1,8 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Plant, PlantStage} from '../../../models';
-import {CdkDragDrop} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {MatDialog} from '@angular/material';
+import {map, switchMap} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
+import {PlantService} from '../../../services/http/plant/plant.service';
+import {FormArrayUtils} from '../../../utils/arrays/form-array-utils';
 
 @Component({
   selector: 'app-manage-plant',
@@ -11,22 +15,42 @@ import {MatDialog} from '@angular/material';
 })
 export class ManagePlantComponent implements OnInit {
   form: FormGroup;
+  plant: Plant;
 
   constructor(protected formBuilder: FormBuilder,
+              protected router: Router,
+              protected route: ActivatedRoute,
+              protected httpPlantService: PlantService,
               protected dialog: MatDialog) {
   }
 
-  ngOnInit() {
-    // todo: plan modification
-    this.initForm(new Plant());
+  get stagesFormArray(): FormArray {
+    return (this.form.get('stages') as FormArray);
   }
 
-  initForm(plant: Plant) {
+  get stageControls(): AbstractControl[] {
+    return this.stagesFormArray.controls.filter(control => false === control.get('deleted').value);
+  }
+
+  ngOnInit() {
+    this.route.params.pipe(
+      map(params => params.id),
+      switchMap(id => this.httpPlantService.get(id))
+    ).subscribe({
+      next: plant => {
+        this.plant = plant;
+        this.initForm();
+      },
+      error: () => this.router.navigate(['/grower/plants-list'])
+    });
+  }
+
+  initForm() {
     this.form = this.formBuilder.group({
-      name: this.formBuilder.control(plant.name, [
+      name: this.formBuilder.control(this.plant.name, [
         Validators.required
       ]),
-      stages: this.formBuilder.array(plant.stages.map(stage => this.createPlantStageFormGroup(stage)), [
+      stages: this.formBuilder.array(this.plant.stages.map(stage => this.createPlantStageFormGroup(stage)), [
         Validators.required
       ])
     });
@@ -37,30 +61,51 @@ export class ManagePlantComponent implements OnInit {
     }
   }
 
-  createPlantStageFormGroup(stage: PlantStage = new PlantStage()) {
+  createPlantStageFormGroup(stage: PlantStage) {
     return this.formBuilder.group({
       name: this.formBuilder.control(stage.name, [
         Validators.required
       ]),
       duration: this.formBuilder.control(stage.duration, [
         Validators.required
-      ])
+      ]),
+      deleted: this.formBuilder.control(false)
     });
   }
 
+  onStageMoved(event: CdkDragDrop<PlantStage[]>) {
+    moveItemInArray(this.plant.stages, event.previousIndex, event.currentIndex);
+    this.plant.recomputePositions();
+    FormArrayUtils.swapFormArrayItems(this.form.get('stages') as FormArray, event.previousIndex, event.currentIndex);
+  }
+
   pushStage() {
-    (this.form.get('stages') as FormArray).push(this.createPlantStageFormGroup());
+    this.stagesFormArray.push(this.createPlantStageFormGroup(new PlantStage()));
+    this.plant.addStage();
   }
 
   removeStage(stageIndex: number) {
-    (this.form.get('stages') as FormArray).removeAt(stageIndex);
+    this.stagesFormArray.at(stageIndex).get('deleted').setValue(true);
+    this.plant.removeStage(stageIndex);
   }
 
-  onStageMoved(event: CdkDragDrop<PlantStage[]>) {
-    // todo
+  clearRemovedStages() {
+    this.plant.clearStages();
+
+    for (let i = 0; i < this.stagesFormArray.controls.length; i++) {
+      if (true === this.stagesFormArray.controls[i].get('deleted').value) {
+        this.stagesFormArray.removeAt(i);
+      }
+    }
   }
 
   submitForm() {
-    // todo
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.httpPlantService.saveForm(this.plant, this.form.value).subscribe({
+      next: () => this.clearRemovedStages()
+    });
   }
 }

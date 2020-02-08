@@ -1,6 +1,6 @@
-<form class="manage-plant l-content-block" [formGroup]="form" (ngSubmit)="submitForm()">
+<form (ngSubmit)="submitForm()" *ngIf="form" [formGroup]="form" class="manage-plant l-content-block">
   <mat-form-field>
-    <input matInput formControlName="name" required [placeholder]="'phrases.plantName'|translate" />
+    <input [placeholder]="'phrases.plantName'|translate" formControlName="name" matInput required/>
     <mat-error *ngIf="form.get('name').invalid">
       {{ 'validations.pleaseInputName'|translate }}
     </mat-error>
@@ -10,26 +10,26 @@
     <mat-label>{{ 'phrases.plantStages'|translate }}</mat-label>
 
     <ul formArrayName="stages" cdkDropList class="plant-stages-drop-zone" (cdkDropListDropped)="onStageMoved($event)">
-      <li *ngFor="let stage of form.get('stages').controls; let i = index" [formGroupName]="i" cdkDrag
+      <li *ngFor="let stage of stageControls; let i = index" [formGroupName]="i" cdkDrag
           class="inline-form-fields draggable">
         <mat-icon class="draggable-icon-information">reorder</mat-icon>
 
         <mat-form-field>
-          <input matInput formControlName="name" required [placeholder]="'phrases.plantStageName'|translate"/>
+          <input [placeholder]="'phrases.plantStageName'|translate" formControlName="name" matInput required/>
           <mat-error *ngIf="stage.get('name').invalid">
             {{ 'validations.pleaseInputName'|translate }}
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput type="number" formControlName="duration" required
-                 [placeholder]="'phrases.plantStageDuration'|translate"/>
+          <input [placeholder]="'phrases.plantStageDuration'|translate" formControlName="duration" matInput required
+                 type="number"/>
           <mat-error *ngIf="stage.get('duration').invalid">
             {{ 'validations.pleaseInputPlantStageDuration'|translate }}
           </mat-error>
         </mat-form-field>
 
-        <button mat-icon-button type="button" (click)="removeStage(i)" *ngIf="form.get('stages').value.length > 1">
+        <button (click)="removeStage(i)" *ngIf="form.get('stages').value.length > 1" mat-icon-button type="button">
           <mat-icon>delete</mat-icon>
         </button>
       </li>

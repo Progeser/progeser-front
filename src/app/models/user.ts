@@ -1,7 +1,7 @@
 import {Resource} from './resource';
 import {Token} from './token';
 
-export class User implements Resource {
+export class User extends Resource {
   static roles: string[] = [
     'requester',
     'grower'
@@ -12,31 +12,8 @@ export class User implements Resource {
     'words.grower'
   ];
 
-  static exampleData: User[] = [
-    {
-      id: 1,
-      firstName: 'Christopher',
-      lastName: 'Anciaux',
-      email: 'christopher.anciaux@fakemail.com',
-      role: User.roles[1]
-    },
-    {
-      id: 2,
-      firstName: 'Thibaut',
-      lastName: 'Strecker',
-      email: 'thibaut.strecker@fakemail.com',
-      role: User.roles[1]
-    },
-    {
-      id: 3,
-      firstName: 'Tao',
-      lastName: 'Galasse',
-      email: 'tao.galasse@fakemail.com',
-      role: User.roles[2]
-    }
-  ];
+  static exampleData: User[] = [];
 
-  id: number;
   firstName: string;
   lastName: string;
   email: string;

@@ -7,6 +7,7 @@ import {PaginatedResource} from '../../../models/paginated-resource';
 import {map} from 'rxjs/operators';
 import {ResponseToSnackbarHandlerService} from '../response-to-snackbar-handler/response-to-snackbar-handler.service';
 import {classToPlain, plainToClass} from 'class-transformer';
+import {ObjectUtils} from '../../../utils/objects/object-utils';
 
 @Injectable({
   providedIn: 'root'
@@ -61,10 +62,9 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
   }
 
   saveForm(resource: T, form: any): Observable<T> {
-    const mergedResource: T = Object.assign(resource, form);
+    const mergedResource: T = ObjectUtils.mergeDeep(resource, form);
 
-    // todo: create util to check a resource is new
-    if (undefined === mergedResource.id || null === mergedResource.id) {
+    if (mergedResource.isNewResource()) {
       return this.create(mergedResource);
     }
 

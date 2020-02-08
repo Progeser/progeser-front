@@ -2,10 +2,9 @@ import {Bench} from './bench';
 import {Resource} from './resource';
 import {Type} from 'class-transformer';
 
-export class Greenhouse implements Resource {
+export class Greenhouse extends Resource {
   static exampleData: Greenhouse[] = [];
 
-  id: number;
   name: string;
   height: number;
   width: number;

@@ -4,9 +4,7 @@ import {Pot} from './pot';
 import {Resource} from './resource';
 import {Type} from 'class-transformer';
 
-export class RequestDistribution implements Resource {
-  id: number;
-
+export class RequestDistribution extends Resource {
   @Type(() => PlantStage)
   plantStage: PlantStage;
 

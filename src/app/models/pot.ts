@@ -16,5 +16,5 @@ export class Pot extends Resource implements ModelableInterface {
   area?: number;
 
   @Transform(transformDimensionAttribute)
-  dimensions?: number[];
+  dimensions?: number[] = [];
 }

@@ -28,6 +28,6 @@ export class AccountRequestService extends ResourceService<AccountRequest> {
   }
 
   accept(accountRequestId: number): Observable<AccountRequest> {
-    return this.handleRequest('POST', `/${accountRequestId}/accept`, 'accept');
+    return this.handleResourceRequest('POST', `/${accountRequestId}/accept`, 'accept');
   }
 }

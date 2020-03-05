@@ -1,10 +1,10 @@
-<h1 mat-dialog-title *ngIf="title">{{ title }}</h1>
+<h1 mat-dialog-title *ngIf="title">{{ title|translate }}</h1>
 
 <div mat-dialog-content>
-  <p [innerHTML]="message"></p>
+  <p [innerHTML]="message|translate"></p>
 </div>
 
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close]="false">{{ 'words.cancel'|translate }}</button>
-  <button mat-button [mat-dialog-close]="true" mat-raised-button color="primary">{{ 'words.confirm'|translate }}</button>
+  <button mat-button [mat-dialog-close]="true" mat-raised-button color="primary">{{ 'phrases.confirm'|translate }}</button>
 </div>

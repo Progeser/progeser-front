@@ -3,6 +3,8 @@ import {Pot} from '../../../models/pot';
 import {PotService} from '../../../services/http/pot/pot.service';
 import {PaginatedResource} from '../../../utils/paginator/paginated-resource';
 import {PaginatorComponent} from '../../../components';
+import {ConfirmationDialogService} from '../../../services/confirmation-dialog/confirmation-dialog.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-pots-list',
@@ -19,7 +21,8 @@ export class PotsListComponent implements AfterViewInit {
   @ViewChild('potsPaginator', {static: true})
   potsPaginator: PaginatorComponent<Pot>;
 
-  constructor(protected httpPotService: PotService) { }
+  constructor(protected httpPotService: PotService,
+              protected confirmationService: ConfirmationDialogService) { }
 
   ngAfterViewInit() {
     this.potsPaginator.pageChange.subscribe({
@@ -28,7 +31,9 @@ export class PotsListComponent implements AfterViewInit {
   }
 
   deletePot(potId: number, potIndex: number) {
-    this.httpPotService.delete(potId).subscribe({
+    this.confirmationService.confirm(undefined, 'confirmations.pot.delete').pipe(
+      switchMap(() => this.httpPotService.delete(potId))
+    ).subscribe({
       next: () => this.pots.removeItemByIndex(potIndex)
     });
   }

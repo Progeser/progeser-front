@@ -3,6 +3,8 @@ import {Plant} from '../../../models';
 import {PaginatedResource} from '../../../utils/paginator/paginated-resource';
 import {PaginatorComponent} from '../../../components';
 import {PlantService} from '../../../services/http/plant/plant.service';
+import {ConfirmationDialogService} from '../../../services/confirmation-dialog/confirmation-dialog.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-plants-list',
@@ -20,7 +22,8 @@ export class PlantsListComponent implements AfterViewInit {
   @ViewChild('plantsPaginator', {static: true})
   plantsPaginator: PaginatorComponent<Plant>;
 
-  constructor(protected httpPlantService: PlantService) {
+  constructor(protected httpPlantService: PlantService,
+              protected confirmationService: ConfirmationDialogService) {
   }
 
   ngAfterViewInit() {
@@ -30,7 +33,9 @@ export class PlantsListComponent implements AfterViewInit {
   }
 
   deletePlant(plantId: number, plantIndex: number) {
-    this.httpPlantService.delete(plantId).subscribe({
+    this.confirmationService.confirm(undefined, 'confirmations.plants.delete').pipe(
+      switchMap(() => this.httpPlantService.delete(plantId))
+    ).subscribe({
       next: () => this.plants.removeItemByIndex(plantIndex)
     });
   }

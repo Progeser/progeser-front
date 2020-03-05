@@ -3,6 +3,8 @@ import {Greenhouse} from '../../../models';
 import {PaginatedResource} from '../../../utils/paginator/paginated-resource';
 import {PaginatorComponent} from '../../../components';
 import {GreenhouseService} from '../../../services/http';
+import {ConfirmationDialogService} from '../../../services/confirmation-dialog/confirmation-dialog.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-greenhouses-list',
@@ -24,7 +26,8 @@ export class GreenhousesListComponent implements AfterViewInit {
   @ViewChild('greenhousesPaginator', {static: true})
   greenhousesPaginator: PaginatorComponent<Greenhouse>;
 
-  constructor(protected httpGreenhouseService: GreenhouseService) { }
+  constructor(protected httpGreenhouseService: GreenhouseService,
+              protected confirmationService: ConfirmationDialogService) { }
 
   ngAfterViewInit() {
     this.greenhousesPaginator.pageChange.subscribe({
@@ -33,7 +36,9 @@ export class GreenhousesListComponent implements AfterViewInit {
   }
 
   deleteGreenhouse(greenhouseId: number, greenhouseIndex: number) {
-    this.httpGreenhouseService.delete(greenhouseId).subscribe({
+    this.confirmationService.confirm(undefined, 'confirmations.greenhouse.delete').pipe(
+      switchMap(() => this.httpGreenhouseService.delete(greenhouseId))
+    ).subscribe({
       next: () => this.greenhouses.removeItemByIndex(greenhouseIndex)
     });
   }

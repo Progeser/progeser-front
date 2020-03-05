@@ -37,10 +37,11 @@
     "week": "Semaine",
     "day": "Jour",
     "list": "Liste",
+    "confirmation": "Confirmation",
     "requestStatus": {
       "pending": "En attente",
       "accepted": "Acceptée",
-      "declined": "Refusée",
+      "refused": "Refusée",
       "in_cancelation": "En attente d'annulation",
       "canceled": "Annulée"
     }
@@ -127,7 +128,19 @@
     "ofItems": "sur",
     "sentInvitations": "Invitations envoyées",
     "cancelTheInvite": "Annuler l'invitation",
-    "saveMyPassword": "Enregistrer mon mot de passe"
+    "saveMyPassword": "Enregistrer mon mot de passe",
+    "areYouSure": "Êtes-vous sûr ?"
+  },
+  "confirmations": {
+    "pot": {
+      "delete": "Êtes-vous sûr de vouloir supprimer le pot ?"
+    },
+    "greenhouse": {
+      "delete": "Êtes-vous sûr de vouloir supprimmer la serre ?"
+    },
+    "plants": {
+      "delete": "Êtes-vous sûr de vouloir supprimer la plante ?"
+    }
   },
   "validations": {
     "pleaseInputYourFirstName": "Merci de renseigner votre prénom.",

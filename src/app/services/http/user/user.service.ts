@@ -9,6 +9,7 @@ import {BaseService} from '../base/base.service';
 import {ResponseToSnackbarHandlerService} from '../response-to-snackbar-handler/response-to-snackbar-handler.service';
 import {UpdateUserAction} from '../../../models/actions/update-user-action';
 import {FormGroup} from '@angular/forms';
+import {isNull} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class UserService extends BaseService {
   }
 
   refreshToken(refreshToken: string): Observable<Token> {
-    if (null === this.refreshTokenRequest) {
+    if (isNull(this.refreshTokenRequest)) {
       const url = `${this.baseApiUrl}/oauth/token`;
 
       this.refreshTokenRequest = this.http.post<Token>(url, {refreshToken}).pipe(

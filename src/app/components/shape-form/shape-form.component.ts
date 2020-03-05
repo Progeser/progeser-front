@@ -3,6 +3,7 @@ import {Shape} from '../../models/shape';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ShapeService} from '../../services/http/shape/shape.service';
 import {compareByProperty} from '../../utils/comparators/compare-by-property';
+import {isNull} from 'util';
 
 @Component({
   selector: 'app-shape-form',
@@ -46,7 +47,7 @@ export class ShapeFormComponent implements OnInit {
       return;
     }
 
-    if (null === this.form.get('area')) {
+    if (isNull(this.form.get('area'))) {
       this.form.addControl('area', this.formBuilder.control(null, [
         Validators.required
       ]));

@@ -1,7 +1,7 @@
 import {CollectionViewer, DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, Observable} from 'rxjs';
 
-export class PaginatedResource<T> implements DataSource<T> {
+export class ListedResource<T> implements DataSource<T> {
   currentPage: number;
   itemsPerPage: number;
   totalPages: number;
@@ -18,6 +18,12 @@ export class PaginatedResource<T> implements DataSource<T> {
     this.items = items;
   }
 
+  set items(items: T[]) {
+    this.cachedItems = items;
+
+    this.updateItems();
+  }
+
   connect(collectionViewer: CollectionViewer): Observable<T[] | ReadonlyArray<T>> {
     return this.itemsSubject.asObservable();
   }
@@ -26,25 +32,12 @@ export class PaginatedResource<T> implements DataSource<T> {
     this.itemsSubject.complete();
   }
 
-  removeItemByIndex(index: number) {
-    this.cachedItems.splice(index, 1);
-    this.totalItems -= 1;
-
-    this.recomputeVariables();
-    this.updateItems();
+  protected recomputeVariables() {
+    this.totalPages = this.totalItems / this.itemsPerPage;
   }
 
   get items(): T[] {
     return this.cachedItems;
-  }
-
-  set items(items: T[]) {
-    this.cachedItems = items;
-    this.updateItems();
-  }
-
-  protected recomputeVariables() {
-    this.totalPages = this.totalItems / this.itemsPerPage;
   }
 
   protected updateItems() {

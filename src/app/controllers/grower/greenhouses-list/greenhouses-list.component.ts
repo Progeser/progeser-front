@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Greenhouse} from '../../../models';
-import {PaginatedResource} from '../../../models/paginated-resource';
+import {PaginatedResource} from '../../../utils/paginator/paginated-resource';
 import {PaginatorComponent} from '../../../components';
 import {GreenhouseService} from '../../../services/http';
 

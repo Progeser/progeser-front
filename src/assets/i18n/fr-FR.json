@@ -36,13 +36,21 @@
     "month": "Mois",
     "week": "Semaine",
     "day": "Jour",
-    "list": "Liste"
+    "list": "Liste",
+    "requestStatus": {
+      "pending": "En attente",
+      "accepted": "Acceptée",
+      "declined": "Refusée",
+      "in_cancelation": "En attente d'annulation",
+      "canceled": "Annulée"
+    }
   },
   "phrases": {
     "inviteANewUser": "Inviter un nouvel utilisateur",
     "acceptTheRequest": "Accepter la demande",
     "rejectTheRequest": "Refuser la demande",
     "modifyTheRequest": "Modifier la demande",
+    "cancelTheRequest": "Annuler la demande",
     "deleteTheRequest": "Supprimer la demande",
     "askForAnAccount": "Demander un compte utilisateur",
     "whyDoYouWantAnAccount": "Pourquoi souhaitez-vous obtenir un compte utilisateur ?",
@@ -58,7 +66,7 @@
     "IDontFindMyPlant": "Je ne trouve pas ma plante dans la liste",
     "requestComment": "Commentaire de la demande",
     "cultureTemperature": "Température de culture",
-    "photoPeriodCulture": "Photopériode de culture",
+    "photoperiodCulture": "Photopériode de culture",
     "desiredPlantStageAtDueDate": "Stade souhaité de la plante à la date d'échéance",
     "desiredDueDate": "Date d'échéance souhaitée",
     "saveMyRequest": "Sauvegarder ma demande",
@@ -136,7 +144,8 @@
     "pleaseInputDesiredPlantName": "Merci de renseigner le nom de la plante souhaitée.",
     "pleaseChooseAPlant": "Merci de choisir une plante.",
     "pleaseInputANumber": "Merci d'entrer un nombre.",
-    "pleaseInputAValidPhotoPeriodCultureValue": "Merci d'entrer une valeur de photopériode correcte (entre 0 et 24).",
+    "pleaseInputAValidphotoperiodCultureValue": "Merci d'entrer une valeur de photopériode correcte (entre 0 et 24).",
+    "pleaseInputAPlantStage": "Merci de renseigner le nom du stade souhaité.",
     "pleaseChooseAPlantStage": "Merci de choisir un stade.",
     "pleaseInputUserToInviteEmail": "Merci de renseigner l'e-mail de la personne à inviter.",
     "pleaseInputUserToInviteRole": "Merci de renseigner le rôle de la personne à inviter.",
@@ -320,7 +329,7 @@
       "create": {
         "success": "La tablette a bien été créée.",
         "error": "Une erreur est survenue lors de la création de la tablette."
-    },
+      },
       "update": {
         "success": "La tablette a bien été mise à jour.",
         "error": "Une erreur est survenue lors de la mise à jour de la tablette."
@@ -351,6 +360,41 @@
       "delete": {
         "success": "La plante a bien été supprimée.",
         "error": "La plante n'a pas pu être supprimée."
+      }
+    },
+    "request": {
+      "find": {
+        "error": "Une erreur est survenue lors de la récupération des demandes."
+      },
+      "get": {
+        "404": {
+          "message": "La demande n'a pas été trouvée."
+        },
+        "error": "Une erreur est survenue lors de la récupération de la demande."
+      },
+      "create": {
+        "success": "La demande a bien été créée.",
+        "error": "Une erreur est survenue lors de la création de la demande."
+      },
+      "update": {
+        "success": "La demande a bien été mise à jour.",
+        "error": "Une erreur est survenue lors de la mise à jour de la demande."
+      },
+      "accept": {
+        "success": "La demande a bien été acceptée.",
+        "error": "La demande n'a pas pu être acceptée."
+      },
+      "reject": {
+        "success": "La demande a bien été refusée.",
+        "error": "La demande n'a pas pu être refusée."
+      },
+      "cancel": {
+        "success": "La demande a bien été annulée.",
+        "error": "La demande n'a pas pu être annulée."
+      },
+      "delete": {
+        "success": "La demande a bien été supprimée.",
+        "error": "La demande n'a pas pu être supprimée."
       }
     }
   }

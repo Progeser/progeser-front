@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {User} from '../../../models/user';
 import {AccountRequest} from '../../../models/account-request';
 import {AccountRequestService, InviteService, SnackbarService} from '../../../services';
-import {PaginatedResource} from '../../../models/paginated-resource';
+import {PaginatedResource} from '../../../utils/paginator/paginated-resource';
 import {PaginatorComponent} from '../../../components/paginator/paginator.component';
 import {Invite} from '../../../models/invite';
 

@@ -66,6 +66,7 @@ import {MissingTranslationHandler, TranslateLoader, TranslateModule, TranslateSe
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {MissingTranslationLoggerHandler} from './utils/missing-translation-logger-handler/missing-translation-logger-handler';
 import {PaginatorIntl} from './internationalization/mat-paginator/paginator-intl';
+import {MatSelectInfiniteScrollModule} from 'ng-mat-select-infinite-scroll';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -132,6 +133,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDialogModule,
     FullCalendarModule,
     MatSnackBarModule,
+    MatSelectInfiniteScrollModule,
     TranslateModule.forRoot({
       missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTranslationLoggerHandler},
       loader: {

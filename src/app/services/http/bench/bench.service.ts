@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
-import {ResourceService} from '../resource/resource.service';
+import {Injectable} from '@angular/core';
+import {PaginatorResponseToResultMapperType, ResourceService} from '../resource/resource.service';
 import {Bench, Greenhouse} from '../../../models';
 import {HttpClient} from '@angular/common/http';
 import {ResponseToSnackbarHandlerService} from '../response-to-snackbar-handler/response-to-snackbar-handler.service';
 import {forkJoin, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {GreenhouseService} from '../greenhouse/greenhouse.service';
-import {PaginatedResource} from '../../../models/paginated-resource';
+import {PaginatedResource} from '../../../utils/paginator/paginated-resource';
 import {classToPlain, plainToClass} from 'class-transformer';
+import {PaginatorParams} from '../../../utils/paginator/paginator-params';
+import {ListedResource} from '../../../utils/paginator/listed-resource';
 
 @Injectable({
   providedIn: 'root'
@@ -21,13 +23,14 @@ export class BenchService extends ResourceService<Bench> {
     super(http, responseToSnackbarHandler, Bench, 'benches');
   }
 
-  find(currentPage?: number, itemsPerPage?: number, greenhouse?: Greenhouse): Observable<PaginatedResource<Bench>> {
+  // tslint:disable-next-line:max-line-length
+  find(paginatorParams: PaginatorParams = new PaginatorParams(), responseToResultMapper: PaginatorResponseToResultMapperType<Bench> = PaginatedResource.createFromResponse, greenhouse?: Greenhouse): Observable<ListedResource<Bench>> {
     return this.http.get<Bench[]>(`${this.greenhouseService.getResourceEndpoint()}/${greenhouse.id}/benches`, {
-      params: this.getPaginationParams(currentPage, itemsPerPage),
+      params: this.buildPaginatorHttpParams(paginatorParams),
       observe: 'response'
     }).pipe(
       this.responseToSnackbarHandler.handle(this.translationPath + '.find'),
-      map(response => this.getPaginatedResources(response))
+      map(response => responseToResultMapper(this.typeClassReference, response))
     );
   }
 

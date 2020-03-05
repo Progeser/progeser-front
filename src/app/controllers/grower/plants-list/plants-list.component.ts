@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Plant} from '../../../models';
-import {PaginatedResource} from '../../../models/paginated-resource';
+import {PaginatedResource} from '../../../utils/paginator/paginated-resource';
 import {PaginatorComponent} from '../../../components';
 import {PlantService} from '../../../services/http/plant/plant.service';
 

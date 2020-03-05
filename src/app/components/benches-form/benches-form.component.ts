@@ -1,5 +1,5 @@
 import {Component, Input, ViewChild} from '@angular/core';
-import {PaginatedResource} from '../../models/paginated-resource';
+import {PaginatedResource} from '../../utils/paginator/paginated-resource';
 import {Bench, Greenhouse} from '../../models';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PaginatorComponent} from '../paginator/paginator.component';

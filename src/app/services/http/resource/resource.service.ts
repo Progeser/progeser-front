@@ -3,11 +3,14 @@ import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import {Resource} from '../../../models';
 import {Observable, of} from 'rxjs';
 import {BaseService} from '../base/base.service';
-import {PaginatedResource} from '../../../models/paginated-resource';
+import {PaginatedResource} from '../../../utils/paginator/paginated-resource';
 import {map} from 'rxjs/operators';
 import {ResponseToSnackbarHandlerService} from '../response-to-snackbar-handler/response-to-snackbar-handler.service';
 import {classToPlain, plainToClass} from 'class-transformer';
-import {ObjectUtils} from '../../../utils/objects/object-utils';
+import {isNullOrUndefined, isObject} from 'util';
+import {PaginatorParams} from '../../../utils/paginator/paginator-params';
+import {ListedResource} from '../../../utils/paginator/listed-resource';
+import merge from 'lodash/merge';
 
 @Injectable({
   providedIn: 'root'
@@ -23,18 +26,19 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
     this.resourceEndpoint = `${this.baseApiUrl}/${this.endpoint}`;
   }
 
-  find(currentPage?: number, itemsPerPage?: number): Observable<PaginatedResource<T>> {
-    return this.http.get<T[]>(this.getResourceEndpoint(), {
-      params: this.getPaginationParams(currentPage, itemsPerPage),
+  // tslint:disable-next-line:max-line-length
+  find(paginatorParams: PaginatorParams = new PaginatorParams(), responseToResultMapper: PaginatorResponseToResultMapperType<T> = PaginatedResource.createFromResponse): Observable<ListedResource<T>> {
+    return this.http.get(this.getResourceEndpoint(), {
+      params: this.buildPaginatorHttpParams(paginatorParams),
       observe: 'response'
     }).pipe(
       this.responseToSnackbarHandler.handle(this.translationPath + '.find'),
-      map(response => this.getPaginatedResources(response))
+      map(response => responseToResultMapper(this.typeClassReference, response))
     );
   }
 
   get(id?: number): Observable<T> {
-    if (undefined === id || null === id) {
+    if (isNullOrUndefined(id)) {
       return of(new this.typeClassReference());
     }
 
@@ -54,7 +58,7 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
   }
 
   delete(id: number): Observable<void> {
-    if (undefined === id || null === id) {
+    if (isNullOrUndefined(id)) {
       return of(null);
     }
 
@@ -62,7 +66,7 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
   }
 
   saveForm(resource: T, form: any): Observable<T> {
-    const mergedResource: T = ObjectUtils.mergeDeep(resource, form);
+    const mergedResource: T = merge(resource, form);
 
     if (mergedResource.isNewResource()) {
       return this.create(mergedResource);
@@ -81,21 +85,41 @@ export abstract class ResourceService<T extends Resource> extends BaseService {
     );
   }
 
-  protected getPaginationParams(currentPage = 1, itemsPerPage = 25): HttpParams {
-    return new HttpParams()
-      .set('page[number]', currentPage.toString())
-      .set('page[size]', itemsPerPage.toString());
+  protected buildPaginatorHttpParams(paginatorParams: PaginatorParams): HttpParams {
+    let httpParams = new HttpParams();
+
+    if (isNullOrUndefined(paginatorParams)) {
+      return httpParams;
+    }
+
+    httpParams = this.buildHttpPaginatorParams(httpParams, paginatorParams);
+    httpParams = this.buildHttpPaginatorFilterParams(httpParams, paginatorParams.filters);
+
+    return httpParams;
   }
 
-  protected getPaginatedResources(response: HttpResponse<T[]>): PaginatedResource<T> {
-    const headers = response.headers;
+  protected buildHttpPaginatorParams(httpParams: HttpParams, paginatorParams?: PaginatorParams): HttpParams {
+    return httpParams
+      .set('page[number]', paginatorParams.page.toString())
+      .set('page[size]', paginatorParams.itemsPerPage.toString());
+  }
 
-    return new PaginatedResource<T>(
-      parseInt(headers.get('Pagination-Current-Page'), 10),
-      parseInt(headers.get('Pagination-Per'), 10),
-      parseInt(headers.get('Pagination-Total-Pages'), 10),
-      parseInt(headers.get('Pagination-Total-Count'), 10),
-      plainToClass<T, object>(this.typeClassReference, response.body)
-    );
+  protected buildHttpPaginatorFilterParams(httpParams: HttpParams, filters: object): HttpParams {
+    if (!isObject(filters)) {
+      return httpParams;
+    }
+
+    for (const filterKey in filters) {
+      if (!filters.hasOwnProperty(filterKey)) {
+        continue;
+      }
+
+      httpParams = httpParams.set(`filter[${filterKey}]`, filters[filterKey]);
+    }
+
+    return httpParams;
   }
 }
+
+export type PaginatorResponseToResultMapperType<T> =
+  (classReference: new (...args: any[]) => T, response: HttpResponse<T[]>) => ListedResource<T>;

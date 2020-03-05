@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {Pot} from '../../../models/pot';
 import {PotService} from '../../../services/http/pot/pot.service';
-import {PaginatedResource} from '../../../models/paginated-resource';
+import {PaginatedResource} from '../../../utils/paginator/paginated-resource';
 import {PaginatorComponent} from '../../../components';
 
 @Component({

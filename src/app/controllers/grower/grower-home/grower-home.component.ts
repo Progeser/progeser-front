@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Request} from '../../../models';
 
 @Component({
@@ -6,7 +6,9 @@ import {Request} from '../../../models';
   templateUrl: './grower-home.component.html',
   styleUrls: ['./grower-home.component.scss']
 })
-export class GrowerHomeComponent implements OnInit {
+export class GrowerHomeComponent {
+  requestStatus = Request.STATUS;
+
   tableColumns = [
     'plant',
     'dueDate',
@@ -15,13 +17,4 @@ export class GrowerHomeComponent implements OnInit {
     'creationDate',
     'growerActions'
   ];
-
-  requests = Request.exampleData;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
 }

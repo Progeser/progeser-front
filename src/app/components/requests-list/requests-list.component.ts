@@ -1,37 +1,75 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material';
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Request} from '../../models';
 import {TranslateService} from '@ngx-translate/core';
+import {RequestService} from '../../services/http';
+import {PaginatedResource} from '../../utils/paginator/paginated-resource';
+import {PaginatorComponent} from '../paginator/paginator.component';
+import {isNullOrUndefined} from 'util';
+import {UserService} from '../../services';
+import {User} from '../../models/user';
 
 @Component({
   selector: 'app-requests-list',
   templateUrl: './requests-list.component.html',
   styleUrls: ['./requests-list.component.scss']
 })
-export class RequestsListComponent implements OnInit {
-  requestStatusLabels: string[] = Request.statusLabels;
-
+export class RequestsListComponent implements OnInit, AfterViewInit {
   @Input()
   columns: string[];
 
   @Input()
-  numberItemsPerPage = 10;
+  status: string;
 
-  @Input()
-  requests: Request[] = [];
+  @ViewChild('requestsPaginator', {static: true})
+  requestsPaginator: PaginatorComponent<Request>;
 
-  @ViewChild(MatPaginator, {static: false})
-  protected paginator: MatPaginator;
+  requests: PaginatedResource<Request> = null;
+  filters: object;
 
-  constructor(protected translateService: TranslateService) {
+  constructor(protected translateService: TranslateService,
+              protected userService: UserService,
+              protected httpRequestService: RequestService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.buildFilters();
   }
 
-  getLimitedRequests(): Request[] {
-    const startIndex = this.paginator ? this.paginator.pageIndex * this.numberItemsPerPage : 0;
+  ngAfterViewInit() {
+    this.requestsPaginator.pageChange.subscribe({
+      next: requests => this.requests = requests
+    });
+  }
 
-    return this.requests.slice(startIndex, startIndex + this.numberItemsPerPage);
+  acceptRequest(request: Request) {
+    this.httpRequestService.accept(request.id).subscribe();
+  }
+
+  rejectRequest(request: Request) {
+    this.httpRequestService.reject(request.id).subscribe();
+  }
+
+  cancelRequest(request: Request) {
+    this.httpRequestService.cancel(request.id).subscribe();
+  }
+
+  deleteRequest(request: Request) {
+    this.httpRequestService.delete(request.id).subscribe();
+  }
+
+  protected buildFilters() {
+    if (isNullOrUndefined(this.status)) {
+      this.filters = null;
+
+      return;
+    }
+
+    this.filters = {
+      status: this.status
+    };
+  }
+
+  userIsGrower(): boolean {
+    return this.userService.hasRole(User.roles[1]);
   }
 }

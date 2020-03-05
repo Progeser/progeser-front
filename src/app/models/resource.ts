@@ -1,7 +1,9 @@
+import {isNullOrUndefined} from 'util';
+
 export class Resource {
   id: number;
 
   isNewResource() {
-    return null === this.id || undefined === this.id;
+    return isNullOrUndefined(this.id);
   }
 }

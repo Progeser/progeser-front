@@ -1,7 +1,7 @@
 <nav class="top-actions-button">
-  <button mat-raised-button color="primary">
+  <a [routerLink]="['/manage-request']" color="primary" mat-raised-button>
     {{ 'phrases.newRequest'|translate }}
-  </button>
+  </a>
 </nav>
 
 <mat-tab-group class="mat-elevation-z3">
@@ -10,7 +10,9 @@
       {{ 'phrases.myRequests'|translate }}
     </ng-template>
 
-    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+    <ng-template matTabContent>
+      <app-requests-list [columns]="tableColumns"></app-requests-list>
+    </ng-template>
   </mat-tab>
 
   <mat-tab>
@@ -20,7 +22,9 @@
       </span>
     </ng-template>
 
-    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+    <ng-template matTabContent>
+      <app-requests-list [columns]="tableColumns" [status]="requestStatus[0]"></app-requests-list>
+    </ng-template>
   </mat-tab>
 
   <mat-tab>
@@ -30,7 +34,9 @@
       </span>
     </ng-template>
 
-    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+    <ng-template matTabContent>
+      <app-requests-list [columns]="tableColumns" [status]="requestStatus[3]"></app-requests-list>
+    </ng-template>
   </mat-tab>
 
   <mat-tab>
@@ -38,7 +44,9 @@
       {{ 'phrases.cancelledRequests'|translate }}
     </ng-template>
 
-    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+    <ng-template matTabContent>
+      <app-requests-list [columns]="tableColumns" [status]="requestStatus[4]"></app-requests-list>
+    </ng-template>
   </mat-tab>
 
   <mat-tab>
@@ -46,6 +54,8 @@
       {{ 'phrases.allRequests'|translate }}
     </ng-template>
 
-    <app-requests-list [columns]="tableColumns" [requests]="requests"></app-requests-list>
+    <ng-template matTabContent>
+      <app-requests-list [columns]="tableColumns"></app-requests-list>
+    </ng-template>
   </mat-tab>
 </mat-tab-group>

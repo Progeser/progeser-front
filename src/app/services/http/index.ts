@@ -4,3 +4,4 @@ export * from './invite/invite.service';
 export * from './pot/pot.service';
 export * from './greenhouse/greenhouse.service';
 export * from './bench/bench.service';
+export * from './request/request.service';

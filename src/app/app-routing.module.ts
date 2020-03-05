@@ -71,7 +71,28 @@ const routes: Routes = [
     canActivate: [RouteGuardService],
     data: {
       roles: User.roles,
-      breadcrumb: 'manageRequest'
+      breadcrumb: 'manageRequest',
+      visualization: false
+    }
+  },
+  {
+    path: 'manage-request/:id',
+    component: ManageRequestComponent,
+    canActivate: [RouteGuardService],
+    data: {
+      roles: User.roles,
+      breadcrumb: 'manageRequest',
+      visualization: false
+    }
+  },
+  {
+    path: 'manage-request/:id/see',
+    component: ManageRequestComponent,
+    canActivate: [RouteGuardService],
+    data: {
+      roles: [User.roles[1]],
+      breadcrumb: 'manageRequest',
+      visualization: true
     }
   },
   /* Grower routes */

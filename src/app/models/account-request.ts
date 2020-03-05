@@ -1,5 +1,6 @@
 import {Resource} from './resource';
-import {Type} from 'class-transformer';
+import {Transform} from 'class-transformer';
+import {transformDate} from '../utils/data-converters/date-converters';
 
 export class AccountRequest extends Resource {
   firstName: string;
@@ -8,9 +9,9 @@ export class AccountRequest extends Resource {
   comment?: string;
   accepted?: boolean;
 
-  @Type(() => Date)
+  @Transform(transformDate)
   createdAt?: Date;
 
-  @Type(() => Date)
+  @Transform(transformDate)
   updatedAt?: Date;
 }

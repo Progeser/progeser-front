@@ -49,7 +49,7 @@ export class PaginatorComponent<ItemsType extends Resource> implements OnInit {
     paginatorParamsBuilder.itemsPerPage = this.paginator.pageSize;
     paginatorParamsBuilder.filters = this.filters;
 
-    return this.fetcher.find(...[paginatorParamsBuilder.getPaginatorParams(), ...this.fetcherArguments]).pipe(
+    return this.fetcher.find(...[paginatorParamsBuilder.getPaginatorParams(), undefined, ...this.fetcherArguments]).pipe(
       map(resource => resource as PaginatedResource<ItemsType>)
     );
   }

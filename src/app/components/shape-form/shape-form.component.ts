@@ -15,6 +15,9 @@ export class ShapeFormComponent implements OnInit {
   shapes: Shape[];
 
   @Input()
+  areaUnit: string;
+
+  @Input()
   form: FormGroup;
 
   constructor(protected formBuilder: FormBuilder,

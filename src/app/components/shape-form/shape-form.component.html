@@ -13,7 +13,7 @@
 
   <ng-container *ngIf="null != form.get('shape') && null != form.get('shape').value">
     <mat-form-field *ngIf="form.get('area')">
-      <input [placeholder]="'words.surface'|translate" formControlName="area" matInput required type="number"/>
+      <input [placeholder]="('words.surface' + areaUnit)|translate" formControlName="area" matInput required type="number"/>
       <mat-error *ngIf="form.get('area').invalid">
         {{ 'validations.pleaseInputTheSurface'|translate }}
       </mat-error>
@@ -21,7 +21,7 @@
 
     <mat-form-field *ngFor="let dimension of form.get('dimensions').controls; let i = index">
       <input matInput [formControl]="dimension"
-             type="number" required [placeholder]="form.get('shape').value.dimensionNames[i]"/>
+             [placeholder]="form.get('shape').value.dimensionNames[i] + ('words.in' + areaUnit|translate)" required type="number"/>
       <mat-error *ngIf="dimension.invalid">
         {{ 'validations.pleaseInputTheDimension'|translate }}
       </mat-error>

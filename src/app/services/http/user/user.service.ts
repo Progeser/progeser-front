@@ -5,21 +5,21 @@ import {share, tap} from 'rxjs/operators';
 import {Token} from '../../../models/token';
 import {LoginAction} from '../../../models/actions/login-action';
 import {User} from '../../../models/user';
-import {BaseService} from '../base/base.service';
 import {ResponseToSnackbarHandlerService} from '../response-to-snackbar-handler/response-to-snackbar-handler.service';
 import {UpdateUserAction} from '../../../models/actions/update-user-action';
 import {isNull} from 'util';
+import {ResourceService} from '../resource/resource.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends BaseService {
+export class UserService extends ResourceService<User> {
   protected refreshTokenRequest: Observable<Token> = null;
   protected translationPath = 'user';
 
   constructor(protected http: HttpClient,
               protected responseToSnackbarHandler: ResponseToSnackbarHandlerService) {
-    super(http, responseToSnackbarHandler);
+    super(http, responseToSnackbarHandler, User, 'users');
   }
 
   login(loginAction: LoginAction): Observable<Token> {

@@ -5,6 +5,7 @@ import {AccountRequestService, InviteService, SnackbarService} from '../../../se
 import {PaginatedResource} from '../../../utils/paginator/paginated-resource';
 import {PaginatorComponent} from '../../../components/paginator/paginator.component';
 import {Invite} from '../../../models/invite';
+import {UserService} from '../../../services/http/user/user.service';
 
 @Component({
   selector: 'app-accounts-list',
@@ -15,13 +16,16 @@ export class AccountsListComponent implements AfterViewInit {
   getRoleLabel = User.getRoleLabel;
 
   usersColumns: string[] = ['firstName', 'lastName', 'role', 'actions'];
-  users: User[] = User.exampleData;
+  users: PaginatedResource<User>;
 
   accountRequestsColumns: string[] = ['firstName', 'lastName', 'actions'];
   accountRequests?: PaginatedResource<AccountRequest> = null;
 
   invitesColumns: string[] = ['firstName', 'lastName', 'actions'];
   invites?: PaginatedResource<Invite> = null;
+
+  @ViewChild('usersPaginator', {static: true})
+  usersPaginator: PaginatorComponent<User>;
 
   @ViewChild('accountRequestsPaginator', {static: true})
   accountRequestsPaginator: PaginatorComponent<AccountRequest>;
@@ -31,11 +35,15 @@ export class AccountsListComponent implements AfterViewInit {
 
   constructor(protected snackbarService: SnackbarService,
               protected httpAccountRequestService: AccountRequestService,
-              protected httpInviteService: InviteService) {
+              protected httpInviteService: InviteService,
+              protected httpUserService: UserService) {
   }
 
   ngAfterViewInit() {
-    // todo: list non-accepted requests only
+    this.usersPaginator.pageChange.subscribe({
+      next: users => this.users = users
+    });
+
     this.accountRequestsPaginator.pageChange.subscribe({
       next: accountRequests => this.accountRequests = accountRequests
     });

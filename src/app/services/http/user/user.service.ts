@@ -8,7 +8,6 @@ import {User} from '../../../models/user';
 import {BaseService} from '../base/base.service';
 import {ResponseToSnackbarHandlerService} from '../response-to-snackbar-handler/response-to-snackbar-handler.service';
 import {UpdateUserAction} from '../../../models/actions/update-user-action';
-import {FormGroup} from '@angular/forms';
 import {isNull} from 'util';
 
 @Injectable({
@@ -48,11 +47,17 @@ export class UserService extends BaseService {
     return this.handleRequest<User>('PUT', `${this.baseApiUrl}/me`, 'updateSelf', {body: updateUserAction});
   }
 
-  updatePassword(newPasswordForm: FormGroup): Observable<void> {
+  updatePassword(newPasswordForm): Observable<void> {
     return this.handleRequest<void>('PUT', `${this.baseApiUrl}/passwords`, 'updatePassword', {body: newPasswordForm});
   }
 
-  createFromInvite(inviteToken: string, userInformationForm: FormGroup): Observable<User> {
+  resetPassword(resetPasswordToken: string, newPasswordForm): Observable<User> {
+    const url = `${this.baseApiUrl}/passwords/${resetPasswordToken}/reset`;
+
+    return this.handleRequest<User>('PUT', url, 'resetPassword', {body: newPasswordForm});
+  }
+
+  createFromInvite(inviteToken: string, userInformationForm): Observable<User> {
     return this.handleRequest<User>(
       'POST',
       `${this.baseApiUrl}/users/${inviteToken}/create_from_invite`,
@@ -60,7 +65,7 @@ export class UserService extends BaseService {
       );
   }
 
-  createFromAccountRequest(creationToken: string, userInformationForm: FormGroup): Observable<User> {
+  createFromAccountRequest(creationToken: string, userInformationForm): Observable<User> {
     return this.handleRequest<User>(
       'POST',
       `${this.baseApiUrl}/users/${creationToken}/create_from_account_request`,

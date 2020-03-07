@@ -24,7 +24,8 @@ import {
   BreadcrumbComponent,
   ShapeFormComponent,
   PaginatorComponent,
-  BenchesFormComponent
+  BenchesFormComponent,
+  PasswordFormComponent
 } from './components';
 import {
   GrowerHomeComponent,
@@ -49,7 +50,8 @@ import {
   ManageAccountRequestComponent,
   ManagePotComponent,
   PotsListComponent,
-  CreateAccountComponent
+  CreateAccountComponent,
+  ResetPasswordComponent
 } from './controllers';
 import {ReactiveFormsModule} from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -107,7 +109,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ShapeFormComponent,
     PaginatorComponent,
     CreateAccountComponent,
-    BenchesFormComponent
+    BenchesFormComponent,
+    ResetPasswordComponent,
+    PasswordFormComponent
   ],
   imports: [
     HttpClientModule,

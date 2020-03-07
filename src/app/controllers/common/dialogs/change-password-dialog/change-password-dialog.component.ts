@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {validateMatchFormControl} from '../../../../validators/match-form-control';
 import {CrossFieldErrorMatcher} from '../../../../utils/error-matchers/cross-field-error-matcher';
 import {UserService} from '../../../../services/http/user/user.service';
 import {MatDialogRef} from '@angular/material';
@@ -26,17 +25,7 @@ export class ChangePasswordDialogComponent implements OnInit {
     this.form = this.formBuilder.group({
       currentPassword: this.formBuilder.control(null, [
         Validators.required
-      ]),
-      password: this.formBuilder.control(null, [
-        Validators.required
-      ]),
-      passwordConfirmation: this.formBuilder.control(null, [
-        Validators.required
       ])
-    }, {
-      validators: [
-        validateMatchFormControl(['password', 'passwordConfirmation'])
-      ]
     });
   }
 

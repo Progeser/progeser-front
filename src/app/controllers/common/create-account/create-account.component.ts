@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {validateMatchFormControl} from '../../../validators/match-form-control';
@@ -25,24 +25,11 @@ export class CreateAccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.creationType, this.token);
-
     this.initForm();
   }
 
   initForm() {
-    this.form = this.formBuilder.group({
-      password: this.formBuilder.control(null, [
-        Validators.required
-      ]),
-      passwordConfirmation: this.formBuilder.control(null, [
-        Validators.required
-      ])
-    }, {
-      validators: [
-        validateMatchFormControl(['password', 'passwordConfirmation'])
-      ]
-    });
+    this.form = this.formBuilder.group({});
 
     if (UserService.CREATION_TYPES[1] === this.creationType) {
       this.form.addControl('laboratory', this.formBuilder.control(null));

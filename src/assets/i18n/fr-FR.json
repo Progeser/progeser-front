@@ -193,7 +193,8 @@
     "manageAccountRights": "Gestion des droits d'un utilisateur",
     "manageAccountRequest": "Gestion d'une demande de compte utilisateur",
     "greenhouseCalendar": "Calendrier de serre",
-    "finalizeMyAccount": "Finaliser mon inscription"
+    "finalizeMyAccount": "Finaliser mon inscription",
+    "resetMyPassword": "Réinitialiser mon mot de passe"
   },
   "httpToSnackbarMessages": {
     "user": {
@@ -231,6 +232,10 @@
         },
         "success": "Un e-mail va vous être envoyé pour réinitialiser votre mot de passe.",
         "error": "Une erreur est survenue lors de la demande de réinitialisation du mot de passe."
+      },
+      "resetPassword": {
+        "success": "Votre mot de passe a bien été modifié.",
+        "error": "Une erreur est survenue lors de la modification du mot de passe."
       }
     },
     "accountRequest": {

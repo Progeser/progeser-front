@@ -6,3 +6,4 @@ export * from './breadcrumb/breadcrumb.component';
 export * from './shape-form/shape-form.component';
 export * from './paginator/paginator.component';
 export * from './benches-form/benches-form.component';
+export * from './password-form/password-form.component';

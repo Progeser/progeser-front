@@ -8,6 +8,7 @@ import {catchError, switchMap, tap} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
 import {LoginAction} from '../../models/actions/login-action';
 import {UpdateUserAction} from '../../models/actions/update-user-action';
+import {isNullOrUndefined} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -26,49 +27,18 @@ export class UserService {
               protected snackbarService: SnackbarService) {
   }
 
-  createUser(creationType: string, creationToken: string, userInformationForm): Observable<User> {
-    let observable: Observable<User>;
-    if (creationType === UserService.CREATION_TYPES[0]) {
-      observable = this.httpUserService.createFromInvite(creationToken, userInformationForm);
-    } else {
-      observable = this.httpUserService.createFromAccountRequest(creationToken, userInformationForm);
-    }
-
-    return observable.pipe(
-      tap(user => this.setUserAfterCreation(user))
-    );
-  }
-
-  updateUser(updateUserAction: UpdateUserAction): Observable<User> {
-    return this.httpUserService.updateSelf(updateUserAction).pipe(
-      tap((user) => this.loggedUser = user)
-    );
-  }
-
   get user(): User {
     return this.loggedUser;
   }
 
-  get token(): Token {
-    return this.userToken;
-  }
-
-  hasToken(): boolean {
-    return null != this.token;
-  }
-
-  isUserLoggedIn(): boolean {
-    return this.hasToken() && null !== this.user;
-  }
-
-  hasRole(role: string): boolean {
-    return this.isUserLoggedIn() && this.user.role === role;
-  }
-
-  setUserAfterCreation(user: User) {
+  set user(user: User) {
     this.userToken = user.token;
     user.token = null;
     this.loggedUser = user;
+  }
+
+  get token(): Token {
+    return this.userToken;
   }
 
   login(login: LoginAction) {
@@ -101,5 +71,42 @@ export class UserService {
   logoutAfterSessionExpired() {
     this.logout();
     this.snackbarService.error('Votre session a expiré, merci de vous reconnecter pour continuer à utiliser l\'application.');
+  }
+
+  updateUser(updateUserAction: UpdateUserAction): Observable<User> {
+    return this.httpUserService.updateSelf(updateUserAction).pipe(
+      tap((user) => this.loggedUser = user)
+    );
+  }
+
+  createUser(creationType: string, creationToken: string, userInformationForm): Observable<User> {
+    let observable: Observable<User>;
+    if (creationType === UserService.CREATION_TYPES[0]) {
+      observable = this.httpUserService.createFromInvite(creationToken, userInformationForm);
+    } else {
+      observable = this.httpUserService.createFromAccountRequest(creationToken, userInformationForm);
+    }
+
+    return observable.pipe(
+      tap(user => this.user = user)
+    );
+  }
+
+  resetForgottenPassword(token: string, forgotPasswordForm) {
+    return this.httpUserService.resetPassword(token, forgotPasswordForm).pipe(
+      tap(user => this.user = user)
+    );
+  }
+
+  hasToken(): boolean {
+    return !isNullOrUndefined(this.token);
+  }
+
+  isUserLoggedIn(): boolean {
+    return this.hasToken() && null !== this.user;
+  }
+
+  hasRole(role: string): boolean {
+    return this.isUserLoggedIn() && this.user.role === role;
   }
 }

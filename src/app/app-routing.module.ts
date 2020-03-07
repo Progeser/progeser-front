@@ -19,7 +19,8 @@ import {
   ManageAccountRequestComponent,
   ManagePotComponent,
   PotsListComponent,
-  CreateAccountComponent
+  CreateAccountComponent,
+  ResetPasswordComponent
 } from './controllers';
 import {RouteGuardService, UserService} from './services';
 import {User} from './models/user';
@@ -54,6 +55,13 @@ const routes: Routes = [
     data: {
       breadcrumb: 'finalizeMyAccount',
       type: UserService.CREATION_TYPES[1]
+    }
+  },
+  {
+    path: 'reset-password/:token',
+    component: ResetPasswordComponent,
+    data: {
+      breadcrumb: 'resetMyPassword'
     }
   },
   {

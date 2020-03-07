@@ -1,6 +1,23 @@
 import {TransformationType} from 'class-transformer';
+import {isNumber} from 'util';
 
-export function transformCentimeterAttribute(value, object: object, type): any {
+export function transformIntegerMeterAttribute(value, object: object, type): any {
+  if (!isNumber(value)) {
+    return value;
+  }
+
+  if (TransformationType.PLAIN_TO_CLASS === type) {
+    return value / 100;
+  }
+
+  if (TransformationType.CLASS_TO_PLAIN === type) {
+    return value * 100;
+  }
+
+  return undefined;
+}
+
+export function transformFloatCentimeterAttribute(value, object: object, type): any {
   if (TransformationType.PLAIN_TO_CLASS === type) {
     return Number(value);
   }
@@ -12,7 +29,7 @@ export function transformCentimeterAttribute(value, object: object, type): any {
   return undefined;
 }
 
-export function transformMeterAttribute(value, object: object, type): any {
+export function transformFloatMeterAttribute(value, object: object, type): any {
   if (TransformationType.PLAIN_TO_CLASS === type) {
     return Number(value / 100);
   }

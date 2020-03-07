@@ -1,7 +1,7 @@
 import {TransformationType} from 'class-transformer';
 import {ModelableInterface, Shape} from '../../models/shape';
 import {isNullOrUndefined} from 'util';
-import {transformCentimeterAttribute, transformMeterAttribute} from './unit-converters';
+import {transformFloatCentimeterAttribute, transformFloatMeterAttribute, transformIntegerMeterAttribute} from './unit-converters';
 
 export function transformShapeAttribute(value, modelable: ModelableInterface, type): any {
   if (TransformationType.CLASS_TO_PLAIN === type) {
@@ -16,7 +16,7 @@ export function transformShapeAreaCentimeterAttribute(value, modelable: Modelabl
     return undefined;
   }
 
-  return transformCentimeterAttribute(value, modelable, type);
+  return transformFloatCentimeterAttribute(value, modelable, type);
 }
 
 export function transformShapeAreaMeterAttribute(value, modelable: ModelableInterface, type): any {
@@ -24,7 +24,7 @@ export function transformShapeAreaMeterAttribute(value, modelable: ModelableInte
     return undefined;
   }
 
-  return transformMeterAttribute(value, modelable, type);
+  return transformFloatMeterAttribute(value, modelable, type);
 }
 
 export function transformCentimeterDimensionAttribute(value, modelable: ModelableInterface, type): any {
@@ -47,7 +47,7 @@ export function transformMeterDimensionAttribute(value: number[] | null | undefi
       return [];
     }
 
-    return value.map(dimension => transformMeterAttribute(dimension, modelable, type));
+    return value.map(dimension => transformIntegerMeterAttribute(dimension, modelable, type));
   }
 
   if (TransformationType.CLASS_TO_PLAIN === type) {
@@ -55,7 +55,7 @@ export function transformMeterDimensionAttribute(value: number[] | null | undefi
       return undefined;
     }
 
-    return value.map(dimension => transformMeterAttribute(dimension, modelable, type));
+    return value.map(dimension => transformIntegerMeterAttribute(dimension, modelable, type));
   }
 
   return value;

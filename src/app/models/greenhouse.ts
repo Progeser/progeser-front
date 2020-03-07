@@ -1,17 +1,17 @@
 import {Bench} from './bench';
 import {Resource} from './resource';
 import {Transform, Type} from 'class-transformer';
-import {transformMeterAttribute} from '../utils/data-converters/unit-converters';
+import {transformIntegerMeterAttribute} from '../utils/data-converters/unit-converters';
 
 export class Greenhouse extends Resource {
   static exampleData: Greenhouse[] = [];
 
   name: string;
 
-  @Transform(transformMeterAttribute)
+  @Transform(transformIntegerMeterAttribute)
   height: number;
 
-  @Transform(transformMeterAttribute)
+  @Transform(transformIntegerMeterAttribute)
   width: number;
 
   @Type(() => Bench)

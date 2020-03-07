@@ -240,6 +240,9 @@
       "resetPassword": {
         "success": "Votre mot de passe a bien été modifié.",
         "error": "Une erreur est survenue lors de la modification du mot de passe."
+      },
+      "find": {
+        "error": "Une erreur est survenue lors de la récupération des utilisateurs."
       }
     },
     "accountRequest": {

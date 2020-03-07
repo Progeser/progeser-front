@@ -15,7 +15,7 @@ import {UserService} from '../../../services/http/user/user.service';
 export class AccountsListComponent implements AfterViewInit {
   getRoleLabel = User.getRoleLabel;
 
-  usersColumns: string[] = ['firstName', 'lastName', 'role', 'actions'];
+  usersColumns: string[] = ['firstName', 'lastName', 'role'];
   users: PaginatedResource<User>;
 
   accountRequestsColumns: string[] = ['firstName', 'lastName', 'actions'];

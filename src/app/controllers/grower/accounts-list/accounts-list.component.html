@@ -98,9 +98,15 @@
         <th mat-header-cell *matHeaderCellDef>{{ 'words.actions'|translate }}</th>
         <td mat-cell *matCellDef="let invite; let i = index">
           <button mat-icon-button
-                  [matTooltip]="'phrases.cancelTheInvite'|translate"
+                  (click)="retryInvite(invite.id)"
                   matTooltipPosition="after"
-                  (click)="cancelInvite(invite.id, i)">
+                  [matTooltip]="'phrases.retryTheInvite'|translate">
+            <mat-icon>replay</mat-icon>
+          </button>
+          <button (click)="cancelInvite(invite.id, i)"
+                  [matTooltip]="'phrases.cancelTheInvite'|translate"
+                  mat-icon-button
+                  matTooltipPosition="after">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

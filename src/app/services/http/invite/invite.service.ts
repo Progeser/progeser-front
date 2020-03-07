@@ -17,6 +17,6 @@ export class InviteService extends ResourceService<Invite> {
   }
 
   retry(inviteId: number): Observable<void> {
-    return this.handleRequest('POST', `/${inviteId}/retry`, 'retry');
+    return this.handleRequest('POST', `${this.getResourceEndpoint()}/${inviteId}/retry`, 'retry');
   }
 }

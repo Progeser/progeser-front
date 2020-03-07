@@ -6,6 +6,8 @@ import {PaginatedResource} from '../../../utils/paginator/paginated-resource';
 import {PaginatorComponent} from '../../../components/paginator/paginator.component';
 import {Invite} from '../../../models/invite';
 import {UserService} from '../../../services/http/user/user.service';
+import {ConfirmationDialogService} from '../../../services/confirmation-dialog/confirmation-dialog.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-accounts-list',
@@ -34,6 +36,7 @@ export class AccountsListComponent implements AfterViewInit {
   invitesPaginator: PaginatorComponent<Invite>;
 
   constructor(protected snackbarService: SnackbarService,
+              protected confirmationService: ConfirmationDialogService,
               protected httpAccountRequestService: AccountRequestService,
               protected httpInviteService: InviteService,
               protected httpUserService: UserService) {
@@ -59,8 +62,16 @@ export class AccountsListComponent implements AfterViewInit {
     });
   }
 
+  retryInvite(inviteId: number) {
+    this.confirmationService.confirm(undefined, 'confirmations.invites.retry').pipe(
+      switchMap(() => this.httpInviteService.retry(inviteId))
+    ).subscribe();
+  }
+
   cancelInvite(inviteId: number, inviteIndex: number) {
-    this.httpInviteService.delete(inviteId).subscribe({
+    this.confirmationService.confirm(undefined, 'confirmations.invites.delete').pipe(
+      switchMap(() => this.httpInviteService.delete(inviteId))
+    ).subscribe({
       next: () => this.invites.removeItemByIndex(inviteIndex)
     });
   }

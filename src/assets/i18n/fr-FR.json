@@ -131,6 +131,7 @@
     "nextPage": "Page suivante",
     "ofItems": "sur",
     "sentInvitations": "Invitations envoyées",
+    "retryTheInvite": "Renvoyer l'invitation",
     "cancelTheInvite": "Annuler l'invitation",
     "saveMyPassword": "Enregistrer mon mot de passe",
     "areYouSure": "Êtes-vous sûr ?"
@@ -144,6 +145,10 @@
     },
     "plants": {
       "delete": "Êtes-vous sûr de vouloir supprimer la plante ?"
+    },
+    "invites": {
+      "retry": "Êtes-vous sûr de vouloir renvoyer l'invitation ?",
+      "delete": "Êtes-vous sûr de vouloir supprimer l'invitation ?"
     }
   },
   "validations": {
@@ -287,6 +292,10 @@
         },
         "success": "L'invitation a bien été envoyée.",
         "error": "Une erreur est survenue lors de l'envoi de l'invitation."
+      },
+      "retry": {
+        "success": "L'invitation a bien été renvoyée.",
+        "error": "L'invitation n'a pas pu être renvoyée."
       },
       "delete": {
         "success": "L'invitation a bien été annulée.",

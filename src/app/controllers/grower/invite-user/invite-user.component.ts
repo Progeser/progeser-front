@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../../models/user';
 import {InviteService} from '../../../services/http';
 import {Router} from '@angular/router';
+import {Invite} from '../../../models/invite';
 
 @Component({
   selector: 'app-invite-user',
@@ -43,7 +44,7 @@ export class InviteUserComponent implements OnInit {
       return;
     }
 
-    this.httpInviteService.create(this.form.value).subscribe({
+    this.httpInviteService.saveForm(new Invite(), this.form.value).subscribe({
       next: () => this.router.navigate(['/grower/accounts-list'])
     });
   }

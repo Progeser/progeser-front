@@ -119,7 +119,7 @@ export class ManageRequestComponent implements OnInit {
       dueDate: this.formBuilder.control(this.request.dueDate, [
         Validators.required
       ]),
-      plantNotExists: this.formBuilder.control(this.request.isNewResource() || this.request.plantNotExists),
+      plantNotExists: this.formBuilder.control(true === this.request.plantNotExists),
       quantity: this.formBuilder.control(this.request.quantity, [
         Validators.required
       ]),

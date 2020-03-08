@@ -28,8 +28,7 @@ import {
   PasswordFormComponent
 } from './components';
 import {
-  GrowerHomeComponent,
-  RequesterHomeComponent,
+  HomeComponent,
   ManageRequestComponent,
   ManagePlantComponent,
   ManageRequestDistributionComponent,
@@ -41,7 +40,6 @@ import {
   InviteUserComponent,
   ManageAccountComponent,
   GreenhouseCalendarComponent,
-  HomeRouterComponent,
   ManageGreenhouseComponent,
   ConfirmationDialogComponent,
   ChangePasswordDialogComponent,
@@ -80,8 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderComponent,
     MenuComponent,
     LoggedUserComponent,
-    GrowerHomeComponent,
-    RequesterHomeComponent,
+    HomeComponent,
     RequestsListComponent,
     ManageRequestComponent,
     ManagePlantComponent,
@@ -97,7 +94,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     ManageGreenhouseComponent,
     ManageAccountComponent,
     GreenhouseCalendarComponent,
-    HomeRouterComponent,
     SnackbarComponent,
     ConfirmationDialogComponent,
     ChangePasswordDialogComponent,

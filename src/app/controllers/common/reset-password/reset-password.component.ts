@@ -40,7 +40,7 @@ export class ResetPasswordComponent implements OnInit {
     }
 
     this.userService.resetForgottenPassword(this.token, this.form.value).subscribe({
-      next: () => this.router.navigate(['/common-home'])
+      next: () => this.router.navigate(['/home'])
     });
   }
 

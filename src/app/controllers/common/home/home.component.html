@@ -7,15 +7,15 @@
 <mat-tab-group class="mat-elevation-z3">
   <mat-tab>
     <ng-template mat-tab-label>
-      {{ 'phrases.myRequests'|translate }}
+      <ng-container>
+        {{ 'phrases.myRequests'|translate }}
+      </ng-container>
     </ng-template>
 
-    <ng-template matTabContent>
-      <app-requests-list [columns]="tableColumns"></app-requests-list>
-    </ng-template>
+    <app-requests-list [columns]="tableColumns"></app-requests-list>
   </mat-tab>
 
-  <mat-tab>
+  <mat-tab *ngIf="userIsGrower()">
     <ng-template mat-tab-label>
       <span matBadge="4" matBadgeOverlap="false" matBadgeColor="warn">
         {{ 'phrases.waitingRequests'|translate }}
@@ -27,7 +27,7 @@
     </ng-template>
   </mat-tab>
 
-  <mat-tab>
+  <mat-tab *ngIf="userIsGrower()">
     <ng-template mat-tab-label>
       <span matBadge="1" matBadgeOverlap="false" matBadgeColor="warn">
         {{ 'phrases.requestsOfCancelling'|translate }}
@@ -41,15 +41,15 @@
 
   <mat-tab>
     <ng-template mat-tab-label>
-      {{ 'phrases.cancelledRequests'|translate }}
+      <ng-container>
+        {{ 'phrases.cancelledRequests'|translate }}
+      </ng-container>
     </ng-template>
 
-    <ng-template matTabContent>
-      <app-requests-list [columns]="tableColumns" [status]="requestStatus[4]"></app-requests-list>
-    </ng-template>
+    <app-requests-list [columns]="tableColumns"></app-requests-list>
   </mat-tab>
 
-  <mat-tab>
+  <mat-tab *ngIf="userIsGrower()">
     <ng-template mat-tab-label>
       {{ 'phrases.allRequests'|translate }}
     </ng-template>

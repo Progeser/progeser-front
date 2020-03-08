@@ -1,13 +1,7 @@
 <nav [ngClass]="{'l-menu': true, 'l-menu-open': isOpen}" *ngIf="userService.isUserLoggedIn()">
   <ul class="l-menu-items">
-    <li *ngIf="userService.hasRole(roles[1])">
-      <a [routerLink]="['/grower-home']" [routerLinkActive]="'active-menu-item'">
-        <mat-icon fontSet="fa" fontIcon="fa-home"></mat-icon>
-        <span>{{ 'words.home'|translate }}</span>
-      </a>
-    </li>
-    <li *ngIf="userService.hasRole(roles[0])">
-      <a [routerLink]="['/requester-home']" [routerLinkActive]="'active-menu-item'">
+    <li>
+      <a [routerLinkActive]="'active-menu-item'" [routerLink]="['/home']">
         <mat-icon fontSet="fa" fontIcon="fa-home"></mat-icon>
         <span>{{ 'words.home'|translate }}</span>
       </a>

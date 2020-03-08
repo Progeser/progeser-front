@@ -46,7 +46,7 @@ export class UserService {
       tap(userToken => this.userToken = userToken),
       switchMap(() => this.httpUserService.getSelf()),
       tap(loggedUser => this.loggedUser = loggedUser),
-      tap(() => this.router.navigate(['/common-home']))
+      tap(() => this.router.navigate(['/home']))
     ).subscribe();
   }
 
@@ -65,7 +65,7 @@ export class UserService {
     this.loggedUser = null;
     this.userToken = null;
 
-    this.router.navigate(['/common-home']);
+    this.router.navigate(['/home']);
   }
 
   logoutAfterSessionExpired() {

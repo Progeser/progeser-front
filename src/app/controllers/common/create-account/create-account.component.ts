@@ -42,7 +42,7 @@ export class CreateAccountComponent implements OnInit {
     }
 
     this.userService.createUser(this.creationType, this.token, this.form.value).subscribe({
-      next: () => this.router.navigate(['/common-home'])
+      next: () => this.router.navigate(['/home'])
     });
   }
 }

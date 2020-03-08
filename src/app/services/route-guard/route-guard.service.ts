@@ -20,7 +20,7 @@ export class RouteGuardService implements CanActivate {
 
     if (null != route.data.roles
       && !route.data.roles.some(role => this.userService.user.role === role)) {
-      this.router.navigate(['/common-home']);
+      this.router.navigate(['/home']);
 
       return false;
     }

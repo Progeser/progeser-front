@@ -1,8 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {
-  GrowerHomeComponent,
-  RequesterHomeComponent,
+  HomeComponent,
   ManageRequestComponent,
   ManagePlantComponent,
   ManageRequestDistributionComponent,
@@ -12,7 +11,6 @@ import {
   InviteUserComponent,
   ManageAccountComponent,
   GreenhouseCalendarComponent,
-  HomeRouterComponent,
   ManageGreenhouseComponent,
   AccountsListComponent,
   ManageAccountRightsComponent,
@@ -28,8 +26,9 @@ import {User} from './models/user';
 const routes: Routes = [
   /* Common routes */
   {
-    path: 'common-home',
-    component: HomeRouterComponent,
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [RouteGuardService],
     data: {
       breadcrumb: false
     }
@@ -104,15 +103,6 @@ const routes: Routes = [
     }
   },
   /* Grower routes */
-  {
-    path: 'grower-home',
-    component: GrowerHomeComponent,
-    canActivate: [RouteGuardService],
-    data: {
-      roles: [User.roles[1]],
-      breadcrumb: null
-    }
-  },
   {
     path: 'grower/manage-request-distribution',
     component: ManageRequestDistributionComponent,
@@ -248,19 +238,11 @@ const routes: Routes = [
       breadcrumb: 'greenhouseCalendar'
     }
   },
-  /* Requester routes */
-  {
-    path: 'requester-home',
-    canActivate: [RouteGuardService],
-    component: RequesterHomeComponent,
-    data: {
-      roles: [User.roles[0]],
-      breadcrumb: null
-    }
-  },
+  /* Default route */
   {
     path: '**',
-    component: HomeRouterComponent,
+    canActivate: [RouteGuardService],
+    component: HomeComponent,
     data: {
       breadcrumb: null
     }

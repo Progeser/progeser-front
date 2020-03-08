@@ -9,19 +9,6 @@
       <input matInput formControlName="lastName"
              required [placeholder]="'words.lastName'|translate"/>
     </mat-form-field>
-
-    <!-- todo: add possibility to choose end validity date of the account directly before validation
-      <mat-form-field>
-        <input matInput formControlName="validUntil" [matDatepicker]="picker"
-               [placeholder]="'phrases.endValidityDate'|translate"
-               [min]="minValidityDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="form.get('validUntil').invalid">
-          {{ 'validations.pleaseInputAValidDate'|translate }}
-        </mat-error>
-      </mat-form-field>
-    -->
   </div>
 
   <div class="inline-form-fields">

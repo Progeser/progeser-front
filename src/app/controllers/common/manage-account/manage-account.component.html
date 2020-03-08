@@ -26,27 +26,6 @@
     <mat-form-field>
       <input matInput formControlName="laboratory" [placeholder]="'words.laboratory'|translate"/>
     </mat-form-field>
-
-    <!-- todo: possibility to choose a responsible
-    <mat-form-field *ngIf="!form.get('responsibleNotExists').value; else responsibleNotFound">
-        <mat-label>{{ 'words.responsible'|translate }}</mat-label>
-        <mat-select formControlName="responsible">
-          <mat-option *ngFor="let user of users" [value]="user">
-            {{ user.firstName }} {{ user.lastName }}
-          </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <ng-template #responsibleNotFound>
-      <mat-form-field>
-        <input matInput formControlName="responsible" [placeholder]="'words.responsible'|translate" />
-      </mat-form-field>
-    </ng-template>
-
-    <mat-checkbox formControlName="responsibleNotExists">
-      {{ 'phrases.IDontFindMyResponsible'|translate }}
-    </mat-checkbox>
-    -->
   </div>
 
   <button mat-raised-button color="primary" type="submit">{{ 'words.validate'|translate }}</button>

@@ -18,10 +18,4 @@ export class Greenhouse extends Resource {
   benches: Bench[] = [];
 
   occupancy: number;
-
-  calculateArableArea() {
-    return this.benches
-      .map(bench => bench.area)
-      .reduce((accumulator, current) => accumulator + current, 0);
-  }
 }

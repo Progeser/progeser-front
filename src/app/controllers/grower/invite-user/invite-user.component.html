@@ -36,15 +36,5 @@
     <input matInput type="text" formControlName="laboratory" [placeholder]="'phrases.userToInviteLaboratory'|translate"/>
   </mat-form-field>
 
-  <!-- todo: add possibility to choose end validity date of the account directly when inviting
-  <mat-form-field>
-    <input matInput formControlName="userValidUntil" [matDatepicker]="picker"
-           [placeholder]="'phrases.accountValidityEndDate'|translate"
-           [min]="minValidityDate">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  -->
-
   <button mat-raised-button color="primary" type="submit">{{ 'phrases.sendInvitation'|translate }}</button>
 </form>

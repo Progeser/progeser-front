@@ -20,7 +20,6 @@ export class User extends Resource {
   role: string;
   validUntil?: Date;
   laboratory?: string;
-  responsible?: User | string;
   token?: Token; // In case the token is delivered directly when creating the account (after invite or request)
 
   static getRolesLabel(roles: string[]) {

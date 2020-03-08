@@ -16,9 +16,6 @@ export class GreenhousesListComponent implements AfterViewInit {
     'name',
     'realSurface',
     'occupancy',
-    // todo: add back this columns when available in API
-    // 'arableSurface',
-    // 'numberOfBenches',
     'actions'
   ];
   greenhouses: PaginatedResource<Greenhouse> = null;

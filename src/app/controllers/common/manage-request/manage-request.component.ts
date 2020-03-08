@@ -96,14 +96,6 @@ export class ManageRequestComponent implements OnInit {
     // todo: disable loading more plants when all plants of the database have been loaded
   }
 
-  submitForm() {
-    if (this.form.invalid) {
-      return;
-    }
-
-    this.httpRequestService.saveForm(this.request, this.form.value).subscribe();
-  }
-
   switchInputMethodOnPlantExistenceChange() {
     this.form.get('plantNotExists').valueChanges.subscribe({
       next: () => this.disablePlantInputAccordingToPlantExistence()
@@ -150,6 +142,16 @@ export class ManageRequestComponent implements OnInit {
     if (this.shouldDisableForm()) {
       this.form.disable();
     }
+  }
+
+  submitForm() {
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.httpRequestService.saveForm(this.request, this.form.value).subscribe({
+      next: request => this.request = request
+    });
   }
 
   disablePlantInputAccordingToPlantExistence() {

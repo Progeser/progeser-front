@@ -41,7 +41,7 @@
     <ng-template #plantExistsFormPart>
       <mat-form-field>
         <mat-label>{{ 'words.plant'|translate }}</mat-label>
-        <mat-select formControlName="plant" required>
+        <mat-select [compareWith]="compareById" formControlName="plant" required>
           <mat-option *ngFor="let plant of plantsPaginatedResource.items" [value]="plant">
             {{ plant.name }}
           </mat-option>
@@ -51,7 +51,7 @@
 
       <mat-form-field>
         <mat-label>{{ 'phrases.desiredPlantStageAtDueDate'|translate }}</mat-label>
-        <mat-select (infiniteScroll)="loadMorePlants()" formControlName="plantStage">
+        <mat-select (infiniteScroll)="loadMorePlants()" [compareWith]="compareById" formControlName="plantStage" required>
           <mat-option *ngFor="let stage of plantStages" [value]="stage">
             {{ stage.name }}
           </mat-option>

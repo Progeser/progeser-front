@@ -3,14 +3,18 @@ import {PlantStage} from './plant-stage';
 import {RequestDistribution} from './request-distribution';
 import {Resource} from './resource';
 import {Expose, Transform, Type} from 'class-transformer';
-import {transformNestedResourceIntoIdentifier} from '../utils/data-converters/resource-converters';
 import {transformDate} from '../utils/data-converters/date-converters';
+import {
+  transformKnownPlantAttribute,
+  transformPlantNotExistsAttribute,
+  transformUnknownPlantAttribute
+} from '../utils/data-converters/request-converters';
 
 export class Request extends Resource {
   static STATUS = [
     'pending',
     'accepted',
-    'declined',
+    'refused',
     'in_cancelation',
     'canceled'
   ];
@@ -37,23 +41,30 @@ export class Request extends Resource {
 
   comment?: string;
   color?: string;
-  plantNotExists: boolean;
   quantity: number;
 
-  // Plant and plantStage can be both Plant object or string as they could be an already known plant or the plant name
-  @Transform(transformNestedResourceIntoIdentifier)
-  @Expose({ name: 'plantId' })
-  plant?: Plant;
+  @Expose({toClassOnly: true})
+  @Transform(transformPlantNotExistsAttribute)
+  plantNotExists: boolean;
 
-  @Transform(transformNestedResourceIntoIdentifier)
-  @Expose({ name: 'plantStageId' })
-  plantStage?: PlantStage;
+  @Expose({name: 'plantId'})
+  @Transform(transformKnownPlantAttribute)
+  plant?: Plant | number;
 
+  @Expose({name: 'plantStageId'})
+  @Transform(transformKnownPlantAttribute)
+  plantStage?: PlantStage | number;
+
+  @Transform(transformUnknownPlantAttribute)
   plantName: string;
+
+  @Transform(transformUnknownPlantAttribute)
   plantStageName: string;
 
   temperature?: number;
   photoperiod?: number;
+
+  authorId: number;
 
   @Type(() => RequestDistribution)
   distributions?: RequestDistribution[] = [];

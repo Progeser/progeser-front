@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Plant, Request} from '../../../models';
+import {Plant, PlantStage, Request} from '../../../models';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RequestService} from '../../../services/http';
 import {map, switchMap} from 'rxjs/operators';
@@ -11,6 +11,7 @@ import {combineLatest} from 'rxjs';
 import {PlantService} from '../../../services/http/plant/plant.service';
 import {InfiniteScrollableResource} from '../../../utils/paginator/infinite-scrollable-resource';
 import {PaginatorParamsBuilder} from '../../../utils/paginator/paginator-params-builder';
+import {compareByProperty} from '../../../utils/comparators/compare-by-property';
 
 @Component({
   selector: 'app-manage-request',
@@ -18,6 +19,8 @@ import {PaginatorParamsBuilder} from '../../../utils/paginator/paginator-params-
   styleUrls: ['./manage-request.component.scss']
 })
 export class ManageRequestComponent implements OnInit {
+  compareById = compareByProperty('id');
+
   visualizationMode = true;
   request: Request = null;
   form: FormGroup;
@@ -31,6 +34,14 @@ export class ManageRequestComponent implements OnInit {
               protected userService: UserService,
               protected httpRequestService: RequestService,
               protected httpPlantService: PlantService) {
+  }
+
+  get plantStages(): PlantStage[] {
+    if (isNullOrUndefined(this.form.get('plant').value)) {
+      return [];
+    }
+
+    return this.form.get('plant').value.stages;
   }
 
   ngOnInit() {
@@ -47,28 +58,24 @@ export class ManageRequestComponent implements OnInit {
         this.visualizationMode = visualizationMode;
         this.plantsPaginatedResource = plantsPaginatedResource as InfiniteScrollableResource<Plant>;
         this.request = request;
+
         this.initForm();
+        this.fillRequestNestedObjects();
       },
       error: () => this.router.navigate(['/home-router'])
     });
   }
 
-  get plantStages() {
-    if (isNullOrUndefined(this.form.get('plant').value)) {
-      return [];
+  fillRequestNestedObjects() {
+    if (!isNullOrUndefined(this.request.plant)) {
+      this.request.plant = this.plantsPaginatedResource.items.find(plant => this.request.plant === plant.id);
+      this.form.get('plant').setValue(this.request.plant);
     }
 
-    return this.form.get('plant').value.stages;
-  }
-
-  submitForm() {
-    if (this.form.invalid) {
-      return;
+    if (!isNullOrUndefined(this.request.plantStage)) {
+      this.request.plantStage = (this.request.plant as Plant).stages.find(plantStage => this.request.plantStage === plantStage.id);
+      this.form.get('plantStage').setValue(this.request.plantStage);
     }
-
-    this.httpRequestService.saveForm(this.request, this.form.value).subscribe({
-      error: err => console.error(err)
-    });
   }
 
   shouldDisableForm(): boolean {
@@ -80,6 +87,29 @@ export class ManageRequestComponent implements OnInit {
       || (this.request.isAccepted() && this.userService.hasRole(User.roles[0]));
   }
 
+  loadMorePlants() {
+    this.httpPlantService.find(
+      PaginatorParamsBuilder.createNextPageParamsFromListedResource(this.plantsPaginatedResource),
+      InfiniteScrollableResource.appendResponseToInfiniteScrollableResource(this.plantsPaginatedResource)
+    ).subscribe();
+
+    // todo: disable loading more plants when all plants of the database have been loaded
+  }
+
+  submitForm() {
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.httpRequestService.saveForm(this.request, this.form.value).subscribe();
+  }
+
+  switchInputMethodOnPlantExistenceChange() {
+    this.form.get('plantNotExists').valueChanges.subscribe({
+      next: () => this.disablePlantInputAccordingToPlantExistence()
+    });
+  }
+
   initForm() {
     this.form = this.formBuilder.group({
       name: this.formBuilder.control(this.request.name, [
@@ -89,7 +119,7 @@ export class ManageRequestComponent implements OnInit {
       dueDate: this.formBuilder.control(this.request.dueDate, [
         Validators.required
       ]),
-      plantNotExists: this.formBuilder.control(!this.request.isNewResource() && isNullOrUndefined(this.request.plantStage)),
+      plantNotExists: this.formBuilder.control(this.request.isNewResource() || this.request.plantNotExists),
       quantity: this.formBuilder.control(this.request.quantity, [
         Validators.required
       ]),
@@ -115,38 +145,19 @@ export class ManageRequestComponent implements OnInit {
 
     this.switchInputMethodOnPlantExistenceChange();
     this.disablePlantInputAccordingToPlantExistence();
+    this.resetPlantStageChoiceOnPlantChange();
 
     if (this.shouldDisableForm()) {
       this.form.disable();
     }
   }
 
-  loadMorePlants() {
-    this.httpPlantService.find(
-      PaginatorParamsBuilder.createNextPageParamsFromListedResource(this.plantsPaginatedResource),
-      InfiniteScrollableResource.appendResponseToInfiniteScrollableResource(this.plantsPaginatedResource)
-    ).subscribe();
-
-    // todo: disable loading more plants when all plants of the database have been loaded
-  }
-
-  switchInputMethodOnPlantExistenceChange() {
-    this.form.get('plantNotExists').valueChanges.subscribe({
-      next: () => {
-        this.form.get('plant').setValue(undefined);
-        this.form.get('plantStage').setValue(undefined);
-        this.form.get('plantName').setValue(undefined);
-        this.form.get('plantStageName').setValue(undefined);
-
-        this.disablePlantInputAccordingToPlantExistence();
-      }
-    });
-  }
-
   disablePlantInputAccordingToPlantExistence() {
     if (this.form.get('plantNotExists').value) {
       this.form.get('plant').disable();
       this.form.get('plantStage').disable();
+      this.form.get('plant').setValue(null);
+      this.form.get('plantStage').setValue(null);
 
       this.form.get('plantName').enable();
       this.form.get('plantStageName').enable();
@@ -156,6 +167,14 @@ export class ManageRequestComponent implements OnInit {
 
       this.form.get('plantName').disable();
       this.form.get('plantStageName').disable();
+      this.form.get('plantName').setValue(null);
+      this.form.get('plantStageName').setValue(null);
     }
+  }
+
+  resetPlantStageChoiceOnPlantChange() {
+    this.form.get('plant').valueChanges.subscribe({
+      next: () => this.form.get('plantStage').setValue(null)
+    });
   }
 }

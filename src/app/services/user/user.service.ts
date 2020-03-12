@@ -65,7 +65,7 @@ export class UserService {
     this.loggedUser = null;
     this.userToken = null;
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
 
   logoutAfterSessionExpired() {

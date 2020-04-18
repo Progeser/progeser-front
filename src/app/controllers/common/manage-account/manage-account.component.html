@@ -22,7 +22,7 @@
   </div>
 
 
-  <div class="inline-form-fields" *ngIf="isRequester()">
+  <div *ngIf="permissionService.isRequester()" class="inline-form-fields">
     <mat-form-field>
       <input matInput formControlName="laboratory" [placeholder]="'words.laboratory'|translate"/>
     </mat-form-field>

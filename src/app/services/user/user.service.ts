@@ -70,13 +70,8 @@ export class UserService {
 
   logoutAfterSessionExpired() {
     this.logout();
+    // todo: translate
     this.snackbarService.error('Votre session a expiré, merci de vous reconnecter pour continuer à utiliser l\'application.');
-  }
-
-  updateUser(updateUserAction: UpdateUserAction): Observable<User> {
-    return this.httpUserService.updateSelf(updateUserAction).pipe(
-      tap((user) => this.loggedUser = user)
-    );
   }
 
   createUser(creationType: string, creationToken: string, userInformationForm): Observable<User> {
@@ -92,6 +87,12 @@ export class UserService {
     );
   }
 
+  updateUser(updateUserAction: UpdateUserAction): Observable<User> {
+    return this.httpUserService.updateSelf(updateUserAction).pipe(
+      tap((user) => this.loggedUser = user)
+    );
+  }
+
   resetForgottenPassword(token: string, forgotPasswordForm) {
     return this.httpUserService.resetPassword(token, forgotPasswordForm).pipe(
       tap(user => this.user = user)
@@ -102,11 +103,11 @@ export class UserService {
     return !isNullOrUndefined(this.token);
   }
 
-  isUserLoggedIn(): boolean {
+  isUserLoggedIn(): boolean { // todo: move in permissions service
     return this.hasToken() && null !== this.user;
   }
 
-  hasRole(role: string): boolean {
+  hasRole(role: string): boolean { //todo: move in permissions service to isGrower() and isRequester()
     return this.isUserLoggedIn() && this.user.role === role;
   }
 }

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Request} from '../../../models';
 import {UserService} from '../../../services';
 import {User} from '../../../models/user';
+import {PermissionService} from '../../../services/permission/permission.service';
 
 @Component({
   selector: 'app-home',
@@ -20,11 +21,6 @@ export class HomeComponent {
     'actions'
   ];
 
-  constructor(protected userService: UserService) {
-  }
-
-  // todo: remove duplicate
-  userIsGrower(): boolean {
-    return this.userService.hasRole(User.roles[1]);
+  constructor(protected permissionService: PermissionService) {
   }
 }

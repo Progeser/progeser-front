@@ -69,14 +69,14 @@
       </button>
 
       <button (click)="cancelRequest(request)"
-              *ngIf="request.isAccepted() || request.isPending() || (userIsGrower() && request.isInCancelation())"
+              *ngIf="permissionService.hasPermission('cancelRequest')"
               [matTooltip]="'phrases.cancelTheRequest'|translate"
               mat-icon-button
               matTooltipPosition="after">
         <mat-icon>cancel</mat-icon>
       </button>
 
-      <ng-container *ngIf="userIsGrower()">
+      <ng-container *ngIf="permissionService.isGrower()">
         <ng-container *ngTemplateOutlet="growerActions; context: {request: request}"></ng-container>
       </ng-container>
     </td>

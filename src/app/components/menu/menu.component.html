@@ -1,4 +1,4 @@
-<nav [ngClass]="{'l-menu': true, 'l-menu-open': isOpen}" *ngIf="userService.isUserLoggedIn()">
+<nav *ngIf="userService.isUserLoggedIn()" [ngClass]="{'l-menu': true, 'l-menu-open': menuService.isOpen$|async}">
   <ul class="l-menu-items">
     <li>
       <a [routerLinkActive]="'active-menu-item'" [routerLink]="['/home']">
@@ -6,42 +6,46 @@
         <span>{{ 'words.home'|translate }}</span>
       </a>
     </li>
-    <li *ngIf="userService.hasRole(roles[1])">
-      <a [routerLink]="['/grower/greenhouses-list']" [routerLinkActive]="'active-menu-item'">
-        <mat-icon fontSet="fa" fontIcon="fa-warehouse"></mat-icon>
-        <span>{{ 'words.greenhouses'|translate }}</span>
-      </a>
-    </li>
-    <li *ngIf="userService.hasRole(roles[1])">
-      <a [routerLink]="['/grower/plants-list']" [routerLinkActive]="'active-menu-item'">
-        <mat-icon fontSet="fa" fontIcon="fa-leaf"></mat-icon>
-        <span>{{ 'words.plants'|translate }}</span>
-      </a>
-    </li>
-    <li *ngIf="userService.hasRole(roles[1])">
-      <a [routerLink]="['/grower/pots-list']" [routerLinkActive]="'active-menu-item'">
-        <mat-icon fontSet="fa" fontIcon="fa-archive"></mat-icon>
-        <span>{{ 'words.pots'|translate }}</span>
-      </a>
-    </li>
+    <ng-container *ngIf="permissionService.isGrower()">
+      <li>
+        <a [routerLinkActive]="'active-menu-item'" [routerLink]="['/grower/greenhouses-list']">
+          <mat-icon fontIcon="fa-warehouse" fontSet="fa"></mat-icon>
+          <span>{{ 'words.greenhouses'|translate }}</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLinkActive]="'active-menu-item'" [routerLink]="['/grower/plants-list']">
+          <mat-icon fontIcon="fa-leaf" fontSet="fa"></mat-icon>
+          <span>{{ 'words.plants'|translate }}</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLinkActive]="'active-menu-item'" [routerLink]="['/grower/pots-list']">
+          <mat-icon fontIcon="fa-archive" fontSet="fa"></mat-icon>
+          <span>{{ 'words.pots'|translate }}</span>
+        </a>
+      </li>
+    </ng-container>
     <li>
       <a [routerLink]="['/manage-account']" [routerLinkActive]="'active-menu-item'">
         <mat-icon fontSet="fa" fontIcon="fa-user"></mat-icon>
         <span>{{ 'words.myAccount'|translate }}</span>
       </a>
     </li>
-    <li *ngIf="userService.hasRole(roles[1])">
-      <a [routerLink]="['/grower/accounts-list']" [routerLinkActive]="'active-menu-item'">
-        <mat-icon fontSet="fa" fontIcon="fa-users"
-                  matBadge="4" matBadgeOverlap="true" matBadgePosition="before" matBadgeColor="warn"></mat-icon>
-        <span>{{ 'words.users'|translate }}</span>
-      </a>
-    </li>
-    <li *ngIf="userService.hasRole(roles[1])">
-      <a [routerLink]="['/grower/invite-user']" [routerLinkActive]="'active-menu-item'">
-        <mat-icon fontSet="fa" fontIcon="fa-paper-plane"></mat-icon>
-        <span>{{ 'phrases.inviteANewUser'|translate }}</span>
-      </a>
-    </li>
+    <ng-container *ngIf="permissionService.isGrower()">
+      <li>
+        <a [routerLinkActive]="'active-menu-item'" [routerLink]="['/grower/accounts-list']">
+          <mat-icon fontIcon="fa-users" fontSet="fa"
+                    matBadge="4" matBadgeColor="warn" matBadgeOverlap="true" matBadgePosition="before"></mat-icon>
+          <span>{{ 'words.users'|translate }}</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLinkActive]="'active-menu-item'" [routerLink]="['/grower/invite-user']">
+          <mat-icon fontIcon="fa-paper-plane" fontSet="fa"></mat-icon>
+          <span>{{ 'phrases.inviteANewUser'|translate }}</span>
+        </a>
+      </li>
+    </ng-container>
   </ul>
 </nav>

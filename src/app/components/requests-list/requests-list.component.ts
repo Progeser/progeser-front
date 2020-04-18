@@ -7,6 +7,7 @@ import {PaginatorComponent} from '../paginator/paginator.component';
 import {isNullOrUndefined} from 'util';
 import {UserService} from '../../services';
 import {User} from '../../models/user';
+import {PermissionService} from '../../services/permission/permission.service';
 
 @Component({
   selector: 'app-requests-list',
@@ -28,6 +29,7 @@ export class RequestsListComponent implements OnInit, AfterViewInit {
 
   constructor(protected translateService: TranslateService,
               protected userService: UserService,
+              protected permissionService: PermissionService,
               protected httpRequestService: RequestService) {
   }
 
@@ -67,9 +69,5 @@ export class RequestsListComponent implements OnInit, AfterViewInit {
     this.filters = {
       status: this.status
     };
-  }
-
-  userIsGrower(): boolean {
-    return this.userService.hasRole(User.roles[1]);
   }
 }

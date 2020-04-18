@@ -67,6 +67,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {MissingTranslationLoggerHandler} from './utils/missing-translation-logger-handler/missing-translation-logger-handler';
 import {PaginatorIntl} from './internationalization/mat-paginator/paginator-intl';
 import {MatSelectInfiniteScrollModule} from 'ng-mat-select-infinite-scroll';
+import { ResourceSelectorComponent } from './components/resource-selector/resource-selector.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -107,7 +108,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CreateAccountComponent,
     BenchesFormComponent,
     ResetPasswordComponent,
-    PasswordFormComponent
+    PasswordFormComponent,
+    ResourceSelectorComponent
   ],
   imports: [
     HttpClientModule,

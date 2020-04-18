@@ -2,7 +2,7 @@ import {Resource} from './resource';
 import {Token} from './token';
 
 export class User extends Resource {
-  static roles: string[] = [
+  static roles: string[] = [ // todo: move in permissions
     'requester',
     'grower'
   ];
@@ -33,5 +33,13 @@ export class User extends Resource {
     const roleIndex = User.roles.indexOf(role);
 
     return -1 !== roleIndex ? User.roleLabels[User.roles.indexOf(role)] : '';
+  }
+
+  isRequester(): boolean {
+    return User.roles[0] === this.role;
+  }
+
+  isGrower() {
+    return User.roles[1] === this.role;
   }
 }

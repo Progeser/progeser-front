@@ -15,29 +15,31 @@
     <app-requests-list [columns]="tableColumns"></app-requests-list>
   </mat-tab>
 
-  <mat-tab *ngIf="userIsGrower()">
-    <ng-template mat-tab-label>
+  <ng-container *ngIf="permissionService.isGrower()">
+    <mat-tab>
+      <ng-template mat-tab-label>
       <span matBadge="4" matBadgeOverlap="false" matBadgeColor="warn">
         {{ 'phrases.waitingRequests'|translate }}
       </span>
-    </ng-template>
+      </ng-template>
 
-    <ng-template matTabContent>
-      <app-requests-list [columns]="tableColumns" [status]="requestStatus[0]"></app-requests-list>
-    </ng-template>
-  </mat-tab>
+      <ng-template matTabContent>
+        <app-requests-list [columns]="tableColumns" [status]="requestStatus[0]"></app-requests-list>
+      </ng-template>
+    </mat-tab>
 
-  <mat-tab *ngIf="userIsGrower()">
-    <ng-template mat-tab-label>
+    <mat-tab>
+      <ng-template mat-tab-label>
       <span matBadge="1" matBadgeOverlap="false" matBadgeColor="warn">
         {{ 'phrases.requestsOfCancelling'|translate }}
       </span>
-    </ng-template>
+      </ng-template>
 
-    <ng-template matTabContent>
-      <app-requests-list [columns]="tableColumns" [status]="requestStatus[3]"></app-requests-list>
-    </ng-template>
-  </mat-tab>
+      <ng-template matTabContent>
+        <app-requests-list [columns]="tableColumns" [status]="requestStatus[3]"></app-requests-list>
+      </ng-template>
+    </mat-tab>
+  </ng-container>
 
   <mat-tab>
     <ng-template mat-tab-label>
@@ -49,7 +51,7 @@
     <app-requests-list [columns]="tableColumns"></app-requests-list>
   </mat-tab>
 
-  <mat-tab *ngIf="userIsGrower()">
+  <mat-tab *ngIf="permissionService.isGrower()">
     <ng-template mat-tab-label>
       {{ 'phrases.allRequests'|translate }}
     </ng-template>

@@ -5,13 +5,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {RequestService} from '../../../services/http';
 import {map, switchMap} from 'rxjs/operators';
 import {isNullOrUndefined} from 'util';
-import {UserService} from '../../../services';
-import {User} from '../../../models/user';
 import {combineLatest} from 'rxjs';
 import {PlantService} from '../../../services/http/plant/plant.service';
 import {InfiniteScrollableResource} from '../../../utils/paginator/infinite-scrollable-resource';
 import {PaginatorParamsBuilder} from '../../../utils/paginator/paginator-params-builder';
 import {compareByProperty} from '../../../utils/comparators/compare-by-property';
+import {PermissionService} from '../../../services/permission/permission.service';
 
 @Component({
   selector: 'app-manage-request',
@@ -31,7 +30,7 @@ export class ManageRequestComponent implements OnInit {
   constructor(protected formBuilder: FormBuilder,
               protected router: Router,
               protected route: ActivatedRoute,
-              protected userService: UserService,
+              protected permissionService: PermissionService,
               protected httpRequestService: RequestService,
               protected httpPlantService: PlantService) {
   }
@@ -84,7 +83,7 @@ export class ManageRequestComponent implements OnInit {
       || this.request.isInCancelation()
       || this.request.isCanceled()
       || this.request.isDeclined()
-      || (this.request.isAccepted() && this.userService.hasRole(User.roles[0]));
+      || (this.request.isAccepted() && this.permissionService.isRequester());
   }
 
   loadMorePlants() {

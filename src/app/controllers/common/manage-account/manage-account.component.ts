@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material';
 import {ChangePasswordDialogComponent} from '../dialogs/change-password-dialog/change-password-dialog.component';
 import {UserService} from '../../../services';
 import {UpdateUserAction} from '../../../models/actions/update-user-action';
+import {PermissionService} from '../../../services/permission/permission.service';
 
 @Component({
   selector: 'app-manage-account',
@@ -17,6 +18,7 @@ export class ManageAccountComponent implements OnInit {
 
   constructor(protected formBuilder: FormBuilder,
               protected dialog: MatDialog,
+              protected permissionService: PermissionService,
               protected userService: UserService) {
     this.user = userService.user;
   }
@@ -35,10 +37,6 @@ export class ManageAccountComponent implements OnInit {
       ]),
       laboratory: this.formBuilder.control(this.user.laboratory),
     });
-  }
-
-  isRequester(): boolean {
-    return this.userService.hasRole(User.roles[0]);
   }
 
   submitForm() {

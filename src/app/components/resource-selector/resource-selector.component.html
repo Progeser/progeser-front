@@ -1,0 +1,11 @@
+<mat-form-field>
+  <mat-label *ngIf="label">{{ label|translate }}</mat-label>
+  <mat-select formControlName="role" required>
+    <mat-option *ngFor="let choice of choices; let i = index" [value]="choice">
+      {{ choice }}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="form.get('role').invalid">
+    {{ 'validations.pleaseInputUserToInviteRole'|translate }}
+  </mat-error>
+</mat-form-field>

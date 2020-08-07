@@ -26,7 +26,7 @@
     "@fullcalendar/daygrid": "^4.4.0",
     "@ngx-translate/core": "^11.0.1",
     "@ngx-translate/http-loader": "^4.0.0",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "lodash-es": "^4.17.15",
     "ng-mat-select-infinite-scroll": "^2.0.0",
     "rxjs": "~6.4.0",
